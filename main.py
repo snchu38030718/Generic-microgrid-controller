@@ -23,3 +23,6 @@ else:
 # Main Code
 
 m  = Microgrid()
+
+while 1:
+    m.e.send(m.e.status(),1)
