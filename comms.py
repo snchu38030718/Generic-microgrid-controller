@@ -4,8 +4,8 @@ import array
 class Ethernet:
     
     BUF_SIZE = 128
-    HOST_IP = '132.206.62.245'
-    PORT = 0
+    HOST_IP = ''
+    PORT = 45000
     
     
     def __init__(self):
