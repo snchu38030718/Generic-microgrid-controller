@@ -5,7 +5,7 @@ class Ethernet:
     
     BUF_SIZE = 1024
     HOST_IP = ''
-    PORT = 50000
+    PORT = 45000
     
     
     def __init__(self):
