@@ -25,6 +25,7 @@ else:
 
 m  = Microgrid()
 
+
 while 1:
     start_time = time.time()
     m.e.send(m.e.status(),1)
