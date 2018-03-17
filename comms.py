@@ -3,7 +3,7 @@ import array
 
 class Ethernet:
     
-    BUF_SIZE = 1024
+    BUF_SIZE = 128
     HOST_IP = ''
     PORT = 45000
     
@@ -16,18 +16,18 @@ class Ethernet:
         # Receive first message from microgrid to acquire message identification
         print('Waiting for connection from microgrid...')
         data, self.address = self.s.recvfrom(self.BUF_SIZE)
+        data_doubles = array.array('d', data)
+        self.MESSAGE_ID = data_doubles[0]
         print('Connected!')
-        self.message_header = data[0:6]
         
         # Close socket to prevent accumulation of data
         self.s.close()
         
     def status(self):
-        # Set up socket and bind socket to port and local host IP
+
+        # Receive latest microgrid data
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.s.bind((self.HOST_IP, self.PORT))
-        
-        # Receive latest microgrid data
         data, address = self.s.recvfrom(self.BUF_SIZE)
         
         # Rearrange data from bytes into an array
@@ -38,18 +38,17 @@ class Ethernet:
         return data_doubles[1:]
     
     
-    def send(self, commands):
-        # Set up socket and bind socket to port and local host IP
+    def send(self, commands, n):
+        # Rearrange data from array and include message identification
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.s.bind((self.HOST_IP, self.PORT))
-        
-        # Rearrange data from array and include message identification
-        n = len(commands)
-        message_length = bytes(array.array('h', [n*8]))
-        message = self.message_header + message_length + bytes(commands)
+        data_to_send = array.array('d', [self.MESSAGE_ID])
+        for i in range(n):
+            data_to_send.append(commands[i])
         
         # Send data
-        self.s.sendto(message, self.address)
+        self.s.sendto(bytes(data_to_send), self.address)
         
         # Close socket to prevent accumulation of data
         self.s.close()
+
