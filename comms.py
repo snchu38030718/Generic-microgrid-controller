@@ -45,7 +45,7 @@ class Ethernet:
         
         # Rearrange data from array and include message identification
         n = len(commands)
-        message_length = bytes(array.array('h', [n*8]))
+        message_length = bytes(array.array('h', [n*8])) # h represent unsinged short
         message = self.message_header + message_length + bytes(commands)
         
         # Send data
