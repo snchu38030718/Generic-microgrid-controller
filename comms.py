@@ -38,15 +38,15 @@ class Ethernet:
         return data_doubles[1:]
     
     
-    def send(self, commands):
+    def send(self, commands):  #why we need commands here
         # Set up socket and bind socket to port and local host IP
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.s.bind((self.HOST_IP, self.PORT))
         
         # Rearrange data from array and include message identification
-        n = len(commands)
-        message_length = bytes(array.array('h', [n*8])) # h represent unsinged short
-        message = self.message_header + message_length + bytes(commands)
+        #n = len(commands)
+        #message_length = bytes(array.array('h', [n*8])) # h represent unsinged short
+        message = self.message_header + bytes(commands)
         
         # Send data
         self.s.sendto(message, self.address)
