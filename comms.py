@@ -17,7 +17,7 @@ class Ethernet:
         print('Waiting for connection from microgrid...')
         data, self.address = self.s.recvfrom(self.BUF_SIZE)
         print('Connected!')
-        self.message_header = data[0:6]
+        self.message_header = bytes(data[0:6])
         
         # Close socket to prevent accumulation of data
         self.s.close()
@@ -38,7 +38,7 @@ class Ethernet:
         return data_doubles[1:]
     
     
-    def send(self, commands):  #why we need commands here
+    def send(self, commands):  # Why we need commands here? Command is the data from status.
         # Set up socket and bind socket to port and local host IP
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.s.bind((self.HOST_IP, self.PORT))
