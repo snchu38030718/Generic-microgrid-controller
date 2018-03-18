@@ -30,7 +30,7 @@ m  = Microgrid()
 #    command.append(1.0)
 while 1:
      start_time = time.time()
-     command=m.e.status()*2
+     command=m.e.status()*3
      m.e.send(command)
      elapsed_time = time.time() - start_time;
      print(elapsed_time)
