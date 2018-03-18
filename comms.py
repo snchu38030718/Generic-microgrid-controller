@@ -40,7 +40,7 @@ class Ethernet:
         return data_doubles[1:]
     
     
-    def send(self, commands, n):  # Why we need commands here? Command is the data from status.
+    def send(self, commands):  # Why we need commands here? Command is the data from status.
         # Set up socket and bind socket to port and local host IP
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.s.bind((self.HOST_IP, self.PORT))
@@ -50,8 +50,8 @@ class Ethernet:
         
         message=array.array('d', [self.message_header])
         #message_length = array.array('d', commands) # h represent unsinged short
-        for i in range(n):
-            message.append(commands[i])
+#        for i in range(n):
+        message.append(commands)
         
         # message.append( message_length)
         
