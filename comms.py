@@ -52,7 +52,7 @@ class Ethernet:
 #        message_length = array.array('d', [commands]) # h represent unsinged short
         message=array.array('d',[])
         for i in range(1):
-             message.append(commands)
+             message.append(commands[i])
 #        
         # message.append( message_length)
         
