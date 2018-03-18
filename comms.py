@@ -48,10 +48,10 @@ class Ethernet:
         
         message=array.array('d', [self.message_header])
         # message_length = commands # h represent unsinged short
-        message_to_send = message.append(commands)
+        message.append(commands)
         
         # Send data
-        self.s.sendto(bytes(message_to_send), self.address)
+        self.s.sendto(bytes(message), self.address)
         
         # Close socket to prevent accumulation of data
         self.s.close()
