@@ -16,8 +16,9 @@ class Ethernet:
         # Receive first message from microgrid to acquire message identification
         print('Waiting for connection from microgrid...')
         data, self.address = self.s.recvfrom(self.BUF_SIZE)
+        data_doubles = array.array('d', data)
         print('Connected!')
-        self.message_header = data[0]
+        self.message_header = data_doubles[0]
         
         # Close socket to prevent accumulation of data
         self.s.close()
@@ -31,11 +32,11 @@ class Ethernet:
         data, self.address = self.s.recvfrom(self.BUF_SIZE)
         
         # Rearrange data from bytes into an array
-        data_doubles = array.array('d', data)
+        data_double = array.array('d', data)
         
         # Close socket to prevent accumulation of data
         self.s.close()
-        return data_doubles[1:]
+        return data_double[1:]
     
     
     def send(self, commands, n):  # Why we need commands here? Command is the data from status.
@@ -46,7 +47,7 @@ class Ethernet:
         # Rearrange data from array and include message identification
         #n = len(commands)
         
-        message=array.array('d', self.message_header)
+        message=array.array('d', [self.message_header])
         #message_length = array.array('d', commands) # h represent unsinged short
         for i in range(n):
             message.append(commands[i])
