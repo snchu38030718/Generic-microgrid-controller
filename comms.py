@@ -32,11 +32,11 @@ class Ethernet:
         data, self.address = self.s.recvfrom(self.BUF_SIZE)
         
         # Rearrange data from bytes into an array
-        data_double = array.array('d', data)
+        data_doubles = array.array('d', data)
         
         # Close socket to prevent accumulation of data
         self.s.close()
-        return data_double[1:]
+        return data_doubles[1:]
     
     
     def send(self, commands, n):  # Why we need commands here? Command is the data from status.
