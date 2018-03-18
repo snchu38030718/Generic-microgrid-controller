@@ -52,8 +52,8 @@ class Ethernet:
 #        message_length = array.array('d', [commands]) # h represent unsinged short
 #        message=array.array('d',[])
 #        for i in range(1):
-        message.append(commands[0:1])
-#        
+        message.append(commands[0])
+        message.append(commands[1])
         # message.append( message_length)
         
         # Send data
