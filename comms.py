@@ -17,7 +17,7 @@ class Ethernet:
         print('Waiting for connection from microgrid...')
         data, self.address = self.s.recvfrom(self.BUF_SIZE)
         data_doubles = array.array('d', data)
-        self.message_header = data_doubles[0]
+        self.message_header = data_doubles[0:1]
         print('Connected!')
         
         
@@ -36,7 +36,7 @@ class Ethernet:
         
         # Close socket to prevent accumulation of data
         self.s.close()
-        return data_doubles[1:]
+        return data_doubles[2:]
     
     
     def send(self, commands):  # Why we need commands here? Command is the data from status.
@@ -51,7 +51,7 @@ class Ethernet:
 #        message_length = array.array('d', [commands]) # h represent unsinged short
 #        message=array.array('d',[])
 #        for i in range(1):
-        message.append(commands[0])
+        message.append(commands[0:1])
 #        
         # message.append( message_length)
         
