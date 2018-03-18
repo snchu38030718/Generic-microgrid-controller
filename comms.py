@@ -17,7 +17,7 @@ class Ethernet:
         print('Waiting for connection from microgrid...')
         data, self.address = self.s.recvfrom(self.BUF_SIZE)
         data_doubles = array.array('d', data)
-        self.message_header = data_doubles[0:1]
+        self.message_header = data_doubles[0]
         print('Connected!')
         
         
