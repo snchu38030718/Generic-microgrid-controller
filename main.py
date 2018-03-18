@@ -30,7 +30,7 @@ m  = Microgrid()
 #    command.append(1.0)
 while 1:
      #start_time = time.time()
-     command=m.e.status()
+#     command=m.e.status()
      #command1=array.array('d',command)
      m.e.send(m.e.status())
 #     print (type (command))
