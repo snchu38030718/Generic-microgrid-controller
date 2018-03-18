@@ -3,7 +3,7 @@
 ###############################################################################
 # Imports
 import os
-#import array
+import array
 import time
 from microgrid import Microgrid
 ###############################################################################
@@ -31,6 +31,7 @@ m  = Microgrid()
 while 1:
      start_time = time.time()
      command=m.e.status()*3
-     m.e.send(command)
+     command1=array.array('d',command)
+     m.e.send(command1)
      elapsed_time = time.time() - start_time;
      print(elapsed_time)
