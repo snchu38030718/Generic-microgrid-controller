@@ -36,7 +36,7 @@ class Ethernet:
         
         # Close socket to prevent accumulation of data
         self.s.close()
-        return data_doubles
+        return data_doubles[2:3]
     
     
     def send(self, commands):  # Why we need commands here? Command is the data from status.
