@@ -4,7 +4,7 @@
 # Imports
 import os
 #import array
-#import time
+import time
 from microgrid import Microgrid
 ###############################################################################
 # OS checks and setup 
@@ -29,10 +29,10 @@ m  = Microgrid()
 #for i in range(1):
 #    command.append(1.0)
 while 1:
-     #start_time = time.time()
+     start_time = time.time()
      command=list(m.e.status())
-     print(len(command))
-     print(m.e.message_header)
+#     print(len(command))
+#     print(m.e.message_header)
      #command1=array.array('d',command)
      command[0]=command[0]*2
      command[1]=command[1]*2
@@ -41,5 +41,5 @@ while 1:
      m.e.send(command1)
 #     print (command1[0])
      
-     #elapsed_time = time.time() - start_time;
-     #print(elapsed_time)
+     elapsed_time = time.time() - start_time;
+     print(elapsed_time)
