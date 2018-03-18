@@ -17,7 +17,7 @@ class Ethernet:
         print('Waiting for connection from microgrid...')
         data, self.address = self.s.recvfrom(self.BUF_SIZE)
         print('Connected!')
-        self.message_header = bytes(data[0:6])
+        self.message_header = data[0:6]
         
         # Close socket to prevent accumulation of data
         self.s.close()
@@ -45,12 +45,12 @@ class Ethernet:
         
         # Rearrange data from array and include message identification
         #n = len(commands)
-        #message_length = bytes(array.array('h', [n*8])) # h represent unsinged short
+        message_length = bytes(array.array('h', [commands])) # h represent unsinged short
         message=self.message_header
-        message_to_send = message.append(bytes(commands))
+        message_to_send = message.append(message_length)
         
         # Send data
-        self.s.sendto(message_to_send, self.address)
+        self.s.sendto(bytes(message_to_send), self.address)
         
         # Close socket to prevent accumulation of data
         self.s.close()
