@@ -3,7 +3,7 @@ import array
 
 class Ethernet:
     
-    BUF_SIZE = 4096
+    BUF_SIZE = 64
     HOST_IP = ''
     PORT = 45000
     
