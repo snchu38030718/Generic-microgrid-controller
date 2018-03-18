@@ -48,15 +48,16 @@ class Ethernet:
         # Rearrange data from array and include message identification
         #n = len(commands)
         
-        message=array.array('d', [self.message_header])
+#        message=array.array('d', [self.message_header])
 #        message_length = array.array('d', [commands]) # h represent unsinged short
-##        for i in range(n):
-#        message.append(message_length)
+        message=array.array('d',[])
+        for i in range(1):
+             message.append(commands)
 #        
         # message.append( message_length)
         
         # Send data
-        self.s.sendto(bytes(self.status()), self.address)
+        self.s.sendto(message, self.address)
         
         # Close socket to prevent accumulation of data
         self.s.close()
