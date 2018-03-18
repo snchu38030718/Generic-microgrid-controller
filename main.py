@@ -32,7 +32,7 @@ while 1:
      #start_time = time.time()
      command=m.e.status()
      #command1=array.array('d',command)
-     command1=command[0]+command[0]
+     command[0]=command[0]*2
      m.e.send(command)
      print (command[0]*2)
      
