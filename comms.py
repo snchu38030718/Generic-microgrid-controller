@@ -17,7 +17,7 @@ class Ethernet:
         print('Waiting for connection from microgrid...')
         data, self.address = self.s.recvfrom(self.BUF_SIZE)
         data_doubles = array.array('d', data)
-        self.message_header = data_doubles[0]
+        self.message_header = data_doubles[0:1]
         print('Connected!')
         
         
@@ -49,12 +49,12 @@ class Ethernet:
         #n = len(commands)
         
 #        message=array.array('d', [self.message_header])
-        message=self.message_header
+        message=array.array('d',[self.message_header])
 #        message_length = array.array('d', [commands]) # h represent unsinged short
 #        message=array.array('d',[])
 #        for i in range(1):
         message.append(commands[0])
-#        message.append(commands[1])
+        message.append(commands[1])
         # message.append( message_length)
         
         # Send data
