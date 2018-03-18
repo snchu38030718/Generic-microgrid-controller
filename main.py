@@ -28,4 +28,4 @@ m  = Microgrid()
 #for i in range(1):
 #    command.append(1.0)
 while 1:
-    m.e.send(m.e.status(),1)
+    m.e.send(m.e.status())
