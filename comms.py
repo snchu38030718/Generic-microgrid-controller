@@ -17,8 +17,9 @@ class Ethernet:
         print('Waiting for connection from microgrid...')
         data, self.address = self.s.recvfrom(self.BUF_SIZE)
         data_doubles = array.array('d', data)
-        print('Connected!')
         self.message_header = data_doubles[0]
+        print('Connected!')
+        
         
         # Close socket to prevent accumulation of data
         self.s.close()
