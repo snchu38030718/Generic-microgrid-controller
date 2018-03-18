@@ -27,4 +27,4 @@ m  = Microgrid()
 command = array.array('d',[])
 for i in range(1):
     command.append(1.0)
-m.e.send(m.e.status())
+m.e.send(m.e.status(),1)
