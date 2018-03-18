@@ -3,7 +3,7 @@ import array
 
 class Ethernet:
     
-    BUF_SIZE = 128
+    BUF_SIZE = 1024
     HOST_IP = ''
     PORT = 45000
     
@@ -31,7 +31,6 @@ class Ethernet:
         
         # Receive latest microgrid data
         data, self.address = self.s.recvfrom(self.BUF_SIZE)
-        
         # Rearrange data from bytes into an array
         data_doubles = array.array('d', data)
         
