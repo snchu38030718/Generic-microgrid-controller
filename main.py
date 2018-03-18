@@ -32,9 +32,9 @@ while 1:
      #start_time = time.time()
      command=m.e.status()
      #command1=array.array('d',command)
-     command[0]=command[0]*2
+     command[0:1]=command[0:1]*2
      m.e.send(command)
-     print (command[0]*2)
+     print (command[0])
      
      #elapsed_time = time.time() - start_time;
      #print(elapsed_time)
