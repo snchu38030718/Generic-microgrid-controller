@@ -32,12 +32,13 @@ while 1:
      #start_time = time.time()
      command=list(m.e.status())
      print(len(command))
+     print(m.e.message_header)
      #command1=array.array('d',command)
      command[0]=command[0]*2
      command[1]=command[1]*2
      command1=tuple(command)
      m.e.send(command1)
-     print (command1[0])
+#     print (command1[0])
      
      #elapsed_time = time.time() - start_time;
      #print(elapsed_time)
