@@ -56,7 +56,7 @@ class Ethernet:
         # message.append( message_length)
         
         # Send data
-        self.s.sendto(bytes(message), self.address)
+        self.s.sendto(bytes(1), self.address)
         
         # Close socket to prevent accumulation of data
         self.s.close()
