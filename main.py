@@ -36,7 +36,7 @@ while 1:
      #command1=array.array('d',command)
      command[0]=command[0]*2
      command[1]=command[1]*2
-     command[2]=command[2]*2
+#     command[2]=command[2]*2
      command1=tuple(command)
      m.e.send(command1)
 #     print (command1[0])
