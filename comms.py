@@ -48,9 +48,9 @@ class Ethernet:
         # Rearrange data from array and include message identification
         #n = len(commands)
         
-#        message=array.array('d', [self.message_header])
+        message=array.array('d', [self.message_header])
 #        message_length = array.array('d', [commands]) # h represent unsinged short
-        message=array.array('d',[])
+#        message=array.array('d',[])
         for i in range(1):
              message.append(commands[i])
 #        
