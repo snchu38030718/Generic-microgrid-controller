@@ -5,7 +5,7 @@ class PID:
     """PID Controller
     """
 
-    def __init__(self, P=0.2, I=0.0, D=0.0):
+    def __init__(self, P=0.3, I=0.0, D=0.0):
 
         self.Kp = P
         self.Ki = I
@@ -28,7 +28,7 @@ class PID:
 
         # Windup Guard
         self.int_error = 0.0
-        self.windup_guard = 20.0
+        self.windup_guard = 1000.0
 
         self.output = 0.0
 
