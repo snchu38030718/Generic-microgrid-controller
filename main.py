@@ -4,6 +4,7 @@
 # Imports
 import os
 #import array
+import PID
 import time
 from microgrid import Microgrid
 ###############################################################################
@@ -28,6 +29,7 @@ m  = Microgrid()
 #command = array.array('d',[])
 #for i in range(1):
 #    command.append(1.0)
+init_time=time.time()
 while 1:
      start_time = time.time()
      command=list(m.e.status())
@@ -37,6 +39,19 @@ while 1:
      command[0]=command[0]*2
      command[1]=command[1]*2
      command[2]=command[2]*2
+     
+     # PID controller
+     feedback=command[3]
+     pid = PID.PID(100, 100, 0.000)  # give P,I,D, but not update now
+     pid.SetPoint=0.0
+     spent_time=time.time()-init_time
+     if spent_time>30:  # setpoint change
+            pid.SetPoint = 1 # Setpoint reference
+     pid.setSampleTime(0.0000)
+     pid.update(feedback) # update_feedback
+     command[3] = pid.output  # output
+     
+     # send back
      command1=tuple(command)
      m.e.send(command1)
 #     print (command1[0])
