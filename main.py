@@ -47,6 +47,8 @@ while 1:
      spent_time=time.time()-init_time
      if spent_time>30:  # setpoint change
             pid.SetPoint = 1 # Setpoint reference
+     if spent_time>35:  # setpoint change
+            pid.SetPoint = 2 # Setpoint reference    
      pid.setSampleTime(0.0000)
      pid.update(feedback) # update_feedback
      command[3] = pid.output  # output
