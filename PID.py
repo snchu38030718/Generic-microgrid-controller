@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# https://github.com/ivmech/ivPID/blob/master/README.md
+
 import time
 
 class PID:
