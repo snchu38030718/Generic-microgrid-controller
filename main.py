@@ -42,7 +42,7 @@ while 1:
      
      # PID controller
      feedback1=command[3]
-     pid = PID.PID(100, 100, 0.000)  # give P,I,D, but not update now
+     pid = PID.PID(1, 100, 0.000)  # give P,I,D, but not update now
      pid.SetPoint=0.0
      pid.setSampleTime(0.0000)
      command[3]=0 # default, no PI control
