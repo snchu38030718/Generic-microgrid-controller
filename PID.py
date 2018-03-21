@@ -51,18 +51,18 @@ class PID:
 
         if (delta_time >= self.sample_time):  
 #            print(delta_time)
-        self.PTerm = self.Kp * error      # proportional term
-        self.ITerm += error * delta_time  # integral term
-        print(self.ITerm)
+            self.PTerm = self.Kp * error      # proportional term
+            self.ITerm += error * delta_time  # integral term
+            print(self.ITerm)
 
-        if (self.ITerm < -self.windup_guard): # wind_up
-             self.ITerm = -self.windup_guard
-        elif (self.ITerm > self.windup_guard):
-             self.ITerm = self.windup_guard
+            if (self.ITerm < -self.windup_guard): # wind_up
+                self.ITerm = -self.windup_guard
+            elif (self.ITerm > self.windup_guard):
+                self.ITerm = self.windup_guard
 
-        self.DTerm = 0.0
-        if delta_time > 0:
-            self.DTerm = delta_error / delta_time   # derivative term
+            self.DTerm = 0.0
+            if delta_time > 0:
+                self.DTerm = delta_error / delta_time   # derivative term
 
             # Remember last time and last error for next calculation
         self.last_time = self.current_time
