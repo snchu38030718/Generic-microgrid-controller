@@ -49,7 +49,7 @@ while 1:
      pid.SetPoint=0.0
      pid.setSampleTime(0.00)
      command[3]=0 # default, no PI control
-     if spent_time>10 & abs(feedback1)>0.005:  # setpoint change
+     if spent_time>10 and abs(feedback1)>0.005:  # setpoint change
             pid.SetPoint = 0 # Setpoint reference
             pid.update(feedback1) # update_feedback
             command[3] = pid.output  # output
