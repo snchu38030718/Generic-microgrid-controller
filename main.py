@@ -56,8 +56,7 @@ while 1:
             #time.sleep(0.001)   # time_sleep
      elif spent_time>11 & abs(feedback1)<=0.005: 
          command[3]=0
-         sw=1
-         command.append(sw)
+         command[4]=1
 
      # send back
      command1=tuple(command)
