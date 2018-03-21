@@ -55,7 +55,7 @@ while 1:
             pid.update(feedback1) # update_feedback
             command[3] = pid.output  # output
             #time.sleep(0.001)   # time_sleep
-     elif spent_time>10 & abs(feedback1)<=0.005: 
+     elif spent_time>10 and abs(feedback1)<=0.005: 
          command[3]=0
          command[4]=1
 
