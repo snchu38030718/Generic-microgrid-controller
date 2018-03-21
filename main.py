@@ -45,22 +45,22 @@ while 1:
      spent_time=time.time()-init_time
      if spent_time>10: 
          feedback1=command[3]
-         print (feedback1)
+         #print (feedback1)
      pid = PID.PID(P=0.5, I=1000000, D=0.000)  # give P,I,D, but not update now
      pid.SetPoint=0.0
      pid.setSampleTime(0.00)
      command[3]=0 # default, no PI control
      command[4]=0
-     if spent_time>11 and abs(feedback1)<=0.03: 
-         command[3]=0
-         command[4]=1
-         print(command[4])
      if spent_time>10 and abs(feedback1)>=0.001:  # setpoint change
             pid.SetPoint = 0 # Setpoint reference
             pid.update(feedback1) # update_feedback
             command[3] = pid.output  # output
             #time.sleep(0.001)   # time_sleep
             print(command[4])
+     if spent_time>11 and abs(feedback1)<=0.03: 
+         command[3]=0
+         command[4]=1
+         print(command[4])
 
 
      # send back
