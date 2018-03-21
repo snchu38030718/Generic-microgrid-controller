@@ -45,6 +45,7 @@ while 1:
      spent_time=time.time()-init_time
      if spent_time>10: 
          feedback1=command[3]
+         print (feedback1)
      pid = PID.PID(P=0.5, I=1000000, D=0.000)  # give P,I,D, but not update now
      pid.SetPoint=0.0
      pid.setSampleTime(0.00)
