@@ -49,7 +49,7 @@ class PID:
         delta_error = error - self.last_error
 #        print(delta_time)
 
-        #if (delta_time >= self.sample_time):  
+        if (delta_time >= self.sample_time):  
 #            print(delta_time)
         self.PTerm = self.Kp * error      # proportional term
         self.ITerm += error * delta_time  # integral term
