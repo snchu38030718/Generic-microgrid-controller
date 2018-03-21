@@ -53,7 +53,7 @@ class PID:
 #            print(delta_time)
         self.PTerm = self.Kp * error      # proportional term
         self.ITerm += error * delta_time  # integral term
-            #print(self.ITerm)
+        print(self.ITerm)
 
         if (self.ITerm < -self.windup_guard): # wind_up
              self.ITerm = -self.windup_guard
