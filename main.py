@@ -53,7 +53,7 @@ while 1:
             pid.SetPoint = 0.3 # Setpoint reference
             pid.update(feedback1) # update_feedback
             command[3] = pid.output  # output
-            time.sleep(0.0000)   # time_sleep
+#            time.sleep(0.0000)   # time_sleep
     
     
      # send back
