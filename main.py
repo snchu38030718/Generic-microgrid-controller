@@ -47,12 +47,13 @@ while 1:
          feedback1=command[3]
      pid = PID.PID(P=100, I=10000, D=0.000)  # give P,I,D, but not update now
      pid.SetPoint=0.0
-     pid.setSampleTime(0.0000)
+     pid.setSampleTime(0.0001)
      command[3]=0 # default, no PI control
      if spent_time>10:  # setpoint change
             pid.SetPoint = 0.3 # Setpoint reference
             pid.update(feedback1) # update_feedback
             command[3] = pid.output  # output
+            time.sleep(0.0001)   # time_sleep
     
     
      # send back
