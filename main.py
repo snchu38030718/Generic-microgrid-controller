@@ -36,6 +36,7 @@ ph_max=0.01
 ph_min1=6.2
 ph_max1=6.3
 ph_flag=1
+time_close=20
 while 1:
      start_time = time.time()
      command=list(m.e.status())
