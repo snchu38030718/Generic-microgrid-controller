@@ -113,7 +113,7 @@ while 1:
      if (tie_delay)>=5 and ph_flag==0: # re-enable tie_line control 
          print (tie_delay)
          command[4]=0             # keep closed
-         pid.SetPoint = -0.2 # Setpoint reference
+         pid.SetPoint = -0.1 # Setpoint reference
          pid.update(feedback1) # update_feedback
          command[3] = pid.output  # output
          tie_flag=0
