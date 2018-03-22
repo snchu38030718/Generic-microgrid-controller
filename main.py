@@ -78,25 +78,31 @@ while 1:
          flag=0      # flage is ued to lock the switch state
         
      ph_chck=abs(command[2])
-     if spent_time>20 and ph_flag==1:
+     if spent_time>20 :
          if command[2]>=0.5:
             if ph_chck>=ph_min1 and ph_chck<=ph_max1: # close breaker
                  command[3]=0
                  command[4]=0
                  ph_flag=0
                  time_close=time.time()
-            else: 
+            elif ph_flag==1:  # keep open
                  command[3]=0
                  command[4]=1
+            else:             # keep closed
+                 command[3]=0
+                 command[4]=0
          else:
             if ph_chck>=ph_min and ph_chck<=ph_max: # close breaker
                  command[3]=0
                  command[4]=0
                  ph_flag=0
                  time_close=time.time()
-            else: 
+            elif ph_flag==1:  # keep open
                  command[3]=0
                  command[4]=1
+            else:             # keep closed
+                 command[3]=0
+                 command[4]=0
                  
         
      if (time.time()-time_close)>=4 and ph_flag==0: # re-enable tie_line control 
