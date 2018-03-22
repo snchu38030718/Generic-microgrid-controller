@@ -67,7 +67,7 @@ while 1:
 #               time.sleep(0.001)   # time_sleep
                 print(command[4])
 
-     if spent_time>13 and abs(feedback1)<=0.01: 
+     if spent_time>13 and abs(feedback1)<=0.005: 
          command[3]=0
          command[4]=1
          print(command[4])
