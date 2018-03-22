@@ -109,6 +109,7 @@ while 1:
          pid.SetPoint = -0.2 # Setpoint reference
          pid.update(feedback1) # update_feedback
          command[3] = pid.output  # output
+         command[4]=0             # keep closed
      # send back
      command1=tuple(command)
      m.e.send(command1)
