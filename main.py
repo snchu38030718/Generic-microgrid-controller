@@ -74,11 +74,11 @@ while 1:
                 print(command[4])
 
      if spent_time>13 and abs(feedback1)<=0.03 and ph_flag==1: # open breaker
-         command[3]=0
          command[4]=1
+         command[3]=0
          pid.clear
          print(command[4])
-         flag=0      # flage is ued to lock the switch state
+         flag=0      # flage is ued to lock the open state
         
      ph_chck=abs(command[2])
      if spent_time>20 and tie_flag==1:
@@ -87,7 +87,7 @@ while 1:
                  command[4]=0
                  command[3]=0
                  pid.clear
-                 ph_flag=0
+                 ph_flag=0  # log close state
                  time_close=time.time()
             elif ph_flag==1:  # keep open
                  command[4]=1
@@ -113,9 +113,10 @@ while 1:
      if (tie_delay)>=5 and ph_flag==0: # re-enable tie_line control 
          print (tie_delay)
          command[4]=0             # keep closed
-         pid.SetPoint = -0.1 # Setpoint reference
-         pid.update(feedback1) # update_feedback
-         command[3] = pid.output  # output
+#         pid.SetPoint = -0.1 # Setpoint reference
+#         pid.update(feedback1) # update_feedback
+#         command[3] = pid.output  # output
+         command[3]=0
          tie_flag=0
      # send back
      command1=tuple(command)
