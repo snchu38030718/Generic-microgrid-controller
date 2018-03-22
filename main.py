@@ -99,7 +99,7 @@ while 1:
                  command[4]=1
                  
         
-     if (time.time()-time_close)>=2 and ph_flag==0: # re-enable tie_line control 
+     if (time.time()-time_close)>=4 and ph_flag==0: # re-enable tie_line control 
          pid.SetPoint = -0.2 # Setpoint reference
          pid.update(feedback1) # update_feedback
          command[3] = pid.output  # output
