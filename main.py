@@ -85,6 +85,7 @@ while 1:
             if ph_chck>=ph_min1 and ph_chck<=ph_max1: # close breaker
                  command[4]=0
                  command[3]=0
+                 pid.clear
                  ph_flag=0
                  time_close=time.time()
             elif ph_flag==1:  # keep open
@@ -98,6 +99,7 @@ while 1:
                  command[4]=0
                  command[3]=0
                  ph_flag=0
+                 pid.clear
                  time_close=time.time()
             elif ph_flag==1:  # keep open
                  command[4]=1
