@@ -38,6 +38,7 @@ ph_max1=6.3
 ph_flag=1
 time_close=20
 tie_flag=1
+time_delay=0
 while 1:
      start_time = time.time()
      command=list(m.e.status())
@@ -105,8 +106,9 @@ while 1:
                  command[4]=0
                  command[3]=0
                  
-        
-     if (time.time()-time_close)>=5 and ph_flag==0: # re-enable tie_line control 
+     tie_delay=time.time()-time_close
+     print (tie_delay)
+     if (tie_delay)>=5 and ph_flag==0: # re-enable tie_line control 
          command[4]=0             # keep closed
          pid.SetPoint = -0.2 # Setpoint reference
          pid.update(feedback1) # update_feedback
