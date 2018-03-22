@@ -57,7 +57,7 @@ while 1:
      command[3]=0 # default, no PI control
      if spent_time>10 and spent_time<=12:  # setpoint change
          if flag==1:
-                pid.SetPoint = -0.1 # Setpoint reference
+                pid.SetPoint = -0.2 # Setpoint reference
                 pid.update(feedback1) # update_feedback
                 command[3] = pid.output  # output
 #            #time.sleep(0.001)   # time_sleep
@@ -83,6 +83,7 @@ while 1:
                  command[3]=0
                  command[4]=0
                  ph_flag=0
+                 time_close=time.time()
             else: 
                  command[3]=0
                  command[4]=1
@@ -91,11 +92,16 @@ while 1:
                  command[3]=0
                  command[4]=0
                  ph_flag=0
+                 time_close=time.time()
             else: 
                  command[3]=0
                  command[4]=1
+                 
         
-
+     if (time.time()-time_close)>=2 and ph_flag==0: # re-enable tie_line control 
+         pid.SetPoint = -0.2 # Setpoint reference
+         pid.update(feedback1) # update_feedback
+         command[3] = pid.output  # output
      # send back
      command1=tuple(command)
      m.e.send(command1)
