@@ -76,6 +76,7 @@ while 1:
      if spent_time>13 and abs(feedback1)<=0.03 and ph_flag==1: # open breaker
          command[3]=0
          command[4]=1
+         pid.clear
          print(command[4])
          flag=0      # flage is ued to lock the switch state
         
