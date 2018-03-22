@@ -79,7 +79,7 @@ while 1:
      ph_chck=abs(command[2])
      if spent_time>20 and ph_flag==1:
          if command[2]>=0.5:
-            if ph_chck>=ph_min and ph_chck<=ph_max:
+            if ph_chck>=ph_min1 and ph_chck<=ph_max1:
                  command[3]=0
                  command[4]=0
                  ph_flag=0
@@ -87,7 +87,7 @@ while 1:
                  command[3]=0
                  command[4]=1
          else:
-            if ph_chck>=ph_min1 and ph_chck<=ph_max1:
+            if ph_chck>=ph_min and ph_chck<=ph_max:
                  command[3]=0
                  command[4]=0
                  ph_flag=0
