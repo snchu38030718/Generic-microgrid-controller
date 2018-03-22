@@ -114,7 +114,7 @@ while 1:
          #print (tie_delay)
          command[4]=0             # keep closed
          print(feedback1)
-         pid.SetPoint = 0.1 # Setpoint reference
+         pid.SetPoint = -0.2 # Setpoint reference
          pid.update(feedback1) # update_feedback
          command[3] = pid.output  # output
 #         command[3]=0
