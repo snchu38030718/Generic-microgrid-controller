@@ -71,13 +71,13 @@ while 1:
                 pid.update(feedback1) # update_feedback
                 command[3] = pid.output  # output
 #               time.sleep(0.001)   # time_sleep
-                print(command[4])
+                #print(command[4])
 
      if spent_time>13 and abs(feedback1)<=0.03 and ph_flag==1: # open breaker
          command[4]=1
          command[3]=0
          pid.clear
-         print(command[4])
+         #print(command[4])
          flag=0      # flage is ued to lock the open state
         
      ph_chck=abs(command[2])
@@ -111,8 +111,9 @@ while 1:
                  
      tie_delay=time.time()-time_close
      if (tie_delay)>=5 and ph_flag==0: # re-enable tie_line control 
-         print (tie_delay)
+         #print (tie_delay)
          command[4]=0             # keep closed
+         print(feedback1)
          pid.SetPoint = 0.5 # Setpoint reference
          pid.update(feedback1) # update_feedback
          command[3] = pid.output  # output
