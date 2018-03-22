@@ -64,7 +64,7 @@ while 1:
                 command[3] = pid.output  # output
             #time.sleep(0.001)   # time_sleep
 #                print(command[4])
-     if spent_time>11 and abs(feedback1)<=0.05: 
+     if spent_time>11 and abs(feedback1)<=0.1: 
          command[3]=0
          command[4]=1
          print(command[4])
