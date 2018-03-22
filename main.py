@@ -37,7 +37,7 @@ ph_min1=6.2
 ph_max1=6.3
 ph_flag=1
 time_close=20
-tie_flag=0
+tie_flag=1
 while 1:
      start_time = time.time()
      command=list(m.e.status())
@@ -79,39 +79,39 @@ while 1:
          flag=0      # flage is ued to lock the switch state
         
      ph_chck=abs(command[2])
-     if spent_time>20 and tie_flag==0:
+     if spent_time>20 and tie_flag==1:
          if command[2]>=0.5:
             if ph_chck>=ph_min1 and ph_chck<=ph_max1: # close breaker
-                 command[3]=0
                  command[4]=0
+                 command[3]=0
                  ph_flag=0
                  time_close=time.time()
             elif ph_flag==1:  # keep open
-                 command[3]=0
-                 command[4]=1
-            else:             # keep closed
-                 command[3]=0
                  command[4]=0
+                 command[3]=1
+            else:             # keep closed
+                 command[4]=0
+                 command[3]=0
          else:
             if ph_chck>=ph_min and ph_chck<=ph_max: # close breaker
-                 command[3]=0
                  command[4]=0
+                 command[3]=0
                  ph_flag=0
                  time_close=time.time()
             elif ph_flag==1:  # keep open
-                 command[3]=0
-                 command[4]=1
-            else:             # keep closed
-                 command[3]=0
                  command[4]=0
+                 command[3]=1
+            else:             # keep closed
+                 command[4]=0
+                 command[3]=0
                  
         
      if (time.time()-time_close)>=5 and ph_flag==0: # re-enable tie_line control 
+         command[4]=0             # keep closed
          pid.SetPoint = -0.2 # Setpoint reference
          pid.update(feedback1) # update_feedback
          command[3] = pid.output  # output
-         command[4]=0             # keep closed
-         tie_flag=1
+         tie_flag=0
      # send back
      command1=tuple(command)
      m.e.send(command1)
