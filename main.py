@@ -31,6 +31,11 @@ m  = Microgrid()
 #    command.append(1.0)
 init_time=time.time()
 flag=1
+ph_min=0.005
+ph_max=0.01
+ph_min1=6.2
+ph_max1=6.3
+ph_flag=1
 while 1:
      start_time = time.time()
      command=list(m.e.status())
@@ -39,7 +44,6 @@ while 1:
      #command1=array.array('d',command)
      command[0]=command[0]
      command[1]=command[1]*2
-     command[2]=command[2]*2
      
      # PID controller
      feedback1=0
@@ -51,7 +55,6 @@ while 1:
      pid.SetPoint=0.0
      pid.setSampleTime(0.00)
      command[3]=0 # default, no PI control
-     
      if spent_time>10 and spent_time<=12:  # setpoint change
          if flag==1:
                 pid.SetPoint = -0.1 # Setpoint reference
@@ -59,7 +62,7 @@ while 1:
                 command[3] = pid.output  # output
 #            #time.sleep(0.001)   # time_sleep
 
-     if spent_time>12 and abs(feedback1)>=0.001:  # setpoint change
+     if spent_time>12 and abs(feedback1)>=0.001 and ph_flag==1:  # setpoint change
          if flag==1:
                 pid.SetPoint = 0 # Setpoint reference
                 pid.update(feedback1) # update_feedback
@@ -67,11 +70,31 @@ while 1:
 #               time.sleep(0.001)   # time_sleep
                 print(command[4])
 
-     if spent_time>13 and abs(feedback1)<=0.001: 
+     if spent_time>13 and abs(feedback1)<=0.001 and ph_flag==1: 
          command[3]=0
          command[4]=1
          print(command[4])
          flag=0      # flage is ued to lock the switch state
+        
+     ph_chck=abs(command[2])
+     if spent_time>20 and ph_flag==1:
+         if command[2]>=0.5:
+            if ph_chck>=ph_min and ph_chck<=ph_max:
+                 command[3]=0
+                 command[4]=0
+                 ph_flag=0
+            else: 
+                 command[3]=0
+                 command[4]=1
+         else:
+            if ph_chck>=ph_min1 and ph_chck<=ph_max1:
+                 command[3]=0
+                 command[4]=0
+                 ph_flag=0
+            else: 
+                 command[3]=0
+                 command[4]=1
+        
 
      # send back
      command1=tuple(command)
