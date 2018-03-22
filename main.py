@@ -87,8 +87,8 @@ while 1:
                  ph_flag=0
                  time_close=time.time()
             elif ph_flag==1:  # keep open
-                 command[4]=0
-                 command[3]=1
+                 command[4]=1
+                 command[3]=0
             else:             # keep closed
                  command[4]=0
                  command[3]=0
@@ -99,8 +99,8 @@ while 1:
                  ph_flag=0
                  time_close=time.time()
             elif ph_flag==1:  # keep open
-                 command[4]=0
-                 command[3]=1
+                 command[4]=1
+                 command[3]=0
             else:             # keep closed
                  command[4]=0
                  command[3]=0
