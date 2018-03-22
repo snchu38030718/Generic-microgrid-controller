@@ -37,6 +37,7 @@ ph_min1=6.2
 ph_max1=6.3
 ph_flag=1
 time_close=20
+tie_flag=0
 while 1:
      start_time = time.time()
      command=list(m.e.status())
@@ -78,7 +79,7 @@ while 1:
          flag=0      # flage is ued to lock the switch state
         
      ph_chck=abs(command[2])
-     if spent_time>20 :
+     if spent_time>20 and tie_flag==0:
          if command[2]>=0.5:
             if ph_chck>=ph_min1 and ph_chck<=ph_max1: # close breaker
                  command[3]=0
@@ -110,6 +111,7 @@ while 1:
          pid.update(feedback1) # update_feedback
          command[3] = pid.output  # output
          command[4]=0             # keep closed
+         tie_flag=1
      # send back
      command1=tuple(command)
      m.e.send(command1)
