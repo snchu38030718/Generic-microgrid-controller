@@ -36,7 +36,7 @@ ph_max=0.01
 ph_min1=6.2
 ph_max1=6.3
 ph_flag=1
-time_close=20
+time_close=100  # should be large
 tie_flag=1
 time_delay=0
 while 1:
