@@ -31,9 +31,9 @@ m  = Microgrid()
 #    command.append(1.0)
 init_time=time.time()
 flag=1
-ph_min=0.005
-ph_max=0.01
-ph_min1=6.2
+ph_min=0.01
+ph_max=0.04
+ph_min1=6.1
 ph_max1=6.3
 ph_flag=1
 time_close=100  # should be large
