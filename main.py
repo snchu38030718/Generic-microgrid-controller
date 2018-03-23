@@ -121,7 +121,7 @@ while 1:
          command[4]=0             # keep closed
          print(feedback1)
          pid.setSampleTime(0.00)
-         pid.SetPoint = -0.2 # Setpoint reference
+         pid.SetPoint = -0.1 # Setpoint reference
          pid.update(feedback1) # update_feedback
          command[3] = pid.output  # output
 #         command[3]=0
