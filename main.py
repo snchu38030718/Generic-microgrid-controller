@@ -54,18 +54,18 @@ while 1:
      if spent_time>10: 
          feedback1=command[3]
          #print (feedback1)
-     pid = PID.PID(P=0.05, I=1000000, D=0.000)  # give P,I,D, but not update now
+     pid = PID.PID(P=0.01, I=1000000, D=0.000)  # give P,I,D, but not update now
      pid.SetPoint=0.0
      pid.setSampleTime(0.00)
      command[3]=0 # default, no PI control
-     if spent_time>10 and spent_time<=12:  # setpoint change
+     if spent_time>10 and spent_time<=22:  # setpoint change
          if flag==1:
                 pid.SetPoint = -0.2 # Setpoint reference
                 pid.update(feedback1) # update_feedback
                 command[3] = pid.output  # output
 #            #time.sleep(0.001)   # time_sleep
 
-     if spent_time>12 and abs(feedback1)>=0.001 and ph_flag==1:  # setpoint change
+     if spent_time>22 and abs(feedback1)>=0.001 and ph_flag==1:  # setpoint change
          if flag==1:
                 pid.SetPoint = 0 # Setpoint reference
                 pid.update(feedback1) # update_feedback
@@ -73,7 +73,7 @@ while 1:
 #               time.sleep(0.001)   # time_sleep
                 #print(command[4])
 
-     if spent_time>13 and abs(feedback1)<=0.03 and ph_flag==1: # open breaker
+     if spent_time>23 and abs(feedback1)<=0.03 and ph_flag==1: # open breaker
          command[4]=1
          command[3]=0
          pid.clear
@@ -81,7 +81,7 @@ while 1:
          flag=0      # flage is ued to lock the open state
         
      ph_chck=abs(command[2])
-     if spent_time>20 and tie_flag==1:
+     if spent_time>30 and tie_flag==1:
          if command[2]>=0.5:
             if ph_chck>=ph_min1 and ph_chck<=ph_max1: # close breaker
                  command[4]=0
