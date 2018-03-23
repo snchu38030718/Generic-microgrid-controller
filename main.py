@@ -33,7 +33,7 @@ init_time=time.time()
 flag=1
 ph_min=0.01
 ph_max=0.04
-ph_min1=6.1
+ph_min1=6.2
 ph_max1=6.3
 ph_flag=1
 time_close=100  # should be large
@@ -84,7 +84,7 @@ while 1:
      if spent_time>35 and tie_flag==1:
          print (ph_chck)
          if command[2]>=0.2:
-            if ph_chck>=ph_min1 and ph_chck<=ph_max1: # close breaker
+            if ph_chck>=ph_min1 and ph_chck<=ph_max1 and ph_flag==1: # close breaker
                  command[4]=0
                  command[3]=0
 #                 pid.clear
@@ -100,7 +100,7 @@ while 1:
                  command[4]=0
                  command[3]=0
          else:
-            if ph_chck>=ph_min and ph_chck<=ph_max: # close breaker
+            if ph_chck>=ph_min and ph_chck<=ph_max and ph_flag==1: # close breaker
                  command[4]=0
                  command[3]=0
                  ph_flag=0
