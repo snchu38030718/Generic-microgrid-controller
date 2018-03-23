@@ -114,7 +114,7 @@ while 1:
                  command[3]=0
                  
      tie_delay=time.time()-time_close
-     if (tie_delay)>=5 and ph_flag==0: # re-enable tie_line control 
+     if (tie_delay)>=8 and ph_flag==0: # re-enable tie_line control 
          #print (tie_delay)
          command[4]=0             # keep closed
          print(feedback1)
