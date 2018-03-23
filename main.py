@@ -83,7 +83,7 @@ while 1:
          flag=0      # flage is ued to lock the open state
         
      ph_chck=abs(command[2])
-     if spent_time>35 and tie_flag==1:
+     if spent_time>50 and tie_flag==1:
          print (ph_chck)
          if command[2]>=0.2:
             if ph_chck>=ph_min1 and ph_chck<=ph_max1 and ph_flag==1: # close breaker
