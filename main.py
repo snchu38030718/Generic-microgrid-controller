@@ -87,7 +87,7 @@ while 1:
                  command[4]=0
                  command[3]=0
 #                 pid.clear
-                 pid1=PID.PID(P=0.01, I=1000000, D=0.000)
+                 pid1=PID.PID(P=0.1, I=1000000, D=0.000)
                  ph_flag=0  # log close state
                  time_close=time.time()
             elif ph_flag==1:  # keep open
@@ -103,7 +103,7 @@ while 1:
                  command[3]=0
                  ph_flag=0
 #                 pid.clear
-                 pid1=PID.PID(P=0.01, I=1000000, D=0.000)
+                 pid1=PID.PID(P=0.1, I=1000000, D=0.000)
                  time_close=time.time()
             elif ph_flag==1:  # keep open
                  command[4]=1
