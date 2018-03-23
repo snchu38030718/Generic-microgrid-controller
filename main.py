@@ -87,7 +87,7 @@ while 1:
                  command[4]=0
                  command[3]=0
 #                 pid.clear
-                 pid1=PID.PID(P=0.001, I=1200000, D=0.000)
+                 pid1=PID.PID(P=0.001, I=1000000, D=0.000)
                  ph_flag=0  # log close state
                  time_close=time.time()
             elif ph_flag==1:  # keep open
@@ -103,7 +103,7 @@ while 1:
                  command[3]=0
                  ph_flag=0
 #                 pid.clear
-                 pid1=PID.PID(P=0.001, I=1200000, D=0.000)
+                 pid1=PID.PID(P=0.001, I=1000000, D=0.000)
                  time_close=time.time()
             elif ph_flag==1:  # keep open
                  command[4]=1
@@ -118,7 +118,7 @@ while 1:
          #print (tie_delay)
          command[4]=0             # keep closed
          print(feedback1)
-         pid1.SetPoint = -0.5 # Setpoint reference
+         pid1.SetPoint = -0.3 # Setpoint reference
          pid1.update(feedback1) # update_feedback
          command[3] = pid1.output  # output
 #         command[3]=0
