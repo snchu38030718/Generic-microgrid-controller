@@ -95,7 +95,7 @@ while 1:
                  command[4]=1
                  command[3]=0
                  pid.clear
-            else:             # keep closed
+            elif ph_flag==0:             # keep closed
                  command[4]=0
                  command[3]=0
          else:
@@ -111,7 +111,7 @@ while 1:
                  command[4]=1
                  command[3]=0
                  pid.clear
-            else:             # keep closed
+            elif ph_flag==0:             # keep closed
                  command[4]=0
                  command[3]=0
 #                 
