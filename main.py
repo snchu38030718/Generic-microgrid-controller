@@ -54,7 +54,7 @@ while 1:
      if spent_time>10: 
          feedback1=command[3]
          #print (feedback1)
-     pid = PID.PID(P=0.1, I=1000000, D=0.000)  # give P,I,D, but not update now
+     pid = PID.PID(P=0.05, I=1000000, D=0.000)  # give P,I,D, but not update now
      pid.SetPoint=0.0
      pid.setSampleTime(0.00)
      command[3]=0 # default, no PI control
@@ -88,7 +88,7 @@ while 1:
                  command[3]=0
 #                 pid.clear
 #                 pid1=PID.PID(P=0.01, I=1000000, D=0.000)
-#                 pid1.clear
+                 pid.clear
                  ph_flag=0  # log close state
                  time_close=time.time()
             elif ph_flag==1:  # keep open
@@ -103,7 +103,7 @@ while 1:
                  command[4]=0
                  command[3]=0
                  ph_flag=0
-#                 pid.clear
+                 pid.clear
 #                 pid1=PID.PID(P=0.01, I=1000000, D=0.000)
 #                 pid1.clear
                  time_close=time.time()
