@@ -73,7 +73,9 @@ while 1:
 #               time.sleep(0.001)   # time_sleep
                 #print(command[4])
 
-     if (spent_time>23 and abs(feedback1)<=0.05 and ph_flag==1) or flag==0: # open breaker
+     if (spent_time>23 and abs(feedback1)<=0.1 and ph_flag==1) or flag==0: # open breaker
+         command[4]=1
+         command[4]=1
          command[4]=1
          command[3]=0
 #         pid.clear
