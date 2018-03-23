@@ -76,7 +76,7 @@ while 1:
      if spent_time>23 and abs(feedback1)<=0.05 and ph_flag==1: # open breaker
          command[4]=1
          command[3]=0
-         pid.clear
+#         pid.clear
          #print(command[4])
          flag=0      # flage is ued to lock the open state
         
