@@ -82,6 +82,7 @@ while 1:
         
      ph_chck=abs(command[2])
      if spent_time>30 and tie_flag==1:
+         print (ph_chck)
          if command[2]>=0.2:
             if ph_chck>=ph_min1 and ph_chck<=ph_max1: # close breaker
                  command[4]=0
