@@ -74,11 +74,12 @@ while 1:
                 #print(command[4])
 
      if (spent_time>=30 and abs(feedback1)<=0.05 and ph_flag==1) or flag==0: # open breaker
+         flag=0      # flage is ued to lock the open state
          command[4]=1
          command[3]=0
 #         pid.clear
          #print(command[4])
-         flag=0      # flage is ued to lock the open state
+         
         
 #     ph_chck=abs(command[2])
 #     if spent_time>40 and tie_flag==1:
