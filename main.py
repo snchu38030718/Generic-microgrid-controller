@@ -82,7 +82,7 @@ while 1:
          
         
      ph_chck=abs(command[2])
-     if spent_time>40 and tie_flag==1:
+     if spent_time>45 and tie_flag==1:
          print (ph_chck)
          if command[2]>=0.2:
             if ph_chck>=ph_min1 and ph_chck<=ph_max1 and ph_flag==1: # close breaker
@@ -117,17 +117,17 @@ while 1:
                  command[4]=0
                  command[3]=0
 #                 
-#     tie_delay=time.time()-time_close
-#     if (tie_delay)>=8 and ph_flag==0: # re-enable tie_line control 
-#         #print (tie_delay)
-#         command[4]=0             # keep closed
-##         print(feedback1)
-#         pid.setSampleTime(0.00)
-#         pid.SetPoint = -0.5 # Setpoint reference
-#         pid.update(feedback1) # update_feedback
-#         command[3] = pid.output  # output
-##         command[3]=0
-#         tie_flag=0
+     tie_delay=time.time()-time_close
+     if (tie_delay)>=8 and ph_flag==0: # re-enable tie_line control 
+         #print (tie_delay)
+         command[4]=0             # keep closed
+#         print(feedback1)
+         pid.setSampleTime(0.00)
+         pid.SetPoint = -0.5 # Setpoint reference
+         pid.update(feedback1) # update_feedback
+         command[3] = pid.output  # output
+#         command[3]=0
+         tie_flag=0
      
         # send back
      command1=tuple(command)
