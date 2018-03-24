@@ -54,7 +54,7 @@ while 1:
      if spent_time>10: 
          feedback1=command[3]
          #print (feedback1)
-     pid = PID.PID(P=0.001, I=500000, D=0.000)  # give P,I,D, but not update now
+     pid = PID.PID(P=0.005, I=1000000, D=0.000)  # give P,I,D, but not update now
      pid.SetPoint=0.0
      pid.setSampleTime(0.00)
      command[3]=0 # default, no PI control
@@ -88,7 +88,7 @@ while 1:
             if ph_chck>=ph_min1 and ph_chck<=ph_max1 and ph_flag==1: # close breaker
                  command[4]=0
                  command[3]=0
-#                 pid.clear
+                 pid.clear
 #                 pid1=PID.PID(P=0.01, I=1000000, D=0.000)
                  pid.clear
                  ph_flag=0  # log close state
