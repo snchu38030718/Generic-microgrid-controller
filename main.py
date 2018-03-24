@@ -73,7 +73,7 @@ while 1:
 #               time.sleep(0.001)   # time_sleep
                 #print(command[4])
 
-     if (spent_time>=30 and abs(feedback1)<=0.02 and ph_flag==1) or flag==0: # open breaker
+     if (spent_time>=30 and abs(feedback1)<=0.01 and ph_flag==1) or flag==0: # open breaker
          flag=0      # flage is ued to lock the open state
          command[4]=1
          command[3]=0
