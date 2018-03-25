@@ -148,21 +148,21 @@ while 1:
                  command[1]=0
                  command[2]=0
                  
-#     tie_delay=time.time()-time_close
-#     if (tie_delay)>=8 and ph_flag==0 and spent_time<=60: # re-enable tie_line control 
-#         #print (tie_delay)
-#         command[4]=0             # keep closed
-##         print(feedback1)
-#         pid.setSampleTime(0.00)
-#         pid.SetPoint = -0.5 # Setpoint reference
-#         pid.update(feedback1) # update_feedback
-#         command[3] = pid.output  # output
-#         command[0]=0
-#         command[1]=0
-#         command[2]=0
-#         save_pess=command[3]
-##         command[3]=0
-#         tie_flag=0
+     tie_delay=time.time()-time_close
+     if (tie_delay)>=8 and ph_flag==0 and spent_time<=80: # re-enable tie_line control 
+         #print (tie_delay)
+         command[4]=0             # keep closed
+#         print(feedback1)
+         pid.setSampleTime(0.00)
+         pid.SetPoint = -0.5 # Setpoint reference
+         pid.update(feedback1) # update_feedback
+         command[3] = pid.output  # output
+         command[0]=0
+         command[1]=0
+         command[2]=0
+         save_pess=command[3]
+#         command[3]=0
+         tie_flag=0
      
      
  ##############################################################################       
