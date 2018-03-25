@@ -81,67 +81,91 @@ while 1:
 #               time.sleep(0.001)   # time_sleep
                 #print(command[4])
 
-#     if (spent_time>=30 and abs(feedback1)<=0.01 and ph_flag==1) or flag==0: # open breaker
-#         flag=0      # flage is ued to lock the open state
-#         command[4]=1
+     if (spent_time>=30 and abs(feedback1)<=0.01 and ph_flag==1) or flag==0: # open breaker
+         flag=0      # flage is ued to lock the open state
+         command[4]=1
+         command[3]=0
+         command[0]=0
+         command[1]=0
+         command[2]=0
+#         pid.clear
+         #print(command[4])
+         
+        
+     ph_chck=abs(command[2])
+     if spent_time>45 and tie_flag==1:
+         print (ph_chck)
+         if command[2]>=0.2:
+            if ph_chck>=ph_min1 and ph_chck<=ph_max1 and ph_flag==1: # close breaker
+                 command[4]=0
+                 command[3]=0
+                 command[0]=0
+                 command[1]=0
+                 command[2]=0
+                 pid.clear
+#                 pid1=PID.PID(P=0.01, I=1000000, D=0.000)
+                 pid.clear
+                 ph_flag=0  # log close state
+                 time_close=time.time()
+            elif ph_flag==1:  # keep open
+                 command[4]=1
+                 command[3]=0
+                 command[0]=0
+                 command[1]=0
+                 command[2]=0
+                 pid.clear
+            elif ph_flag==0:             # keep closed
+                 command[4]=0
+                 command[3]=0
+                 command[0]=0
+                 command[1]=0
+                 command[2]=0
+         else:
+            if ph_chck>=ph_min and ph_chck<=ph_max and ph_flag==1: # close breaker
+                 command[4]=0
+                 command[3]=0
+                 command[0]=0
+                 command[1]=0
+                 command[2]=0
+                 ph_flag=0
+                 pid.clear
+#                 pid1=PID.PID(P=0.01, I=1000000, D=0.000)
+#                 pid1.clear
+                 time_close=time.time()
+            elif ph_flag==1:  # keep open
+                 command[4]=1
+                 command[3]=0
+                 command[0]=0
+                 command[1]=0
+                 command[2]=0
+                 pid.clear
+            elif ph_flag==0:             # keep closed
+                 command[4]=0
+                 command[3]=0
+                 command[0]=0
+                 command[1]=0
+                 command[2]=0
+                 
+     tie_delay=time.time()-time_close
+     if (tie_delay)>=8 and ph_flag==0 and spent_time<=70: # re-enable tie_line control 
+         #print (tie_delay)
+         command[4]=0             # keep closed
+#         print(feedback1)
+         pid.setSampleTime(0.00)
+         pid.SetPoint = -0.5 # Setpoint reference
+         pid.update(feedback1) # update_feedback
+         command[3] = pid.output  # output
+         command[0]=0
+         command[1]=0
+         command[2]=0
+         save_pess=command[3]
 #         command[3]=0
-##         pid.clear
-#         #print(command[4])
-#         
-#        
-#     ph_chck=abs(command[2])
-#     if spent_time>45 and tie_flag==1:
-#         print (ph_chck)
-#         if command[2]>=0.2:
-#            if ph_chck>=ph_min1 and ph_chck<=ph_max1 and ph_flag==1: # close breaker
-#                 command[4]=0
-#                 command[3]=0
-#                 pid.clear
-##                 pid1=PID.PID(P=0.01, I=1000000, D=0.000)
-#                 pid.clear
-#                 ph_flag=0  # log close state
-#                 time_close=time.time()
-#            elif ph_flag==1:  # keep open
-#                 command[4]=1
-#                 command[3]=0
-#                 pid.clear
-#            elif ph_flag==0:             # keep closed
-#                 command[4]=0
-#                 command[3]=0
-#         else:
-#            if ph_chck>=ph_min and ph_chck<=ph_max and ph_flag==1: # close breaker
-#                 command[4]=0
-#                 command[3]=0
-#                 ph_flag=0
-#                 pid.clear
-##                 pid1=PID.PID(P=0.01, I=1000000, D=0.000)
-##                 pid1.clear
-#                 time_close=time.time()
-#            elif ph_flag==1:  # keep open
-#                 command[4]=1
-#                 command[3]=0
-#                 pid.clear
-#            elif ph_flag==0:             # keep closed
-#                 command[4]=0
-#                 command[3]=0
-#                 
-#     tie_delay=time.time()-time_close
-#     if (tie_delay)>=8 and ph_flag==0 and spent_time<=70: # re-enable tie_line control 
-#         #print (tie_delay)
-#         command[4]=0             # keep closed
-##         print(feedback1)
-#         pid.setSampleTime(0.00)
-#         pid.SetPoint = -0.5 # Setpoint reference
-#         pid.update(feedback1) # update_feedback
-#         command[3] = pid.output  # output
-#         save_pess=command[3]
-##         command[3]=0
-#         tie_flag=0
+         tie_flag=0
      
      
  ##############################################################################       
  ## Unplanned islanding       
-     if spent_time>30 and spent_time<30.1 and tie_flag==0:  # change power reference
+     if spent_time>60 and spent_time<60.05 and tie_flag==0:  # change power reference
             unplan=Unplan.Unplan()
             unplan.edispatch(Pdiesel=command[2], P_ES=command[4])
             command[0]=unplan.dPdiesel
@@ -150,7 +174,7 @@ while 1:
             command[4]=0            # ess stays at PQ control
             command[3]=save_pess
 
-     if spent_time>=30.1:                                # change ESS mode
+     if spent_time>=60.05:                                # change ESS mode
             unplan=Unplan.Unplan()
             unplan.edispatch(Pdiesel=command[2], P_ES=command[4])
             command[0]=unplan.dPdiesel
