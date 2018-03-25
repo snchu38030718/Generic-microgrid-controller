@@ -53,6 +53,7 @@ while 1:
      if spent_time>10: 
          feedback1=command[3]
          #print (feedback1)
+     ph_chck=abs(command[2])
      pid = PID.PID(P=0.01, I=1000000, D=0.000)  # give P,I,D, but not update now
      pid.SetPoint=0.0
      pid.setSampleTime(0.00)
@@ -95,7 +96,6 @@ while 1:
          #print(command[4])
          
         
-     ph_chck=abs(command[2])
      if spent_time>45 and tie_flag==1:
          print (ph_chck)
          if command[2]>=0.5:
