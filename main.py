@@ -34,7 +34,7 @@ init_time=time.time()
 flag=1
 ph_min=0.005
 ph_max=0.01
-ph_min1=6.2
+ph_min1=6.1
 ph_max1=6.3
 ph_flag=1
 time_close=100  # should be large
@@ -85,7 +85,7 @@ while 1:
                 #print(command[4])
 
      if (spent_time>=30 and abs(feedback1)<=0.01 and ph_flag==1) or flag==0: # open breaker
-         flag=0      # flage is ued to lock the open state
+         flag=0      # flag is ued to lock the open state
          command[4]=1
          command[3]=0
          command[0]=0
@@ -98,7 +98,7 @@ while 1:
      ph_chck=abs(command[2])
      if spent_time>45 and tie_flag==1:
          print (ph_chck)
-         if command[2]>=0.2:
+         if command[2]>=0.5:
             if ph_chck>=ph_min1 and ph_chck<=ph_max1 and ph_flag==1: # close breaker
                  command[4]=0
                  command[3]=0
@@ -107,7 +107,6 @@ while 1:
                  command[2]=0
                  pid.clear
 #                 pid1=PID.PID(P=0.01, I=1000000, D=0.000)
-                 pid.clear
                  ph_flag=0  # log close state
                  time_close=time.time()
             elif ph_flag==1:  # keep open
@@ -149,21 +148,21 @@ while 1:
                  command[1]=0
                  command[2]=0
                  
-     tie_delay=time.time()-time_close
-     if (tie_delay)>=8 and ph_flag==0 and spent_time<=60: # re-enable tie_line control 
-         #print (tie_delay)
-         command[4]=0             # keep closed
-#         print(feedback1)
-         pid.setSampleTime(0.00)
-         pid.SetPoint = -0.5 # Setpoint reference
-         pid.update(feedback1) # update_feedback
-         command[3] = pid.output  # output
-         command[0]=0
-         command[1]=0
-         command[2]=0
-         save_pess=command[3]
-#         command[3]=0
-         tie_flag=0
+#     tie_delay=time.time()-time_close
+#     if (tie_delay)>=8 and ph_flag==0 and spent_time<=60: # re-enable tie_line control 
+#         #print (tie_delay)
+#         command[4]=0             # keep closed
+##         print(feedback1)
+#         pid.setSampleTime(0.00)
+#         pid.SetPoint = -0.5 # Setpoint reference
+#         pid.update(feedback1) # update_feedback
+#         command[3] = pid.output  # output
+#         command[0]=0
+#         command[1]=0
+#         command[2]=0
+#         save_pess=command[3]
+##         command[3]=0
+#         tie_flag=0
      
      
  ##############################################################################       
