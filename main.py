@@ -46,8 +46,6 @@ while 1:
 #     print(len(command))
 #     print(m.e.message_header)
      #command1=array.array('d',command)
-     command[0]=command[0]
-     command[1]=command[1]*2
      
      # PID controller
      feedback1=0
