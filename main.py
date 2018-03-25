@@ -149,7 +149,7 @@ while 1:
                  command[2]=0
                  
      tie_delay=time.time()-time_close
-     if (tie_delay)>=8 and ph_flag==0 and spent_time<=80: # re-enable tie_line control 
+     if (tie_delay)>=8 and ph_flag==0 and spent_time<=60: # re-enable tie_line control 
          #print (tie_delay)
          command[4]=0             # keep closed
 #         print(feedback1)
@@ -166,24 +166,24 @@ while 1:
      
      
  ##############################################################################       
- ## Unplanned islanding       
-#     if spent_time>60 and spent_time<60.05 and tie_flag==0:  # change power reference
-#            unplan=Unplan.Unplan()
-#            unplan.edispatch(Pdiesel=command[1], P_ES=command[3])
-#            command[0]=unplan.dPdiesel
-#            command[1]=unplan.PCwd
-#            command[2]=unplan.PSLd
-#            command[4]=0            # ess stays at PQ control
-#            command[3]=save_pess
-#
-#     if spent_time>=60.05:                                # change ESS mode
-#            unplan=Unplan.Unplan()
-#            unplan.edispatch(Pdiesel=command[1], P_ES=command[3])
-#            command[0]=unplan.dPdiesel
-#            command[1]=unplan.PCwd
-#            command[2]=unplan.PSLd
-#            command[4]=1            # ess changes to Vf control
-#            command[3]=0
+ # Unplanned islanding       
+     if spent_time>60 and spent_time<60.05 and tie_flag==0:  # change power reference
+            unplan=Unplan.Unplan()
+            unplan.edispatch(Pdiesel=command[1], P_ES=command[3])
+            command[0]=unplan.dPdiesel
+            command[1]=unplan.PCwd
+            command[2]=unplan.PSLd
+            command[4]=0            # ess stays at PQ control
+            command[3]=save_pess
+
+     if spent_time>=60.05:                                # change ESS mode
+            unplan=Unplan.Unplan()
+            unplan.edispatch(Pdiesel=command[1], P_ES=command[3])
+            command[0]=unplan.dPdiesel
+            command[1]=unplan.PCwd
+            command[2]=unplan.PSLd
+            command[4]=1            # ess changes to Vf control
+            command[3]=0
                     
 ###############################################################################       
         # send back
