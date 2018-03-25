@@ -65,7 +65,9 @@ while 1:
                 pid.update(feedback1) # update_feedback
                 command[3] = pid.output  # output
                 command[4]=0
-                command[3]=0
+                command[0]=0
+                command[1]=0
+                command[2]=0
 #            #time.sleep(0.001)   # time_sleep
 
      if spent_time>22 and abs(feedback1)>=0.001 and ph_flag==1:  # setpoint change
@@ -75,7 +77,9 @@ while 1:
                 command[3] = pid.output  # output
                 save_pess=command[3]
                 command[4]=0
-                command[3]=0
+                command[0]=0
+                command[1]=0
+                command[2]=0
 #               time.sleep(0.001)   # time_sleep
                 #print(command[4])
 
