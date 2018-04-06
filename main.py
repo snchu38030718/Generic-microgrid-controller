@@ -6,6 +6,7 @@ import os
 #import array
 import PID
 import Unplan
+#import Dispatch
 import time
 from microgrid import Microgrid
 ###############################################################################
@@ -165,7 +166,7 @@ while 1:
          tie_flag=0
      
      
- ##############################################################################       
+###############################################################################       
  # Unplanned islanding       
      if spent_time>60 and spent_time<60.05 and tie_flag==0:  # change power reference
             unplan=Unplan.Unplan()
@@ -186,6 +187,20 @@ while 1:
             command[3]=0
                     
 ###############################################################################       
+        
+        
+  ###############################################################################       
+ # Unplanned islanding       
+#    dispatch=Dispatch.Dispatch()
+#    dispatch.rdispatch()
+                        
+###############################################################################         
+        
+        
+        
+        
+        
+        
         # send back
      command1=tuple(command)
      m.e.send(command1)
