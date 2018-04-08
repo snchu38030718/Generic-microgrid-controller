@@ -46,7 +46,7 @@ while 1:
      command=list(m.e.status())
 #     print(len(command))
 #     print(m.e.message_header)
-     #command1=array.array('d',command)
+#     command1=array.array('d',command)
      
      # PID controller
      feedback1=0
@@ -150,7 +150,7 @@ while 1:
                  command[2]=0
                  
      tie_delay=time.time()-time_close
-     if (tie_delay)>=8 and ph_flag==0 and spent_time<=60: # re-enable tie_line control 
+     if (tie_delay)>=8 and ph_flag==0 and spent_time<=80: # re-enable tie_line control 
          #print (tie_delay)
          command[4]=0             # keep closed
 #         print(feedback1)
