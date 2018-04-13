@@ -75,7 +75,7 @@ while 1:
 
      if spent_time>22 and abs(feedback1)>=0.001 and ph_flag==1:  # setpoint change
          if flag==1:
-                pid.SetPoint = -0.2 # Setpoint reference
+                pid.SetPoint = 0 # Setpoint reference
                 pid.update(feedback1) # update_feedback
                 command[3] = pid.output  # output
                 save_pess=command[3]
