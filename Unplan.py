@@ -15,7 +15,7 @@ class Unplan:
         self.PCwd = 0
 
 
-    def edispatch(self,Pdiesel,P_ES):
+    def edispatch(self,Pdiesel,P_ES):  ## P_ES is power at POI
         if P_ES>=0:    # More
             if self.Pdiesel_max-Pdiesel-P_ES>=0:
                 self.dPdiesel=P_ES

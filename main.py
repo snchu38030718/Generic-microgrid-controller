@@ -170,7 +170,7 @@ while 1:
  # Unplanned islanding       
      if spent_time>80 and spent_time<80.001 and tie_flag==0:  # change power reference
             unplan=Unplan.Unplan()
-            unplan.edispatch(Pdiesel=command[1], P_ES=command[3])
+            unplan.edispatch(Pdiesel=command[1], P_ES=-command[3])
             command[0]=unplan.dPdiesel
             command[1]=unplan.PCwd
             command[2]=unplan.PSLd
@@ -179,7 +179,7 @@ while 1:
 
      if spent_time>=80.001:                                # change ESS mode
             unplan=Unplan.Unplan()
-            unplan.edispatch(Pdiesel=command[1], P_ES=command[3])
+            unplan.edispatch(Pdiesel=command[1], P_ES=-command[3])
             command[0]=unplan.dPdiesel
             command[1]=unplan.PCwd
             command[2]=unplan.PSLd
