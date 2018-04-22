@@ -41,6 +41,8 @@ ph_flag=1
 time_close=100  # should be large
 tie_flag=1
 time_delay=0
+Pdiesel1=0
+P_ES1=0
 while 1:
      start_time = time.time()
      command=list(m.e.status())
@@ -170,7 +172,9 @@ while 1:
  # Unplanned islanding       
      if spent_time>80 and spent_time<81 and tie_flag==0:  # change power reference
             unplan=Unplan.Unplan()
-            unplan.edispatch(Pdiesel=command[1], P_ES=command[3])
+            Pdiesel1=command[1]
+            P_ES1=-command[3]
+            unplan.edispatch(Pdiesel1, P_ES1)
             command[0]=unplan.dPdiesel
             command[1]=unplan.PCwd
             command[2]=unplan.PSLd
@@ -179,7 +183,9 @@ while 1:
 
      if spent_time>=81:                                # change ESS mode
             unplan=Unplan.Unplan()
-            unplan.edispatch(Pdiesel=command[1], P_ES=command[3])
+            Pdiesel1=command[1]
+            P_ES1=-command[3]
+            unplan.edispatch(Pdiesel1, P_ES1)
             command[0]=unplan.dPdiesel
             command[1]=unplan.PCwd
             command[2]=unplan.PSLd
