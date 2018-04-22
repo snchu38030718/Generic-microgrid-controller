@@ -56,6 +56,9 @@ while 1:
      if spent_time>10: 
          feedback1=command[3]
          #print (feedback1)
+     if spent_time>=79.5 and spent_time<=80:
+         Pdiesel1=command[1]
+         P_ES1=-command[3]
      ph_chck=abs(command[2])
      pid = PID.PID(P=0.01, I=1000000, D=0.000)  # give P,I,D, but not update now
      pid.SetPoint=0.0
@@ -170,10 +173,6 @@ while 1:
      
 ###############################################################################       
  # Unplanned islanding 
-     if spent_time>=79.5 and spent_time<=80:
-         Pdiesel1=command[1]
-         P_ES1=-command[3]
-      
      if spent_time>80 and spent_time<81 and tie_flag==0:  # change power reference
          unplan=Unplan.Unplan()
          unplan.edispatch(Pdiesel1, P_ES1)
