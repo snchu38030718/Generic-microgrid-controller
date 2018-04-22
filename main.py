@@ -152,7 +152,7 @@ while 1:
      tie_delay=time.time()-time_close
      if (tie_delay)>=8 and ph_flag==0 and spent_time<=80: # re-enable tie_line control 
          #print (tie_delay)
-         command[4]=0             # keep closed
+         command[4]=0             # keep closed, PQ control
 #         print(feedback1)
          pid.setSampleTime(0.00)
          pid.SetPoint = -0.5 # Setpoint reference
@@ -168,7 +168,7 @@ while 1:
      
 ###############################################################################       
  # Unplanned islanding       
-     if spent_time>80 and spent_time<80.01 and tie_flag==0:  # change power reference
+     if spent_time>80 and spent_time<82 and tie_flag==0:  # change power reference
             unplan=Unplan.Unplan()
             unplan.edispatch(Pdiesel=command[1], P_ES=command[3])
             command[0]=unplan.dPdiesel
@@ -177,7 +177,7 @@ while 1:
             command[4]=0            # ess stays at PQ control
             command[3]=save_pess    # ess is the power reference change of ess
 
-     if spent_time>=80.01:                                # change ESS mode
+     if spent_time>=82:                                # change ESS mode
             unplan=Unplan.Unplan()
             unplan.edispatch(Pdiesel=command[1], P_ES=command[3])
             command[0]=unplan.dPdiesel
