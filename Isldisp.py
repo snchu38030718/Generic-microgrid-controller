@@ -103,12 +103,14 @@ class Isldisp:
                   self.Pdsref=0.2
                   self.Pwdref=0
                   self.Pwdref=0
+                  self.Start_ds=0
             
                
         else:            ## SoC<self.SoC_min, diesel should be on
                   self.Pdsref=0.5
                   self.Pwdref=0
                   self.Pwdref=0
+                  self.Start_ds=0
 #                 if -Pnet<self.Pds_min:  # Pnet is smaller than the smallest diesel power Pds_min
 #                        if  start_ds>=1 and start_ds<=3:
 #                            self.Pdsref=self.Pds_min
