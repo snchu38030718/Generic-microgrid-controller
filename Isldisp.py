@@ -132,7 +132,7 @@ class Isldisp:
                             self.Pwdref=0
                             self.Pdsref=self.Pds_max
                             self.Start_ds=start_ds+1
-                            self.Pldref=-Pnet+self.Pds_max
+                            self.Pldref=-Pnet-self.Pds_max
                             if self.Start_ds>=4:
                                 self.Start_ds=0
 
