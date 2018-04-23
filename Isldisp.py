@@ -102,39 +102,42 @@ class Isldisp:
                             self.Pwdref=0
                
         else:            ## SoC<self.SoC_min, diesel should be on
-                 if -Pnet<self.Pds_min:  # Pnet is smaller than the smallest diesel power Pds_min
-                        if  start_ds>=1 and start_ds<=3:
-                            self.Pdsref=self.Pds_min
-                            self.Start_ds=start_ds+1
-                            self.Pldref=0
-                            # self.Pessref=self.Pds_min-Pnet
-                            self.Pwdref=0
-                            if self.Start_ds>=4:
-                                self.Start_ds=0
-                        else:
-                            self.Start_ds=0
-                            self.Pldref=-Pnet   #self.Pldref is positive, shedding
-                            # self.Pessref=0 # ESS is still master
-                            self.Pdsref=0
-                            self.Pwdref=0
-                        
-                 else:                   
-                        if (-Pnet-self.Pds_max)<=0:  # self.Pds_min<-Pnet<self.Pds_max
-                            # self.Pessref=0
-                            self.Pdsref=-Pnet
-                            self.Start_ds=start_ds+1
-                            self.Pwdref=0
-                            self.Pldref=0
-                            if self.Start_ds>=4:
-                                self.Start_ds=0
-                        else:              # -Pnet>self.Pds_max
-                            # self.Pessref=0
-                            self.Pwdref=0
-                            self.Pdsref=self.Pds_max
-                            self.Start_ds=start_ds+1
-                            self.Pldref=-Pnet-self.Pds_max
-                            if self.Start_ds>=4:
-                                self.Start_ds=0
+                  self.Pdsref=0.5
+                  self.Pwdref=0
+                  self.Pwdref=0
+#                 if -Pnet<self.Pds_min:  # Pnet is smaller than the smallest diesel power Pds_min
+#                        if  start_ds>=1 and start_ds<=3:
+#                            self.Pdsref=self.Pds_min
+#                            self.Start_ds=start_ds+1
+#                            self.Pldref=0
+#                            # self.Pessref=self.Pds_min-Pnet
+#                            self.Pwdref=0
+#                            if self.Start_ds>=4:
+#                                self.Start_ds=0
+#                        else:
+#                            self.Start_ds=0
+#                            self.Pldref=-Pnet   #self.Pldref is positive, shedding
+#                            # self.Pessref=0 # ESS is still master
+#                            self.Pdsref=0
+#                            self.Pwdref=0
+#                        
+#                 else:                   
+#                        if (-Pnet-self.Pds_max)<=0:  # self.Pds_min<-Pnet<self.Pds_max
+#                            # self.Pessref=0
+#                            self.Pdsref=-Pnet
+#                            self.Start_ds=start_ds+1
+#                            self.Pwdref=0
+#                            self.Pldref=0
+#                            if self.Start_ds>=4:
+#                                self.Start_ds=0
+#                        else:              # -Pnet>self.Pds_max
+#                            # self.Pessref=0
+#                            self.Pwdref=0
+#                            self.Pdsref=self.Pds_max
+#                            self.Start_ds=start_ds+1
+#                            self.Pldref=-Pnet-self.Pds_max
+#                            if self.Start_ds>=4:
+#                                self.Start_ds=0
 
                  
         
