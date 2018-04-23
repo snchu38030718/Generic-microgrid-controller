@@ -17,9 +17,7 @@ class Dispatch:
             self.Pch_max = 1
             self.Pdis_max = -1  
             self.Pds_min=0.4
-            self.Pds_max=1
-       
-       
+            self.Pds_max=1     
         def rdispatch(self,Pwind,Pload,SoC):
             self.Pnet=Pwind-Pload
             if self.Pnet>=0:     # More, wind is controllable, diesel is off, ESS depends

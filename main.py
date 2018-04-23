@@ -8,6 +8,7 @@ import PID
 import Unplan
 #import Dispatch
 import time
+import Isldisp
 from microgrid import Microgrid
 ###############################################################################
 # OS checks and setup 
@@ -185,7 +186,7 @@ while 1:
          command[4]=0            # ess stays at PQ control
          command[3]=save_pess    # ess is the power reference change of ess
 
-     if spent_time>=81:                                # change ESS mode
+     if spent_time>=81 and spent_time<=85:                                # change ESS mode
 #            unplan=Unplan.Unplan()
 #            Pdiesel1=command[1]
 #            P_ES1=-command[3]
@@ -198,21 +199,29 @@ while 1:
             command[2]=save2
             command[4]=1            # ess changes to Vf control
             command[3]=0
+            StartDs=1
                     
 ###############################################################################       
         
-        
+        # Pwdref,Pdsref,Pldref,Start_ds
   ###############################################################################       
- # Unplanned islanding       
-#    dispatch=Dispatch.Dispatch()
-#    dispatch.rdispatch()
-                        
+ # Unplanned islanding
+     if spent_time>85:
+        dispatch=Isldisp.Isldisp()
+        SoC=command[0]
+        Pwind=command[5]
+        Pload=command[6]
+        dispatch.isldispatch(Pwind,Pload,SoC,StartDs)
+        command[0]=dispatch.Pdsref
+        command[1]=dispatch.Pwdref
+        command[2]=dispatch.Pldref
+        command[4]=1            # ess changes to Vf control
+        command[3]=0
+        command[5]=0
+        command[6]=0
+        StartDs=dispatch.Start_ds
+ 
 ###############################################################################         
-        
-        
-        
-        
-        
         
         # send back
      command1=tuple(command)
