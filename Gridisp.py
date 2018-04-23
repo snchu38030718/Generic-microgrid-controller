@@ -67,78 +67,78 @@ class Gridisp:
                             self.Pdsref=0
                             self.Pldref=0   
         elif SoC>=self.SoC_min:    ## Pnet<0, load is controllable, diesel on/off, SoC_min
-#                if  start_ds>=1 and start_ds<=3:
-#                       self.Pdsref=self.Pds_min
-#                       Pnet=Pwind+self.Pds_min+PES-Pload
-#                       if -Pnet<-self.Pdis_max:   # Pnet is smaller than largest discharge power
-#                    # # self.Pessref=Pnet   # # self.Pessref is negative
-#                            self.Pldref=0
-#                            self.Pdsref=self.Pds_min
-#                            self.Start_ds=start_ds+1
-#                            self.Pwdref=0
-#                            if self.Start_ds>=4:
-#                                self.Start_ds=0
-#                       else:
-#                            self.Pldref=-Pnet+self.Pdis_max  #self.Pldref is positive
-#                            # self.Pessref=self.Pdis_max
-#                            self.Pdsref=self.Pds_min
-#                            self.Start_ds=start_ds+1
-#                            self.Pwdref=0
-#                            if self.Start_ds>=4:
-#                                self.Start_ds=0
-#                else:
-#                        self.Start_ds=0
-#                        if -Pnet<-self.Pdis_max:   # Pnet is smaller than largest discharge power
-#                        # self.Pessref=Pnet   # # self.Pessref is negative
-#                            self.Pldref=0
-#                            self.Pdsref=0
-#                            self.Pwdref=0
-#                        else:                 ## Pnet is larger than the largest discharge power
-#                            self.Pldref=-Pnet+self.Pdis_max  #self.Pldref is positive
-#                            # self.Pessref=self.Pdis_max
-#                            self.Pdsref=0
-#                            self.Pwdref=0
-                  self.Pdsref=0.2
-                  self.Pwdref=0
-                  self.Pwdref=0
-                  self.Start_ds=0
+                if  start_ds>=1 and start_ds<=3:
+                       self.Pdsref=self.Pds_min
+                       Pnet=Pwind+self.Pds_min+PES-Pload
+                       if -Pnet<-self.Pdis_max:   # Pnet is smaller than largest discharge power
+                    # # self.Pessref=Pnet   # # self.Pessref is negative
+                            self.Pldref=0
+                            self.Pdsref=self.Pds_min
+                            self.Start_ds=start_ds+1
+                            self.Pwdref=0
+                            if self.Start_ds>=4:
+                                self.Start_ds=0
+                       else:
+                            self.Pldref=-Pnet+self.Pdis_max  #self.Pldref is positive
+                            # self.Pessref=self.Pdis_max
+                            self.Pdsref=self.Pds_min
+                            self.Start_ds=start_ds+1
+                            self.Pwdref=0
+                            if self.Start_ds>=4:
+                                self.Start_ds=0
+                else:
+                        self.Start_ds=0
+                        if -Pnet<-self.Pdis_max:   # Pnet is smaller than largest discharge power
+                        # self.Pessref=Pnet   # # self.Pessref is negative
+                            self.Pldref=0
+                            self.Pdsref=0
+                            self.Pwdref=0
+                        else:                 ## Pnet is larger than the largest discharge power
+                            self.Pldref=-Pnet+self.Pdis_max  #self.Pldref is positive
+                            # self.Pessref=self.Pdis_max
+                            self.Pdsref=0
+                            self.Pwdref=0
+#                  self.Pdsref=0.2
+#                  self.Pwdref=0
+#                  self.Pwdref=0
+#                  self.Start_ds=0
             
                
         elif SoC<self.SoC_min:            ## SoC<self.SoC_min, diesel should be on
-                  self.Pdsref=0.5
-                  self.Pwdref=0
-                  self.Pwdref=0
-                  self.Start_ds=0
-#                 if -Pnet<self.Pds_min:  # Pnet is smaller than the smallest diesel power Pds_min
-#                        if  start_ds>=1 and start_ds<=3:
-#                            self.Pdsref=self.Pds_min
-#                            self.Start_ds=start_ds+1
-#                            self.Pldref=0
-#                            # self.Pessref=self.Pds_min-Pnet
-#                            self.Pwdref=0
-#                            if self.Start_ds>=4:
-#                                self.Start_ds=0
-#                        else:
-#                            self.Start_ds=0
-#                            self.Pldref=-Pnet   #self.Pldref is positive, shedding
-#                            # self.Pessref=0 # ESS is still master
-#                            self.Pdsref=0
-#                            self.Pwdref=0
-#                        
-#                 else:                   
-#                        if (-Pnet-self.Pds_max)<=0:  # self.Pds_min<-Pnet<self.Pds_max
-#                            # self.Pessref=0
-#                            self.Pdsref=-Pnet
-#                            self.Start_ds=start_ds+1
-#                            self.Pwdref=0
-#                            self.Pldref=0
-#                            if self.Start_ds>=4:
-#                                self.Start_ds=0
-#                        else:              # -Pnet>self.Pds_max
-#                            # self.Pessref=0
-#                            self.Pwdref=0
-#                            self.Pdsref=self.Pds_max
-#                            self.Start_ds=start_ds+1
-#                            self.Pldref=-Pnet-self.Pds_max
-#                            if self.Start_ds>=4:
-#                                self.Start_ds=0
+#                  self.Pdsref=0.5
+#                  self.Pwdref=0
+#                  self.Pwdref=0
+#                  self.Start_ds=0
+                 if -Pnet<self.Pds_min:  # Pnet is smaller than the smallest diesel power Pds_min
+                        if  start_ds>=1 and start_ds<=3:
+                            self.Pdsref=self.Pds_min
+                            self.Start_ds=start_ds+1
+                            self.Pldref=0
+                            # self.Pessref=self.Pds_min-Pnet
+                            self.Pwdref=0
+                            if self.Start_ds>=4:
+                                self.Start_ds=0
+                        else:
+                            self.Start_ds=0
+                            self.Pldref=-Pnet   #self.Pldref is positive, shedding
+                            # self.Pessref=0 # ESS is still master
+                            self.Pdsref=0
+                            self.Pwdref=0
+                        
+                 else:                   
+                        if (-Pnet-self.Pds_max)<=0:  # self.Pds_min<-Pnet<self.Pds_max
+                            # self.Pessref=0
+                            self.Pdsref=-Pnet
+                            self.Start_ds=start_ds+1
+                            self.Pwdref=0
+                            self.Pldref=0
+                            if self.Start_ds>=4:
+                                self.Start_ds=0
+                        else:              # -Pnet>self.Pds_max
+                            # self.Pessref=0
+                            self.Pwdref=0
+                            self.Pdsref=self.Pds_max
+                            self.Start_ds=start_ds+1
+                            self.Pldref=-Pnet-self.Pds_max
+                            if self.Start_ds>=4:
+                                self.Start_ds=0
