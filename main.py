@@ -257,5 +257,5 @@ while 1:
      m.e.send(command1)
 #     print (command1[0])
      
-     elapsed_time = time.time() - start_time;
+     elapsed_time = time.time() - start_time
      print(elapsed_time)
