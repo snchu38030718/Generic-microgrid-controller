@@ -208,7 +208,7 @@ while 1:
  # Unplanned islanding
      if spent_time>85:
         dispatch=Isldisp.Isldisp()
-        SoC=command[4]
+        SoC=command[3]
         Pwind=command[5]
         Pload=command[6]
         dispatch.isldispatch(Pwind,Pload,SoC,StartDs)
