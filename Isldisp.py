@@ -69,37 +69,41 @@ class Isldisp:
                             self.Pdsref=0
                             self.Pldref=0   
         elif SoC>=self.SoC_min:    ## Pnet<0, load is controllable, diesel on/off, SoC_min
-                if  start_ds>=1 and start_ds<=3:
-                       self.Pdsref=self.Pds_min
-                       Pnet=Pwind+self.Pds_min-Pload
-                       if -Pnet<-self.Pdis_max:   # Pnet is smaller than largest discharge power
-                    # # self.Pessref=Pnet   # # self.Pessref is negative
-                            self.Pldref=0
-                            self.Pdsref=self.Pds_min
-                            self.Start_ds=start_ds+1
-                            self.Pwdref=0
-                            if self.Start_ds>=4:
-                                self.Start_ds=0
-                       else:
-                            self.Pldref=-Pnet+self.Pdis_max  #self.Pldref is positive
-                            # self.Pessref=self.Pdis_max
-                            self.Pdsref=self.Pds_min
-                            self.Start_ds=start_ds+1
-                            self.Pwdref=0
-                            if self.Start_ds>=4:
-                                self.Start_ds=0
-                else:
-                        self.Start_ds=0
-                        if -Pnet<-self.Pdis_max:   # Pnet is smaller than largest discharge power
-                        # self.Pessref=Pnet   # # self.Pessref is negative
-                            self.Pldref=0
-                            self.Pdsref=0
-                            self.Pwdref=0
-                        else:                 ## Pnet is larger than the largest discharge power
-                            self.Pldref=-Pnet+self.Pdis_max  #self.Pldref is positive
-                            # self.Pessref=self.Pdis_max
-                            self.Pdsref=0
-                            self.Pwdref=0
+#                if  start_ds>=1 and start_ds<=3:
+#                       self.Pdsref=self.Pds_min
+#                       Pnet=Pwind+self.Pds_min-Pload
+#                       if -Pnet<-self.Pdis_max:   # Pnet is smaller than largest discharge power
+#                    # # self.Pessref=Pnet   # # self.Pessref is negative
+#                            self.Pldref=0
+#                            self.Pdsref=self.Pds_min
+#                            self.Start_ds=start_ds+1
+#                            self.Pwdref=0
+#                            if self.Start_ds>=4:
+#                                self.Start_ds=0
+#                       else:
+#                            self.Pldref=-Pnet+self.Pdis_max  #self.Pldref is positive
+#                            # self.Pessref=self.Pdis_max
+#                            self.Pdsref=self.Pds_min
+#                            self.Start_ds=start_ds+1
+#                            self.Pwdref=0
+#                            if self.Start_ds>=4:
+#                                self.Start_ds=0
+#                else:
+#                        self.Start_ds=0
+#                        if -Pnet<-self.Pdis_max:   # Pnet is smaller than largest discharge power
+#                        # self.Pessref=Pnet   # # self.Pessref is negative
+#                            self.Pldref=0
+#                            self.Pdsref=0
+#                            self.Pwdref=0
+#                        else:                 ## Pnet is larger than the largest discharge power
+#                            self.Pldref=-Pnet+self.Pdis_max  #self.Pldref is positive
+#                            # self.Pessref=self.Pdis_max
+#                            self.Pdsref=0
+#                            self.Pwdref=0
+                  self.Pdsref=0.2
+                  self.Pwdref=0
+                  self.Pwdref=0
+            
                
         else:            ## SoC<self.SoC_min, diesel should be on
                   self.Pdsref=0.5
