@@ -9,6 +9,7 @@ import Unplan
 #import Dispatch
 import time
 import Isldisp
+import Gridisp
 from microgrid import Microgrid
 ###############################################################################
 # OS checks and setup 
@@ -77,9 +78,32 @@ while 1:
                 command[0]=0
                 command[1]=0
                 command[2]=0
+                StartDs=1
 #            #time.sleep(0.001)   # time_sleep
+                
+################################################################################
+#### grid-connected dispatch
+     if spent_time>22 and spent_time<=60:
+        if flag==1:
+            gdispatch=Gridisp.Gridisp()
+            SoC=command[3]
+            Pwind=command[5]
+            Pload=command[6]
+            PES=-command[3]
+            gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
+            command[0]=gdispatch.Pdsref
+            command[1]=gdispatch.Pwdref
+            command[2]=gdispatch.Pldref
+            command[4]=1            # ess changes to Vf control
+            command[3]=0
+            command[5]=0
+            command[6]=0
+            StartDs=gdispatch.Start_ds    
 
-     if spent_time>22 and abs(feedback1)>=0.001 and ph_flag==1:  # setpoint change
+###############################################################################
+                
+
+     if spent_time>60 and abs(feedback1)>=0.001 and ph_flag==1:  # setpoint change
          if flag==1:
                 pid.SetPoint = 0 # Setpoint reference
                 pid.update(feedback1) # update_feedback
@@ -92,7 +116,7 @@ while 1:
 #               time.sleep(0.001)   # time_sleep
                 #print(command[4])
 
-     if (spent_time>=30 and abs(feedback1)<=0.01 and ph_flag==1) or flag==0: # open breaker
+     if (spent_time>=65 and abs(feedback1)<=0.01 and ph_flag==1) or flag==0: # open breaker
          flag=0      # flag is ued to lock the open state
          command[4]=1
          command[3]=0
@@ -103,7 +127,7 @@ while 1:
          #print(command[4])
          
         
-     if spent_time>45 and tie_flag==1:
+     if spent_time>80 and tie_flag==1:           # phase-check and synchronization
          print (ph_chck)
          if command[2]>=0.5:
             if ph_chck>=ph_min1 and ph_chck<=ph_max1 and ph_flag==1: # close breaker
@@ -156,7 +180,7 @@ while 1:
                  command[2]=0
                  
      tie_delay=time.time()-time_close
-     if (tie_delay)>=8 and ph_flag==0 and spent_time<=80: # re-enable tie_line control 
+     if (tie_delay)>=8 and ph_flag==0 and spent_time<=120: # re-enable tie_line control 
          #print (tie_delay)
          command[4]=0             # keep closed, PQ control
 #         print(feedback1)
@@ -174,7 +198,7 @@ while 1:
      
 ###############################################################################       
  # Unplanned islanding 
-     if spent_time>80 and spent_time<80.01 and tie_flag==0:  # change power reference
+     if spent_time>120 and spent_time<120.01 and tie_flag==0:  # change power reference
          unplan=Unplan.Unplan()
          unplan.edispatch(Pdiesel1, P_ES1)
          command[0]=unplan.dPdiesel
@@ -186,7 +210,7 @@ while 1:
          command[4]=0            # ess stays at PQ control
          command[3]=save_pess    # ess is the power reference change of ess
 
-     if spent_time>=80.01 and spent_time<=85:                                # change ESS mode
+     if spent_time>=120.01 and spent_time<=125:                                # change ESS mode
 #            unplan=Unplan.Unplan()
 #            Pdiesel1=command[1]
 #            P_ES1=-command[3]
@@ -205,8 +229,8 @@ while 1:
         
         # Pwdref,Pdsref,Pldref,Start_ds
   ###############################################################################       
- # Unplanned islanding
-     if spent_time>85:
+ # Island dispatch
+     if spent_time>125:
         dispatch=Isldisp.Isldisp()
         SoC=command[3]
         Pwind=command[5]
