@@ -174,7 +174,7 @@ while 1:
      
 ###############################################################################       
  # Unplanned islanding 
-     if spent_time>80 and spent_time<81 and tie_flag==0:  # change power reference
+     if spent_time>80 and spent_time<80.01 and tie_flag==0:  # change power reference
          unplan=Unplan.Unplan()
          unplan.edispatch(Pdiesel1, P_ES1)
          command[0]=unplan.dPdiesel
@@ -186,7 +186,7 @@ while 1:
          command[4]=0            # ess stays at PQ control
          command[3]=save_pess    # ess is the power reference change of ess
 
-     if spent_time>=81 and spent_time<=85:                                # change ESS mode
+     if spent_time>=80.01 and spent_time<=85:                                # change ESS mode
 #            unplan=Unplan.Unplan()
 #            Pdiesel1=command[1]
 #            P_ES1=-command[3]
