@@ -61,7 +61,7 @@ while 1:
      if spent_time>10: 
          feedback1=command[3]
          #print (feedback1)
-     if spent_time>=79.5 and spent_time<79.8:
+     if spent_time>=119.5 and spent_time<119.8:
          Pdiesel1=command[1]
          P_ES1=-command[3]
      ph_chck=abs(command[2])
@@ -86,7 +86,7 @@ while 1:
                 
 ################################################################################
 #### grid-connected dispatch
-     if spent_time>22:
+     if spent_time>22 and spent_time<=120:
         if flag==1:
             gdispatch=Gridisp.Gridisp()
             SoC=command[0]
@@ -103,7 +103,8 @@ while 1:
             command[4]=0            # ess changes to Vf control
             command[5]=0
             command[6]=0
-            StartDs=gdispatch.Start_ds    
+            StartDs=gdispatch.Start_ds
+            save_pess=command[3] 
 
 ###############################################################################
                 
@@ -202,34 +203,34 @@ while 1:
 #     
 #     
 ################################################################################       
-# # Unplanned islanding 
-#     if spent_time>120 and spent_time<120.01 and tie_flag==0:  # change power reference
-#         unplan=Unplan.Unplan()
-#         unplan.edispatch(Pdiesel1, P_ES1)
-#         command[0]=unplan.dPdiesel
-#         save0=command[0]
-#         command[1]=unplan.PCwd
-#         save1=command[1]
-#         command[2]=unplan.PSLd
-#         save2=command[2]
-#         command[4]=0            # ess stays at PQ control
-#         command[3]=save_pess    # ess is the power reference change of ess
-#
-#     if spent_time>=120.01 and spent_time<=125:                                # change ESS mode
-##            unplan=Unplan.Unplan()
-##            Pdiesel1=command[1]
-##            P_ES1=-command[3]
-##            unplan.edispatch(Pdiesel1, P_ES1)
-##            command[0]=unplan.dPdiesel
-##            command[1]=unplan.PCwd
-##            command[2]=unplan.PSLd
-#            command[0]=save0
-#            command[1]=save1
-#            command[2]=save2
-#            command[4]=1            # ess changes to Vf control
-#            command[3]=0
-#            StartDs=1
-#                    
+ # Unplanned islanding 
+     if spent_time>120 and spent_time<120.01 and tie_flag==0:  # change power reference
+         unplan=Unplan.Unplan()
+         unplan.edispatch(Pdiesel1, P_ES1)
+         command[0]=unplan.dPdiesel
+         save0=command[0]
+         command[1]=unplan.PCwd
+         save1=command[1]
+         command[2]=unplan.PSLd
+         save2=command[2]
+         command[4]=0            # ess stays at PQ control
+         command[3]=save_pess    # ess is the power reference change of ess
+
+     if spent_time>=120.01 and spent_time<=125:                                # change ESS mode
+#            unplan=Unplan.Unplan()
+#            Pdiesel1=command[1]
+#            P_ES1=-command[3]
+#            unplan.edispatch(Pdiesel1, P_ES1)
+#            command[0]=unplan.dPdiesel
+#            command[1]=unplan.PCwd
+#            command[2]=unplan.PSLd
+            command[0]=save0
+            command[1]=save1
+            command[2]=save2
+            command[4]=1            # ess changes to Vf control
+            command[3]=0
+            StartDs=1
+                    
 ################################################################################       
 #        
 #        # Pwdref,Pdsref,Pldref,Start_ds
