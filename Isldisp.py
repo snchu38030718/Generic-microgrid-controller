@@ -106,7 +106,7 @@ class Isldisp:
                   self.Start_ds=0
             
                
-        else:            ## SoC<self.SoC_min, diesel should be on
+        elif SoC<self.SoC_min:            ## SoC<self.SoC_min, diesel should be on
                   self.Pdsref=0.5
                   self.Pwdref=0
                   self.Pwdref=0
