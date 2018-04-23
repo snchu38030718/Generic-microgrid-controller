@@ -89,7 +89,7 @@ while 1:
      if spent_time>22:
         if flag==1:
             gdispatch=Gridisp.Gridisp()
-            SoC=command[3]
+            SoC=command[0]
             Pwind=command[5]
             Pload=command[6]
             PES=-command[3]
@@ -237,7 +237,7 @@ while 1:
 # # Island dispatch
 #     if spent_time>125:
 #        dispatch=Isldisp.Isldisp()
-#        SoC=command[3]
+#        SoC=command[0]
 #        Pwind=command[5]
 #        Pload=command[6]
 #        dispatch.isldispatch(Pwind,Pload,SoC,StartDs)
