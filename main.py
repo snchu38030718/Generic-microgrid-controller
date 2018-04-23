@@ -92,7 +92,7 @@ while 1:
             SoC=command[0]
             Pwind=command[5]
             Pload=command[6]
-            PES=-command[3]
+            PES=0.2
             gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
             command[0]=gdispatch.Pdsref
             command[1]=gdispatch.Pwdref
