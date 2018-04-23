@@ -68,7 +68,7 @@ class Isldisp:
                             self.Pwdref=Pnet-self.Pch_max
                             self.Pdsref=0
                             self.Pldref=0   
-        elif SoC>=0.2:    ## Pnet<0, load is controllable, diesel on/off, SoC_min
+        elif SoC>=self.SoC_min:    ## Pnet<0, load is controllable, diesel on/off, SoC_min
                 if  start_ds>=1 and start_ds<=3:
                        self.Pdsref=self.Pds_min
                        Pnet=Pwind+self.Pds_min-Pload
