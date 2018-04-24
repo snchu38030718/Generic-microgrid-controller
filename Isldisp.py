@@ -38,7 +38,7 @@ class Isldisp:
                     self.Pldref=0
                     self.Start_ds=0
                 else:     # SoC<self.SoC_max
-                    if start_ds>=1 and start_ds<=3:
+                    if start_ds>=1 and start_ds<=(24000000-1):
                         self.Pdsref=self.Pds_min
                         if (Pnet+self.Pdsref)<self.Pch_max:
                             # self.Pessref=Pnet+self.Pds_min
@@ -46,7 +46,7 @@ class Isldisp:
                             self.Pldref=0
                             self.Pdsref=self.Pds_min
                             self.Start_ds=start_ds+1
-                            if self.Start_ds>=4:
+                            if self.Start_ds>=24000000:
                                 self.Start_ds=0
                         else:
                             # self.Pessref=self.Pch_max
@@ -54,7 +54,7 @@ class Isldisp:
                             self.Pldref=0
                             self.Pdsref=self.Pds_min
                             self.Start_ds=start_ds+1
-                            if self.Start_ds>=4:
+                            if self.Start_ds>=24000000:
                                 self.Start_ds=0  # turn off diesel
                     else:
                         self.Start_ds=0
@@ -69,7 +69,7 @@ class Isldisp:
                             self.Pdsref=0
                             self.Pldref=0   
         elif SoC>=self.SoC_min:    ## Pnet<0, load is controllable, diesel on/off, SoC_min
-                if  start_ds>=1 and start_ds<=3:
+                if  start_ds>=1 and start_ds<=(24000000-1):
                        self.Pdsref=self.Pds_min
                        Pnet=Pwind+self.Pds_min-Pload
                        if -Pnet<-self.Pdis_max:   # Pnet is smaller than largest discharge power
@@ -78,7 +78,7 @@ class Isldisp:
                             self.Pdsref=self.Pds_min
                             self.Start_ds=start_ds+1
                             self.Pwdref=0
-                            if self.Start_ds>=4:
+                            if self.Start_ds>=24000000:
                                 self.Start_ds=0
                        else:
                             self.Pldref=-Pnet+self.Pdis_max  #self.Pldref is positive
@@ -86,7 +86,7 @@ class Isldisp:
                             self.Pdsref=self.Pds_min
                             self.Start_ds=start_ds+1
                             self.Pwdref=0
-                            if self.Start_ds>=4:
+                            if self.Start_ds>=24000000:
                                 self.Start_ds=0
                 else:
                         self.Start_ds=0
@@ -112,13 +112,13 @@ class Isldisp:
 #                  self.Pwdref=0
 #                  self.Start_ds=0
                  if -Pnet<self.Pds_min:  # Pnet is smaller than the smallest diesel power Pds_min
-                        if  start_ds>=1 and start_ds<=3:
+                        if  start_ds>=1 and start_ds<=(24000000-1):
                             self.Pdsref=self.Pds_min
                             self.Start_ds=start_ds+1
                             self.Pldref=0
                             # self.Pessref=self.Pds_min-Pnet
                             self.Pwdref=0
-                            if self.Start_ds>=4:
+                            if self.Start_ds>=24000000:
                                 self.Start_ds=0
                         else:
                             self.Start_ds=0
@@ -134,7 +134,7 @@ class Isldisp:
                             self.Start_ds=start_ds+1
                             self.Pwdref=0
                             self.Pldref=0
-                            if self.Start_ds>=4:
+                            if self.Start_ds>=24000000:
                                 self.Start_ds=0
                         else:              # -Pnet>self.Pds_max
                             # self.Pessref=0
@@ -142,7 +142,7 @@ class Isldisp:
                             self.Pdsref=self.Pds_max
                             self.Start_ds=start_ds+1
                             self.Pldref=-Pnet-self.Pds_max
-                            if self.Start_ds>=4:
+                            if self.Start_ds>=24000000:
                                 self.Start_ds=0
 
                  
