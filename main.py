@@ -53,6 +53,12 @@ global save2
 save2=0
 StartDs=1
 while 1:
+     global save0
+     save0=0
+     global save1
+     save1=0
+     global save2
+     save2=0
      start_time = time.time()
      command=list(m.e.status())
 #     print(len(command))
