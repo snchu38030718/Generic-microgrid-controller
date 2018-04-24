@@ -105,6 +105,7 @@ while 1:
             command[5]=0
             command[6]=0
             StartDs=gdispatch.Start_ds
+            print(StartDs)
             save_pess=command[3] 
 
 ###############################################################################
@@ -232,6 +233,9 @@ while 1:
 #################################################################################       
  # Unplanned islanding 
      if spent_time>130 and spent_time<130.01 and tie_flag==0:  # change power reference
+         global save0
+         global save1
+         global save2
          unplan=Unplan.Unplan()
          unplan.edispatch(Pdiesel1, P_ES1)
          command[0]=unplan.dPdiesel
@@ -277,6 +281,7 @@ while 1:
         command[5]=0
         command[6]=0
         StartDs=dispatch.Start_ds
+        print(StartDs)
  
 ###############################################################################         
         
@@ -286,4 +291,4 @@ while 1:
 #     print (command1[0])
      
      elapsed_time = time.time() - start_time
-     print(elapsed_time)
+#     print(elapsed_time)
