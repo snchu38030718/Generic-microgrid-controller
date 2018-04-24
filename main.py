@@ -48,6 +48,7 @@ P_ES1=0
 save0=0
 save1=0
 save2=0
+StartDs=1
 while 1:
      start_time = time.time()
      command=list(m.e.status())
@@ -242,7 +243,7 @@ while 1:
          command[4]=0            # ess stays at PQ control
          command[3]=save_pess    # ess is the power reference change of ess
 
-     if spent_time>=130.01 and spent_time<=135:                                # change ESS mode
+     if spent_time>=130.01 and spent_time<=150:                                # change ESS mode
 #            unplan=Unplan.Unplan()
 #            Pdiesel1=command[1]
 #            P_ES1=-command[3]
