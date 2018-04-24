@@ -87,7 +87,7 @@ while 1:
                 
 ################################################################################
 #### grid-connected dispatch
-     if spent_time>41 and spent_time<=60:
+     if spent_time>41 and spent_time<=130:
         if flag==1:
             gdispatch=Gridisp.Gridisp()
             SoC=command[0]
