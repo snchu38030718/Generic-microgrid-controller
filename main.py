@@ -65,7 +65,7 @@ while 1:
          Pdiesel1=command[1]
          P_ES1=-command[3]
      ph_chck=abs(command[2])
-     pid = PID.PID(P=0.02, I=1000000, D=0.000)  # give P,I,D, but not update now
+     pid = PID.PID(P=0.1, I=1000000, D=0.000)  # give P,I,D, but not update now
      pid.SetPoint=0.0
      pid.setSampleTime(0.00)
      command[3]=0 # default, no PI control
