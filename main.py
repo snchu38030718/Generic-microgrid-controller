@@ -146,7 +146,7 @@ while 1:
          
 ###############################################################################
 ##### Reconnection
-     if spent_time>80 and tie_flag==1:           # phase-check and synchronization
+     if spent_time>100 and tie_flag==1:           # phase-check and synchronization
          print (ph_chck)
          if command[2]>=0.5:               # phase_difference
             if ph_chck>=ph_min1 and ph_chck<=ph_max1 and ph_flag==1: # close breaker
@@ -197,27 +197,39 @@ while 1:
                  command[0]=save0
                  command[1]=save1
                  command[2]=save2
-#                 
-#     tie_delay=time.time()-time_close
-#     if (tie_delay)>=8 and ph_flag==0 and spent_time<=120: # re-enable tie_line control 
-#         #print (tie_delay)
-#         command[4]=0             # keep closed, PQ control
-##         print(feedback1)
-#         pid.setSampleTime(0.00)
-#         pid.SetPoint = -0.5 # Setpoint reference
-#         pid.update(feedback1) # update_feedback
-#         command[3] = pid.output  # output
-#         command[0]=0
-#         command[1]=0
-#         command[2]=0
-#         save_pess=command[3]
-##         command[3]=0
-#         tie_flag=0
-##     
-##     
+
+###############################################################################               
+### reenable tie_line control  
+     tie_delay=time.time()-time_close
+     if (tie_delay)>=8 and ph_flag==0 and spent_time<=130: # re-enable tie_line control 
+         #print (tie_delay)
+         command[4]=0             # keep closed, PQ control
+#         print(feedback1)
+         gdispatch=Gridisp.Gridisp()
+         SoC=command[0]
+         Pwind=command[5]
+         Pload=command[6]
+         PES=0.5
+         gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
+         command[0]=gdispatch.Pdsref
+         save0=command[0]
+         command[1]=gdispatch.Pwdref
+         save1=command[1]
+         command[2]=gdispatch.Pldref
+         save2=command[2]
+         
+         pid.setSampleTime(0.00)
+         pid.SetPoint = -0.5 # Setpoint reference
+         pid.update(feedback1) # update_feedback
+         command[3] = pid.output  # output
+         save_pess=command[3]
+#         command[3]=0
+         tie_flag=0
+#     
+#     
 #################################################################################       
 # # Unplanned islanding 
-#     if spent_time>120 and spent_time<120.01 and tie_flag==0:  # change power reference
+#     if spent_time>130 and spent_time<130.01 and tie_flag==0:  # change power reference
 #         unplan=Unplan.Unplan()
 #         unplan.edispatch(Pdiesel1, P_ES1)
 #         command[0]=unplan.dPdiesel
@@ -229,7 +241,7 @@ while 1:
 #         command[4]=0            # ess stays at PQ control
 #         command[3]=save_pess    # ess is the power reference change of ess
 #
-#     if spent_time>=120.01 and spent_time<=125:                                # change ESS mode
+#     if spent_time>=130.01 and spent_time<=135:                                # change ESS mode
 ##            unplan=Unplan.Unplan()
 ##            Pdiesel1=command[1]
 ##            P_ES1=-command[3]
