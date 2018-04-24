@@ -4,6 +4,7 @@ Created on Sat Mar 24 15:57:30 2018
 
 @author: csun26
 """
+# do not consider the SoC limit, diesel on/off limit.
 class Unplan:
     def __init__(self):
 
