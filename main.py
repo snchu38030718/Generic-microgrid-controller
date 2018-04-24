@@ -65,7 +65,7 @@ while 1:
          Pdiesel1=command[1]
          P_ES1=-command[3]
      ph_chck=abs(command[2])
-     pid = PID.PID(P=0.1, I=1000000, D=0.000)  # give P,I,D, but not update now
+     pid = PID.PID(P=0.05, I=1000000, D=0.000)  # give P,I,D, but not update now
      pid.SetPoint=0.0
      pid.setSampleTime(0.00)
      command[3]=0 # default, no PI control
@@ -114,7 +114,7 @@ while 1:
                 SoC=command[0]
                 Pwind=command[5]
                 Pload=command[6]
-                PES=0.005
+                PES=0
                 gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
                 command[0]=gdispatch.Pdsref
                 save0=command[0]
@@ -122,7 +122,7 @@ while 1:
                 save1=command[1]
                 command[2]=gdispatch.Pldref
                 save2=command[2]
-                pid.SetPoint = -0.005 # Setpoint reference
+                pid.SetPoint = 0 # Setpoint reference
                 pid.update(feedback1) # update_feedback
                 command[3] = pid.output  # output
                 save_pess=command[3]
