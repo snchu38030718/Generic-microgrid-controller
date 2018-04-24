@@ -109,27 +109,28 @@ while 1:
 ###############################################################################
  ##### planned islanding               
      if spent_time>60 and abs(feedback1)>=0.001 and ph_flag==1:  # setpoint change
+         pid = PID.PID(P=0.005, I=10000, D=0.000)  # give P,I,D, but not update now
          if flag==1:
-#                gdispatch=Gridisp.Gridisp()
-#                SoC=command[0]
-#                Pwind=command[5]
-#                Pload=command[6]
-#                PES=0
-#                gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
-#                command[0]=gdispatch.Pdsref
-#                save0=command[0]
-#                command[1]=gdispatch.Pwdref
-#                save1=command[1]
-#                command[2]=gdispatch.Pldref
-#                save2=command[2]
+                gdispatch=Gridisp.Gridisp()
+                SoC=command[0]
+                Pwind=command[5]
+                Pload=command[6]
+                PES=0
+                gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
+                command[0]=gdispatch.Pdsref
+                save0=command[0]
+                command[1]=gdispatch.Pwdref
+                save1=command[1]
+                command[2]=gdispatch.Pldref
+                save2=command[2]
                 pid.SetPoint = 0 # Setpoint reference
                 pid.update(feedback1) # update_feedback
                 command[3] = pid.output  # output
                 save_pess=command[3]
                 command[4]=0
-                command[0]=0
-                command[1]=0
-                command[2]=0
+#                command[0]=0
+#                command[1]=0
+#                command[2]=0
 #               time.sleep(0.001)   # time_sleep
                 #print(command[4])
 
@@ -137,9 +138,9 @@ while 1:
          flag=0      # flag is ued to lock the open state
          command[4]=1
          command[3]=0
-         command[0]=0
-         command[1]=0
-         command[2]=0
+         command[0]=save0
+         command[1]=save1
+         command[2]=save2
 #         pid.clear
          #print(command[4])
          
