@@ -110,13 +110,13 @@ class Gridisp:
 #                  self.Pwdref=0
 #                  self.Start_ds=0
                  if -Pnet<self.Pds_min:  # Pnet is smaller than the smallest diesel power Pds_min
-                        if  start_ds>=1 and start_ds<=3:
+                        if  start_ds>=1 and start_ds<=(24000000-1):
                             self.Pdsref=self.Pds_min
                             self.Start_ds=start_ds+1
                             self.Pldref=0
                             # self.Pessref=self.Pds_min-Pnet
                             self.Pwdref=0
-                            if self.Start_ds>=4:
+                            if self.Start_ds>=24000000:
                                 self.Start_ds=0
                         else:
                             self.Start_ds=0
@@ -140,5 +140,5 @@ class Gridisp:
                             self.Pdsref=self.Pds_max
                             self.Start_ds=start_ds+1
                             self.Pldref=-Pnet-self.Pds_max
-                            if self.Start_ds>=4:
+                            if self.Start_ds>=24000000:
                                 self.Start_ds=0

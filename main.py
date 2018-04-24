@@ -61,7 +61,7 @@ while 1:
      if spent_time>10: 
          feedback1=command[3]
          #print (feedback1)
-     if spent_time>=119.5 and spent_time<119.8:
+     if spent_time>=129.5 and spent_time<129.8:
          Pdiesel1=command[1]
          P_ES1=-command[3]
      ph_chck=abs(command[2])
