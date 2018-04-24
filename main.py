@@ -45,20 +45,14 @@ tie_flag=1
 time_delay=0
 Pdiesel1=0
 P_ES1=0
-global save0
+#global save0
 save0=0
-global save1
+#global save1
 save1=0
-global save2
+#global save2
 save2=0
 StartDs=1
 while 1:
-     global save0
-     save0=0
-     global save1
-     save1=0
-     global save2
-     save2=0
      start_time = time.time()
      command=list(m.e.status())
 #     print(len(command))
@@ -242,9 +236,6 @@ while 1:
 #################################################################################       
  # Unplanned islanding 
      if spent_time>130 and spent_time<130.01 and tie_flag==0:  # change power reference
-         global save0
-         global save1
-         global save2
          unplan=Unplan.Unplan()
          unplan.edispatch(Pdiesel1, P_ES1)
          command[0]=unplan.dPdiesel
@@ -265,6 +256,7 @@ while 1:
 #            command[1]=unplan.PCwd
 #            command[2]=unplan.PSLd
             command[0]=save0
+            print(save0)
             command[1]=save1
             command[2]=save2
             command[4]=1            # ess changes to Vf control
