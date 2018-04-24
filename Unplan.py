@@ -10,9 +10,9 @@ class Unplan:
 
         self.Pdiesel_max = 1.2
         self.Pdiesel_min = 0.2  #-1.5
-        self.dPdiesel = 0
-        self.PSLd = 0
-        self.PCwd = 0
+#        self.dPdiesel = 0
+#        self.PSLd = 0
+#        self.PCwd = 0
 
 
     def edispatch(self,Pdiesel,P_ES):  ## P_ES is power at POI
