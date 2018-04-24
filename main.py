@@ -218,7 +218,7 @@ while 1:
          save1=command[1]
          command[2]=gdispatch.Pldref
          save2=command[2]
-         
+         StartDs=gdispatch.Start_ds
          pid.setSampleTime(0.00)
          pid.SetPoint = -0.5 # Setpoint reference
          pid.update(feedback1) # update_feedback
