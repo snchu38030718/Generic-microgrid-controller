@@ -146,57 +146,57 @@ while 1:
          
 ###############################################################################
 ##### Reconnection
-#     if spent_time>80 and tie_flag==1:           # phase-check and synchronization
-#         print (ph_chck)
-#         if command[2]>=0.5:
-#            if ph_chck>=ph_min1 and ph_chck<=ph_max1 and ph_flag==1: # close breaker
-#                 command[4]=0
-#                 command[3]=0
-#                 command[0]=0
-#                 command[1]=0
-#                 command[2]=0
-#                 pid.clear
-##                 pid1=PID.PID(P=0.01, I=1000000, D=0.000)
-#                 ph_flag=0  # log close state
-#                 time_close=time.time()
-#            elif ph_flag==1:  # keep open
-#                 command[4]=1
-#                 command[3]=0
-#                 command[0]=0
-#                 command[1]=0
-#                 command[2]=0
-#                 pid.clear
-#            elif ph_flag==0:             # keep closed
-#                 command[4]=0
-#                 command[3]=0
-#                 command[0]=0
-#                 command[1]=0
-#                 command[2]=0
-#         else:
-#            if ph_chck>=ph_min and ph_chck<=ph_max and ph_flag==1: # close breaker
-#                 command[4]=0
-#                 command[3]=0
-#                 command[0]=0
-#                 command[1]=0
-#                 command[2]=0
-#                 ph_flag=0
-#                 pid.clear
-##                 pid1=PID.PID(P=0.01, I=1000000, D=0.000)
-##                 pid1.clear
-#                 time_close=time.time()
-#            elif ph_flag==1:  # keep open
-#                 command[4]=1
-#                 command[3]=0
-#                 command[0]=0
-#                 command[1]=0
-#                 command[2]=0
-#                 pid.clear
-#            elif ph_flag==0:             # keep closed
-#                 command[4]=0
-#                 command[3]=0
-#                 command[0]=0
-#                 command[1]=0
-#                 command[2]=0
+     if spent_time>80 and tie_flag==1:           # phase-check and synchronization
+         print (ph_chck)
+         if command[2]>=0.5:               # phase_difference
+            if ph_chck>=ph_min1 and ph_chck<=ph_max1 and ph_flag==1: # close breaker
+                 command[4]=0
+                 command[3]=0
+                 command[0]=save0
+                 command[1]=save1
+                 command[2]=save2
+                 pid.clear
+#                 pid1=PID.PID(P=0.01, I=1000000, D=0.000)
+                 ph_flag=0  # log close state
+                 time_close=time.time()
+            elif ph_flag==1:  # keep open
+                 command[4]=1
+                 command[3]=0
+                 command[0]=save0
+                 command[1]=save1
+                 command[2]=save2
+                 pid.clear
+            elif ph_flag==0:             # keep closed
+                 command[4]=0
+                 command[3]=0
+                 command[0]=save0
+                 command[1]=save1
+                 command[2]=save2
+         else:
+            if ph_chck>=ph_min and ph_chck<=ph_max and ph_flag==1: # close breaker
+                 command[4]=0
+                 command[3]=0
+                 command[0]=save0
+                 command[1]=save1
+                 command[2]=save2
+                 ph_flag=0
+                 pid.clear
+#                 pid1=PID.PID(P=0.01, I=1000000, D=0.000)
+#                 pid1.clear
+                 time_close=time.time()
+            elif ph_flag==1:  # keep open
+                 command[4]=1
+                 command[3]=0
+                 command[0]=save0
+                 command[1]=save1
+                 command[2]=save2
+                 pid.clear
+            elif ph_flag==0:             # keep closed
+                 command[4]=0
+                 command[3]=0
+                 command[0]=save0
+                 command[1]=save1
+                 command[2]=save2
 #                 
 #     tie_delay=time.time()-time_close
 #     if (tie_delay)>=8 and ph_flag==0 and spent_time<=120: # re-enable tie_line control 
@@ -249,20 +249,20 @@ while 1:
         # Pwdref,Pdsref,Pldref,Start_ds
 ###############################################################################       
 #### Island dispatch
-     if spent_time>125:
-        dispatch=Isldisp.Isldisp()
-        SoC=command[0]
-        Pwind=command[5]
-        Pload=command[6]
-        dispatch.isldispatch(Pwind,Pload,SoC,StartDs)
-        command[0]=dispatch.Pdsref
-        command[1]=dispatch.Pwdref
-        command[2]=dispatch.Pldref
-        command[4]=1            # ess changes to Vf control
-        command[3]=0
-        command[5]=0
-        command[6]=0
-        StartDs=dispatch.Start_ds
+#     if spent_time>125:
+#        dispatch=Isldisp.Isldisp()
+#        SoC=command[0]
+#        Pwind=command[5]
+#        Pload=command[6]
+#        dispatch.isldispatch(Pwind,Pload,SoC,StartDs)
+#        command[0]=dispatch.Pdsref
+#        command[1]=dispatch.Pwdref
+#        command[2]=dispatch.Pldref
+#        command[4]=1            # ess changes to Vf control
+#        command[3]=0
+#        command[5]=0
+#        command[6]=0
+#        StartDs=dispatch.Start_ds
  
 ###############################################################################         
         
