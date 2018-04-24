@@ -117,9 +117,11 @@ while 1:
                 PES=0
                 gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
                 command[0]=gdispatch.Pdsref
-                save0
+                save0=command[0]
                 command[1]=gdispatch.Pwdref
+                save1=command[1]
                 command[2]=gdispatch.Pldref
+                save2=command[2]
                 pid.SetPoint = 0 # Setpoint reference
                 pid.update(feedback1) # update_feedback
                 command[3] = pid.output  # output
