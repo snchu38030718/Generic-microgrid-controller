@@ -247,22 +247,22 @@ while 1:
 ################################################################################       
         
         # Pwdref,Pdsref,Pldref,Start_ds
-  ###############################################################################       
- # Island dispatch
-#     if spent_time>125:
-#        dispatch=Isldisp.Isldisp()
-#        SoC=command[0]
-#        Pwind=command[5]
-#        Pload=command[6]
-#        dispatch.isldispatch(Pwind,Pload,SoC,StartDs)
-#        command[0]=dispatch.Pdsref
-#        command[1]=dispatch.Pwdref
-#        command[2]=dispatch.Pldref
-#        command[4]=1            # ess changes to Vf control
-#        command[3]=0
-#        command[5]=0
-#        command[6]=0
-#        StartDs=dispatch.Start_ds
+###############################################################################       
+#### Island dispatch
+     if spent_time>125:
+        dispatch=Isldisp.Isldisp()
+        SoC=command[0]
+        Pwind=command[5]
+        Pload=command[6]
+        dispatch.isldispatch(Pwind,Pload,SoC,StartDs)
+        command[0]=dispatch.Pdsref
+        command[1]=dispatch.Pwdref
+        command[2]=dispatch.Pldref
+        command[4]=1            # ess changes to Vf control
+        command[3]=0
+        command[5]=0
+        command[6]=0
+        StartDs=dispatch.Start_ds
  
 ###############################################################################         
         
