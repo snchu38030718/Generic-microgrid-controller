@@ -100,14 +100,14 @@ class Gridisp:
 #                            self.Pwdref=0
                   self.Pdsref=0.2
                   self.Pwdref=0
-                  self.Pwdref=0
+                  self.Pldref=0
                   self.Start_ds=1
             
                
         elif SoC<self.SoC_min:            ## SoC<self.SoC_min, diesel should be on
-                  self.Pdsref=0.5
+                  self.Pdsref=0.3
                   self.Pwdref=0
-                  self.Pwdref=0
+                  self.Pldref=0
                   self.Start_ds=1
 #                 if -Pnet<self.Pds_min:  # Pnet is smaller than the smallest diesel power Pds_min
 #                        if  start_ds>=1 and start_ds<=(24000000-1):
