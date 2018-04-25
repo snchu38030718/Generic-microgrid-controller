@@ -83,9 +83,9 @@ while 1:
      gdispatch=Gridisp.Gridisp()
 #     dispatch=Isldisp.Isldisp()
      command[3]=0 # default, no PI control
-     command[0]=0
-     command[1]=0
-     command[2]=0
+#     command[0]=0
+#     command[1]=0
+#     command[2]=0
      if spent_time>11 and spent_time<=41:  # setpoint change
          if flag==1:
                 pid.SetPoint = -0.5 # Setpoint reference
@@ -292,7 +292,7 @@ while 1:
      if spent_time>135:
         SoC=command[0]
         print(SoC)
-        print(dispatch.SoC_min)
+#        print(dispatch)
         Pwind=command[5]
         Pload=command[6]
         dispatch.isldispatch(Pwind,Pload,SoC,StartDs)
