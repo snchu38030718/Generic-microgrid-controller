@@ -291,6 +291,8 @@ while 1:
 ### Island dispatch
      if spent_time>135:
         SoC=command[0]
+        print(SoC)
+        print(dispatch.SoC_min)
         Pwind=command[5]
         Pload=command[6]
         dispatch.isldispatch(Pwind,Pload,SoC,StartDs)
@@ -302,7 +304,7 @@ while 1:
         command[5]=0
         command[6]=0
         StartDs=dispatch.Start_ds
-        print(StartDs)
+#        print(StartDs)
  
 ###############################################################################         
         
