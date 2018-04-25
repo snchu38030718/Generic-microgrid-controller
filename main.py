@@ -169,7 +169,7 @@ while 1:
          
 ###############################################################################
 ##### Reconnection
-     if spent_time>80 and tie_flag==1:           # phase-check and synchronization
+     if spent_time>90 and tie_flag==1:           # phase-check and synchronization
          print (ph_chck)
          if command[2]>=0.5:               # phase_difference
             if ph_chck>=ph_min1 and ph_chck<=ph_max1 and ph_flag==1: # close breaker
@@ -241,6 +241,7 @@ while 1:
          command[2]=gdispatch.Pldref
          save2=command[2]
          StartDs=gdispatch.Start_ds
+         pid = PID.PID(P=0.005, I=10000, D=0.000)
          pid.setSampleTime(0.00)
          pid.SetPoint = -0.5 # Setpoint reference
          pid.update(feedback1) # update_feedback
