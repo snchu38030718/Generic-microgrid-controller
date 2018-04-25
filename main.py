@@ -60,10 +60,6 @@ temp2=0
 while 1:
      start_time = time.time()
      command=list(m.e.status())
-#     print(len(command))
-#     print(m.e.message_header)
-#     command1=array.array('d',command)
-     
      # PID controller
      feedback1=0
      spent_time=time.time()-init_time
@@ -81,10 +77,6 @@ while 1:
      Save=Store.Store()
      gdispatch=Gridisp.Gridisp()
      dispatch=Isldisp.Isldisp()
-#     command[3]=0 # default, no PI control
-#     command[0]=0
-#     command[1]=0
-#     command[2]=0
      if spent_time>0 and spent_time<=11:  # setpoint change
          if flag==1:
                 command[3] = 0  # output
@@ -151,9 +143,6 @@ while 1:
                 command[3] = pid.output  # output
                 save_pess=command[3]
                 command[4]=0
-#                command[0]=0
-#                command[1]=0
-#                command[2]=0
 #               time.sleep(0.001)   # time_sleep
                 #print(command[4])
 
@@ -269,21 +258,7 @@ while 1:
 #         Save.store(save0,save1,save2)#         
              
      
-#     global temp0
-#     temp0=save0
-#     global temp1
-#     temp1=save1
-#     global temp2
-#     temp2=save2
      if spent_time>=130.1 and spent_time<=135:                                # change ESS mode
-#            unplan=Unplan.Unplan()
-#            Pdiesel1=command[1]
-#            P_ES1=-command[3]
-#            unplan.edispatch(Pdiesel1, P_ES1)
-#            command[0]=unplan.dPdiesel
-#            command[1]=unplan.PCwd
-#            command[2]=unplan.PSLd
-#            save0=Save.getx()
             command[0]=save0
 #            save1=Save.gety()
             command[1]=save1
