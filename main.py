@@ -256,9 +256,12 @@ while 1:
 #            command[0]=unplan.dPdiesel
 #            command[1]=unplan.PCwd
 #            command[2]=unplan.PSLd
+            global save0
             command[0]=save0
             print(save0)
+            global save1
             command[1]=save1
+            global save2
             command[2]=save2
             command[4]=1            # ess changes to Vf control
             command[3]=0
