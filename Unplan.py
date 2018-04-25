@@ -16,24 +16,24 @@ class Unplan:
 
 
     def edispatch(self,Pdiesel,P_ES):  ## P_ES is power at POI
-        if P_ES>=0:    # More
-            if (self.Pdiesel_max-Pdiesel-P_ES)>=0:
-                self.dPdiesel=P_ES
-                self.PSLd=0
-                self.PCwd=0
-            else:
-                self.dPdiesel=self.Pdiesel_max-Pdiesel   # Charge
-                self.PSLd=self.Pdiesel_max-Pdiesel-P_ES
-                self.PCwd=0
-        else:             # Freq_min<Freq<Freq_max
-            if (Pdiesel+P_ES-self.Pdiesel_min)>=0:
-                self.dPdiesel=P_ES
-                self.PCwd=0
-                self.PSLd=0
-            else:
-                 self.dPdiesel=-(Pdiesel-self.Pdiesel_min)   # Charge
-                 self.PCwd=Pdiesel+P_ES-self.Pdiesel_min
-                 self.PSLd=0
-#            self.dPdiesel=0.2
-#            self.PCwd=0
-#            self.PSLd=0.1
+#        if P_ES>=0:    # More
+#            if (self.Pdiesel_max-Pdiesel-P_ES)>=0:
+#                self.dPdiesel=P_ES
+#                self.PSLd=0
+#                self.PCwd=0
+#            else:
+#                self.dPdiesel=self.Pdiesel_max-Pdiesel   # Charge
+#                self.PSLd=self.Pdiesel_max-Pdiesel-P_ES
+#                self.PCwd=0
+#        else:             # Freq_min<Freq<Freq_max
+#            if (Pdiesel+P_ES-self.Pdiesel_min)>=0:
+#                self.dPdiesel=P_ES
+#                self.PCwd=0
+#                self.PSLd=0
+#            else:
+#                 self.dPdiesel=-(Pdiesel-self.Pdiesel_min)   # Charge
+#                 self.PCwd=Pdiesel+P_ES-self.Pdiesel_min
+#                 self.PSLd=0
+            self.dPdiesel=0.2
+            self.PCwd=0
+            self.PSLd=0.1
