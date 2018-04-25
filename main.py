@@ -72,7 +72,7 @@ while 1:
          #print (feedback1)
      if spent_time>=129.5 and spent_time<129.8:
          Pdiesel1=command[1]
-         P_ES1=command[3]
+         P_ES1=-command[3]
      ph_chck=abs(command[2])
      pid = PID.PID(P=0.05, I=100000, D=0.000)  # give P,I,D, but not update now
      pid.SetPoint=0.0
@@ -99,7 +99,7 @@ while 1:
                 
 ################################################################################
 #### grid-connected dispatch
-     if spent_time>41 and spent_time<=130:
+     if spent_time>41 and spent_time<=60:
         if flag==1:
             SoC=command[0]
             Pwind=command[5]
@@ -160,7 +160,7 @@ while 1:
          
 ###############################################################################
 ##### Reconnection
-     if spent_time>100 and tie_flag==1:           # phase-check and synchronization
+     if spent_time>80 and tie_flag==1:           # phase-check and synchronization
          print (ph_chck)
          if command[2]>=0.5:               # phase_difference
             if ph_chck>=ph_min1 and ph_chck<=ph_max1 and ph_flag==1: # close breaker
