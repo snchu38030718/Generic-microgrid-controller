@@ -46,8 +46,11 @@ time_delay=0
 Pdiesel1=0
 P_ES1=0
 #global save0
+save0=0
+save1=0
+save2=0
 StartDs=1
-#savepess=0
+savepess=0
 while 1:
      start_time = time.time()
      command=list(m.e.status())
