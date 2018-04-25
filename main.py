@@ -255,7 +255,9 @@ while 1:
          save2=command[2]
          command[4]=0            # ess stays at PQ control
          command[3]=save_pess    # ess is the power reference change of ess
-         Store.store(save0,save1,save2)
+         Save=Store.Store()
+         Save.store(save0,save1,save2)#         
+             
      
 #     global temp0
 #     temp0=save0
@@ -271,8 +273,12 @@ while 1:
 #            command[0]=unplan.dPdiesel
 #            command[1]=unplan.PCwd
 #            command[2]=unplan.PSLd
+         
+            save0=Save.getx()
             command[0]=save0
+            save1=Save.gety()
             command[1]=save1
+            save2=Save.getz()
             command[2]=save2
             command[4]=1            # ess changes to Vf control
             command[3]=0

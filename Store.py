@@ -8,8 +8,14 @@ Created on Tue Apr 24 22:09:25 2018
 class Store( object ):
     def __init__( self ):
         self.x, self.y, self.z = None, None, None
-    def store( self, x,y,z):
+    def store(self, x,y,z):
 #        if x is None and y is None and z is None:
 #            return self.x, self.y, self.z
 #        else:
          self.x, self.y, self.z = x, y, z
+    def getx(self,x):
+        return self.x
+    def gety(self,y):
+        return self.y
+    def getz(self,z):
+        return self.z
