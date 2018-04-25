@@ -46,14 +46,17 @@ time_delay=0
 Pdiesel1=0
 P_ES1=0
 global save0
-save0=0
+#save0=0
 global save1
-save1=0
+#save1=0
 global save2
-save2=0
+#save2=0
 global StartDs
 global savepess
 savepess=0
+temp0=0.2
+temp1=0
+temp2=0
 while 1:
      start_time = time.time()
      command=list(m.e.status())
@@ -241,18 +244,20 @@ while 1:
          unplan=Unplan.Unplan()
          unplan.edispatch(Pdiesel1, P_ES1)
          command[0]=unplan.dPdiesel
-#         global save0
+         global save0
          save0=command[0]
          command[1]=unplan.PCwd
-#         global save1
+         global save1
          save1=command[1]
          command[2]=unplan.PSLd
-#         global save2
+         global save2
          save2=command[2]
          command[4]=0            # ess stays at PQ control
          command[3]=save_pess    # ess is the power reference change of ess
 
-
+     temp0=save0
+     temp1=save1
+     temp2=save2
      if spent_time>=132 and spent_time<=135:                                # change ESS mode
 #            unplan=Unplan.Unplan()
 #            Pdiesel1=command[1]
@@ -261,10 +266,9 @@ while 1:
 #            command[0]=unplan.dPdiesel
 #            command[1]=unplan.PCwd
 #            command[2]=unplan.PSLd
-            command[0]=save0
-            print(save0)
-            command[1]=save1
-            command[2]=save2
+            command[0]=temp0
+            command[1]=temp1
+            command[2]=temp2
             command[4]=1            # ess changes to Vf control
             command[3]=0
             StartDs=1
