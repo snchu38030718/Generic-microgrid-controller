@@ -78,6 +78,7 @@ while 1:
      pid = PID.PID(P=0.05, I=100000, D=0.000)  # give P,I,D, but not update now
      pid.SetPoint=0.0
      pid.setSampleTime(0.00)
+     Save=Store.Store()
      command[3]=0 # default, no PI control
      command[0]=0
      command[1]=0
@@ -255,7 +256,6 @@ while 1:
          save2=command[2]
          command[4]=0            # ess stays at PQ control
          command[3]=save_pess    # ess is the power reference change of ess
-         Save=Store.Store()
          Save.store(save0,save1,save2)#         
              
      
@@ -273,7 +273,6 @@ while 1:
 #            command[0]=unplan.dPdiesel
 #            command[1]=unplan.PCwd
 #            command[2]=unplan.PSLd
-         
             save0=Save.getx()
             command[0]=save0
             save1=Save.gety()
