@@ -248,6 +248,9 @@ while 1:
          command[4]=0            # ess stays at PQ control
          command[3]=save_pess    # ess is the power reference change of ess
 
+     global save0
+     global save1
+     global save2
      if spent_time>=132 and spent_time<=135:                                # change ESS mode
 #            unplan=Unplan.Unplan()
 #            Pdiesel1=command[1]
@@ -256,12 +259,9 @@ while 1:
 #            command[0]=unplan.dPdiesel
 #            command[1]=unplan.PCwd
 #            command[2]=unplan.PSLd
-            global save0
             command[0]=save0
             print(save0)
-            global save1
             command[1]=save1
-            global save2
             command[2]=save2
             command[4]=1            # ess changes to Vf control
             command[3]=0
