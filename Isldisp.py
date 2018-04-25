@@ -18,7 +18,6 @@ class Isldisp:
         self.Pwdref=0
         self.Pdsref=0
         self.Pldref=0
-
     def isldispatch(self,Pwind,Pload,SoC,start_ds):  ## P_ES is power at POI
 #        self.SoC_max = 0.9   #95
 #        self.SoC_min = 0.2
@@ -72,7 +71,6 @@ class Isldisp:
                   self.Pwdref=0
                   self.Pwdref=0
                   self.Start_ds=0
-            
         elif SoC>=self.SoC_min:    ## Pnet<0, load is controllable, diesel on/off, SoC_min
 #                if  start_ds>=1 and start_ds<=(24000000-1):
 #                       self.Pdsref=self.Pds_min

@@ -8,7 +8,7 @@ import PID
 import Unplan
 #import Dispatch
 import time
-import Isldisp
+from Isldisp import Isldisp as dispatch
 import Gridisp
 import Store
 from microgrid import Microgrid
@@ -81,7 +81,7 @@ while 1:
      unplan=Unplan.Unplan()
      Save=Store.Store()
      gdispatch=Gridisp.Gridisp()
-     dispatch=Isldisp.Isldisp()
+#     dispatch=Isldisp.Isldisp()
      command[3]=0 # default, no PI control
      command[0]=0
      command[1]=0
