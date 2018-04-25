@@ -80,6 +80,7 @@ while 1:
      pid.setSampleTime(0.00)
      unplan=Unplan.Unplan()
      Save=Store.Store()
+     dispatch=Isldisp.Isldisp()
      command[3]=0 # default, no PI control
      command[0]=0
      command[1]=0
@@ -289,7 +290,6 @@ while 1:
 ##############################################################################       
 ### Island dispatch
      if spent_time>135:
-        dispatch=Isldisp.Isldisp()
         SoC=command[0]
         Pwind=command[5]
         Pload=command[6]
