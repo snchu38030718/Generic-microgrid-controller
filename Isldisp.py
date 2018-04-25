@@ -18,16 +18,17 @@ class Isldisp:
         self.Pwdref=0
         self.Pdsref=0
         self.Pldref=0
+        
     def isldispatch(self,Pwind,Pload,SoC,start_ds):  ## P_ES is power at POI
-#        self.SoC_max = 0.9   #95
-#        self.SoC_min = 0.2
-#        self.Pch_max = 1
-#        self.Pdis_max = -1  #-1.5
-#        self.Pds_min=0.2
-#        self.Pds_max=1
-#        self.Pwdref=0
-#        self.Pdsref=0
-#        self.Pldref=0
+        self.SoC_max = 0.9   #95
+        self.SoC_min = 0.2
+        self.Pch_max = 1
+        self.Pdis_max = -1  #-1.5
+        self.Pds_min=0.2
+        self.Pds_max=1
+        self.Pwdref=0
+        self.Pdsref=0
+        self.Pldref=0
         Pnet = Pwind-Pload
         if Pnet>=0:    # More, wind is controllable, diesel is off, ESS depends
 #                if SoC>=self.SoC_max:     # Charge is
