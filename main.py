@@ -10,6 +10,7 @@ import Unplan
 import time
 import Isldisp
 import Gridisp
+import Store
 from microgrid import Microgrid
 ###############################################################################
 # OS checks and setup 
@@ -45,11 +46,11 @@ tie_flag=1
 time_delay=0
 Pdiesel1=0
 P_ES1=0
-global save0
+#global save0
 save0=0
-global save1
+#global save1
 save1=0
-global save2
+#global save2
 save2=0
 global StartDs
 global savepess
@@ -254,13 +255,14 @@ while 1:
          save2=command[2]
          command[4]=0            # ess stays at PQ control
          command[3]=save_pess    # ess is the power reference change of ess
+         Store.store(save0,save1,save2)
      
-     global temp0
-     temp0=save0
-     global temp1
-     temp1=save1
-     global temp2
-     temp2=save2
+#     global temp0
+#     temp0=save0
+#     global temp1
+#     temp1=save1
+#     global temp2
+#     temp2=save2
      if spent_time>=132 and spent_time<=135:                                # change ESS mode
 #            unplan=Unplan.Unplan()
 #            Pdiesel1=command[1]
@@ -269,9 +271,9 @@ while 1:
 #            command[0]=unplan.dPdiesel
 #            command[1]=unplan.PCwd
 #            command[2]=unplan.PSLd
-            command[0]=temp0
-            command[1]=temp1
-            command[2]=temp2
+            command[0]=save0
+            command[1]=save1
+            command[2]=save2
             command[4]=1            # ess changes to Vf control
             command[3]=0
             StartDs=1
