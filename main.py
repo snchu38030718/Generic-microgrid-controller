@@ -81,10 +81,19 @@ while 1:
      Save=Store.Store()
      gdispatch=Gridisp.Gridisp()
      dispatch=Isldisp.Isldisp()
-     command[3]=0 # default, no PI control
+#     command[3]=0 # default, no PI control
 #     command[0]=0
 #     command[1]=0
 #     command[2]=0
+     if spent_time>0 and spent_time<=11:  # setpoint change
+         if flag==1:
+                command[3] = 0  # output
+                command[4]=0
+                command[0]=0
+                command[1]=0
+                command[2]=0
+                StartDs=1
+     
      if spent_time>11 and spent_time<=41:  # setpoint change
          if flag==1:
                 pid.SetPoint = -0.5 # Setpoint reference
