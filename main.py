@@ -46,11 +46,6 @@ time_delay=0
 Pdiesel1=0
 P_ES1=0
 #global save0
-save0=0
-#global save1l
-save1=0
-#global save2
-save2=0
 StartDs=1
 savepess=0
 while 1:
@@ -240,10 +235,13 @@ while 1:
          unplan=Unplan.Unplan()
          unplan.edispatch(Pdiesel1, P_ES1)
          command[0]=unplan.dPdiesel
+         global save0
          save0=command[0]
          command[1]=unplan.PCwd
+         global save1
          save1=command[1]
          command[2]=unplan.PSLd
+         global save2
          save2=command[2]
          command[4]=0            # ess stays at PQ control
          command[3]=save_pess    # ess is the power reference change of ess
