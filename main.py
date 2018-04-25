@@ -254,9 +254,12 @@ while 1:
          save2=command[2]
          command[4]=0            # ess stays at PQ control
          command[3]=save_pess    # ess is the power reference change of ess
-
+     
+     global temp0
      temp0=save0
+     global temp1
      temp1=save1
+     global temp2
      temp2=save2
      if spent_time>=132 and spent_time<=135:                                # change ESS mode
 #            unplan=Unplan.Unplan()
