@@ -80,6 +80,7 @@ while 1:
      pid.setSampleTime(0.00)
      unplan=Unplan.Unplan()
      Save=Store.Store()
+     gdispatch=Gridisp.Gridisp()
      dispatch=Isldisp.Isldisp()
      command[3]=0 # default, no PI control
      command[0]=0
@@ -101,7 +102,6 @@ while 1:
 #### grid-connected dispatch
      if spent_time>41 and spent_time<=130:
         if flag==1:
-            gdispatch=Gridisp.Gridisp()
             SoC=command[0]
             Pwind=command[5]
             Pload=command[6]
