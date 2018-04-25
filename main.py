@@ -72,7 +72,7 @@ while 1:
          #print (feedback1)
      if spent_time>=129.5 and spent_time<129.8:
          Pdiesel1=command[1]
-         P_ES1=-command[3]
+         P_ES1=command[3]
      ph_chck=abs(command[2])
      pid = PID.PID(P=0.05, I=100000, D=0.000)  # give P,I,D, but not update now
      pid.SetPoint=0.0
