@@ -52,8 +52,7 @@ save0=0
 save1=0
 #global save2
 save2=0
-global StartDs
-global savepess
+StartDs=1
 savepess=0
 temp0=0.2
 temp1=0
