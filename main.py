@@ -116,7 +116,7 @@ while 1:
             command[5]=0
             command[6]=0
             StartDs=gdispatch.Start_ds
-            global save_pess
+#            global save_pess
             save_pess=command[3] 
 
 ###############################################################################
