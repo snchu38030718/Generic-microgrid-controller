@@ -78,6 +78,7 @@ while 1:
      pid = PID.PID(P=0.05, I=100000, D=0.000)  # give P,I,D, but not update now
      pid.SetPoint=0.0
      pid.setSampleTime(0.00)
+     unplan=Unplan.Unplan()
      Save=Store.Store()
      command[3]=0 # default, no PI control
      command[0]=0
@@ -242,8 +243,7 @@ while 1:
 #     
 #################################################################################       
  # Unplanned islanding 
-     if spent_time>130 and spent_time<132 and tie_flag==0:  # change power reference
-         unplan=Unplan.Unplan()
+     if spent_time>130 and spent_time<132 and tie_flag==1:  # change power reference
          unplan.edispatch(Pdiesel1, P_ES1)
          command[0]=unplan.dPdiesel
 #         global save0
