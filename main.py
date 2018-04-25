@@ -47,7 +47,7 @@ Pdiesel1=0
 P_ES1=0
 #global save0
 StartDs=1
-savepess=0
+#savepess=0
 while 1:
      start_time = time.time()
      command=list(m.e.status())
@@ -104,7 +104,7 @@ while 1:
             command[5]=0
             command[6]=0
             StartDs=gdispatch.Start_ds
-            print(StartDs)
+            global save_pess
             save_pess=command[3] 
 
 ###############################################################################
