@@ -13,9 +13,9 @@ class Store( object ):
 #            return self.x, self.y, self.z
 #        else:
          self.x, self.y, self.z = x, y, z
-    def getx(self,x):
+    def getx(self):
         return self.x
-    def gety(self,y):
+    def gety(self):
         return self.y
-    def getz(self,z):
+    def getz(self):
         return self.z
