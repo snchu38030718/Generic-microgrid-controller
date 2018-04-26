@@ -76,7 +76,7 @@ while 1:
      dispatch=Isldisp.Isldisp()
      if spent_time>0 and spent_time<=11:  # setpoint change
          if flag==1:
-                command[3] = 0  # output
+                command[3]=0  # output
                 command[4]=0
                 command[0]=0
                 command[1]=0
@@ -102,12 +102,12 @@ while 1:
             SoC=command[0]
             Pwind=command[5]
             Pload=command[6]
-            PES=0.2
+            PES=0.5
             gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
             command[0]=gdispatch.Pdsref
             command[1]=gdispatch.Pwdref
             command[2]=gdispatch.Pldref
-            pid.SetPoint = -0.2 # Setpoint reference
+            pid.SetPoint = -0.5 # Setpoint reference
             pid.update(feedback1) # update_feedback
             command[3] = pid.output  # output
             command[4]=0            # ess changes to Vf control
