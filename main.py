@@ -265,7 +265,7 @@ while 1:
 #            save2=Save.getz()
             command[2]=save2
             command[4]=1            # ess changes to Vf control
-            command[3]=0
+            command[3]=save_pess
             StartDs=1
                     
 ###############################################################################       
