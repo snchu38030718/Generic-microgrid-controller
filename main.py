@@ -46,11 +46,8 @@ tie_flag=1
 time_delay=0
 Pdiesel1=0
 P_ES1=0
-#global save0
 save0=0
-#global save1
 save1=0
-#global save2
 save2=0
 StartDs=1
 savepess=0
@@ -159,7 +156,7 @@ while 1:
 ###############################################################################
 ##### Reconnection
      if spent_time>90 and tie_flag==1:           # phase-check and synchronization
-         print (ph_chck)
+#         print (ph_chck)
          if command[2]>=0.5:               # phase_difference
             if ph_chck>=ph_min1 and ph_chck<=ph_max1 and ph_flag==1: # close breaker
                  command[4]=0
@@ -275,7 +272,7 @@ while 1:
 ### Island dispatch
      if spent_time>135:
         SoC=command[0]
-        print(SoC)
+#        print(SoC)
 #        print(dispatch)
         Pwind=command[5]
         Pload=command[6]
@@ -299,4 +296,4 @@ while 1:
 #     print (command1[0])
      
      elapsed_time = time.time() - start_time
-#     print(elapsed_time)
+     print(elapsed_time)
