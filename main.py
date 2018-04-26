@@ -230,8 +230,8 @@ while 1:
          command[2]=gdispatch.Pldref
          save2=command[2]
          StartDs=gdispatch.Start_ds
-         pid = PID.PID(P=0.05, I=100000, D=0.000)
-         pid.setSampleTime(0.00)
+#         pid = PID.PID(P=0.05, I=100000, D=0.000)
+#         pid.setSampleTime(0.00)
          pid.SetPoint = -0.5 # Setpoint reference
          pid.update(feedback1) # update_feedback
          command[3] = pid.output  # output
@@ -242,7 +242,7 @@ while 1:
      
 #################################################################################       
  # Unplanned islanding 
-     if spent_time>130 and spent_time<130.03 and tie_flag==0:  # change power reference
+     if spent_time>130 and spent_time<130.02 and tie_flag==0:  # change power reference
          unplan.edispatch(Pdiesel1, P_ES1)
          command[0]=unplan.dPdiesel
 #         global save0
@@ -258,7 +258,7 @@ while 1:
 #         Save.store(save0,save1,save2)#         
              
      
-     if spent_time>=130.03 and spent_time<=135:                                # change ESS mode
+     if spent_time>=130.02 and spent_time<=135:                                # change ESS mode
             command[0]=save0
 #            save1=Save.gety()
             command[1]=save1
