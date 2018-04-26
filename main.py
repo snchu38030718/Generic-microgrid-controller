@@ -99,6 +99,7 @@ while 1:
 #### grid-connected dispatch
      if spent_time>41 and spent_time<=60:
         if flag==1:
+            gdispatch=Gridisp.Gridisp()
             SoC=command[0]
             Pwind=command[5]
             Pload=command[6]
@@ -107,6 +108,7 @@ while 1:
             command[0]=gdispatch.Pdsref
             command[1]=gdispatch.Pwdref
             command[2]=gdispatch.Pldref
+            pid = PID.PID(P=0.01, I=1000000, D=0.000)
             pid.SetPoint = -0.5 # Setpoint reference
             pid.update(feedback1) # update_feedback
             command[3] = pid.output  # output
@@ -227,7 +229,7 @@ while 1:
          command[2]=gdispatch.Pldref
          save2=command[2]
          StartDs=gdispatch.Start_ds
-         pid = PID.PID(P=0.05, I=100000, D=0.000)
+         pid = PID.PID(P=0.01, I=100000, D=0.000)
          pid.setSampleTime(0.00)
          pid.SetPoint = -0.5 # Setpoint reference
          pid.update(feedback1) # update_feedback
