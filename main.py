@@ -123,7 +123,7 @@ while 1:
 ##############################################################################
  ##### planned islanding               
      if spent_time>60 and abs(feedback1)>=0.001 and ph_flag==1:  # setpoint change
-         pid = PID.PID(P=0.05, I=10000000, D=0.000)  # give P,I,D, but not update now
+         pid = PID.PID(P=0.05, I=1000000, D=0.000)  # give P,I,D, but not update now
          if flag==1:
                 gdispatch=Gridisp.Gridisp()
                 SoC=command[0]
