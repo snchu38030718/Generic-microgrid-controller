@@ -115,30 +115,31 @@ while 1:
 #### grid-connected dispatch
      if spent_time>41 and spent_time<=60:
         if flag==1:
-            gdispatch=Gridisp.Gridisp()
-            SoC=command[0]
-            Pwind=command[5]
-            Pload=command[6]
-            PES=0.2
-            gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
-            command[0]=gdispatch.Pdsref
-            command[1]=gdispatch.Pwdref
-            command[2]=gdispatch.Pldref
-            pid = PID.PID(P=0.05, I=1000000, D=0.000)
-            pid.SetPoint = -0.2 # Setpoint reference
-            pid.update(feedback1) # update_feedback
-            command[3] = pid.output  # output
-            command[4]=0            
-            command[5]=0
-            command[6]=0
-            StartDs=gdispatch.Start_ds
-#            global save_pess
-            save_pess=command[3] 
-#            command[4]=0
-#            command[0]=0
-#            command[1]=0
-#            command[2]=0
-#            StartDs=1
+#            gdispatch=Gridisp.Gridisp()
+#            SoC=command[0]
+#            Pwind=command[5]
+#            Pload=command[6]
+#            PES=0.2
+#            gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
+#            command[0]=gdispatch.Pdsref
+#            command[1]=gdispatch.Pwdref
+#            command[2]=gdispatch.Pldref
+#            pid = PID.PID(P=0.05, I=1000000, D=0.000)
+#            pid.SetPoint = -0.2 # Setpoint reference
+#            pid.update(feedback1) # update_feedback
+#            command[3] = pid.output  # output
+#            command[4]=0            
+#            command[5]=0
+#            command[6]=0
+#            StartDs=gdispatch.Start_ds
+##            global save_pess
+#            save_pess=command[3] 
+            command[3]=0.2 # output
+            command[4]=0
+            command[0]=0
+            command[1]=0
+            command[2]=0
+            StartDs=1
 
 ##############################################################################
  ##### planned islanding               
