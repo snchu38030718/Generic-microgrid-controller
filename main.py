@@ -229,7 +229,7 @@ while 1:
          command[2]=gdispatch.Pldref
          save2=command[2]
          StartDs=gdispatch.Start_ds
-         pid = PID.PID(P=0.01, I=100000, D=0.000)
+         pid = PID.PID(P=0.01, I=1000000, D=0.000)
          pid.setSampleTime(0.00)
          pid.SetPoint = -0.5 # Setpoint reference
          pid.update(feedback1) # update_feedback
