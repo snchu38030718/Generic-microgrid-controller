@@ -103,13 +103,13 @@ while 1:
             SoC=command[0]
             Pwind=command[5]
             Pload=command[6]
-            PES=0.5
+            PES=0.2
             gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
             command[0]=gdispatch.Pdsref
             command[1]=gdispatch.Pwdref
             command[2]=gdispatch.Pldref
             pid = PID.PID(P=0.01, I=1000000, D=0.000)
-            pid.SetPoint = -0.5 # Setpoint reference
+            pid.SetPoint = -0.2 # Setpoint reference
             pid.update(feedback1) # update_feedback
             command[3] = pid.output  # output
             command[4]=0            # ess changes to Vf control
