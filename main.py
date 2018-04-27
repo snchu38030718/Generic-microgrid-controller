@@ -134,9 +134,9 @@ while 1:
 #            StartDs=gdispatch.Start_ds
 ##            global save_pess
 #            save_pess=command[3] 
-            command[3]=0.2 # output
+            command[3]=0# output
             command[4]=0
-            command[0]=0
+            command[0]=0.2
             command[1]=0
             command[2]=0
             StartDs=1
