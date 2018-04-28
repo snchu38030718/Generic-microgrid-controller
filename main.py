@@ -54,6 +54,12 @@ savepess=0
 temp0=0.2
 temp1=0
 temp2=0
+windup_guard=2000
+Kp=0.01
+Ki=100000
+ITerm=0
+PTerm=0
+last_error=0
 while 1:
      start_time = time.time()
      command=list(m.e.status())
@@ -137,7 +143,8 @@ while 1:
             command[6]=0
             StartDs=gdispatch.Start_ds
 #            global save_pess
-            save_pess=command[3] 
+            save_pess=command[3]
+            last_time=time.time()
 #            time.sleep(0.005)   # time_sleep
 #            command[3]=0# output
 #            command[4]=0
@@ -166,10 +173,31 @@ while 1:
                 command[2]=gdispatch.Pldref
                 save2=command[2]
                 StartDs=gdispatch.Start_ds
-                pid.SetPoint = -0 # Setpoint reference
-                pid.update(feedback1) # update_feedback
-                print(pid.ITerm)
-                command[3] = pid.output  # output
+# #################              PID
+                SetPoint = -0 # Setpoint reference
+                error = SetPoint - feedback1 # new error
+                current_time = time.time()
+                delta_time = current_time - last_time
+                delta_error = error-last_error
+        #        print(delta_time)
+        
+        #        if (delta_time >= self.sample_time):  
+        #            print(delta_time)
+                PTerm = Kp * error      # proportional term
+                ITerm += error * delta_time  # integral term
+        #        print(self.ITerm)
+                if (ITerm < -windup_guard): # wind_up
+                    ITerm = -windup_guard
+                elif (ITerm > windup_guard):
+                    ITerm = windup_guard
+                last_time = current_time
+                last_error = error
+        #        self.output = self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm) # PID combination
+                output = PTerm + (Ki * ITerm)  # PID combination
+ #######################################################               
+#                pid.update(feedback1) # update_feedback
+#                print(pid.ITerm)
+                command[3] = output  # output
                 save_pess=command[3]
                 command[4]=0
                 command[5]=0
