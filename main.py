@@ -130,7 +130,7 @@ while 1:
             pid.SetPoint = -0.2 # Setpoint reference
             pid.update(feedback1) # update_feedback
             command[3] = pid.output  # output
-            if SoC<0.2 and pid.output<0:
+            if SoC<0.2 and pid.output>0:
                 command[3]=0
             command[4]=0            
             command[5]=0
@@ -168,6 +168,7 @@ while 1:
                 StartDs=gdispatch.Start_ds
                 pid.SetPoint = -0 # Setpoint reference
                 pid.update(feedback1) # update_feedback
+                print(pid.ITerm)
                 command[3] = pid.output  # output
                 save_pess=command[3]
                 command[4]=0
