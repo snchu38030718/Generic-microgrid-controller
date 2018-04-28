@@ -298,6 +298,7 @@ while 1:
 ##############################################################################       
 ### Island dispatch
      if spent_time>135:
+        command=list(m.e.status())
         SoC=command[0]
         print(SoC)
 #        print(dispatch)
@@ -306,6 +307,7 @@ while 1:
         StartDs1=StartDs
         dispatch.isldispatch(Pwind,Pload,SoC,StartDs1)
         command[0]=dispatch.Pdsref
+        print(command[0])
         command[1]=dispatch.Pwdref
         command[2]=dispatch.Pldref
         command[4]=1            # ess changes to Vf control
