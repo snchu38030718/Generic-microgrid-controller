@@ -136,7 +136,7 @@ while 1:
             StartDs=gdispatch.Start_ds
 #            global save_pess
             save_pess=command[3] 
-            time.sleep(0.0001)   # time_sleep
+            time.sleep(0.001)   # time_sleep
 #            command[3]=0# output
 #            command[4]=0
 #            command[0]=0.2
@@ -171,7 +171,7 @@ while 1:
                 command[4]=0
                 command[5]=0
                 command[6]=0
-                time.sleep(0.0001)   # time_sleep
+                time.sleep(0.001)   # time_sleep
                 #print(command[4])
 
      if (spent_time>=70 and abs(feedback1)<=0.0005 and ph_flag==1) or flag==0: # open breaker
