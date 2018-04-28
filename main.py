@@ -146,7 +146,7 @@ while 1:
 ##############################################################################
  ##### planned islanding               
      if spent_time>60 and abs(feedback1)>=0.001 and ph_flag==1:  # setpoint change
-         pid = PID.PID(P=0.01, I=1000000, D=0.000)  # give P,I,D, but not update now
+         pid = PID.PID(P=0.01, I=100000, D=0.000)  # give P,I,D, but not update now
 #         command=list(m.e.status())
          if flag==1:
                 gdispatch=Gridisp.Gridisp()
@@ -154,7 +154,7 @@ while 1:
                 print(SoC)
                 Pwind=command[5]
                 Pload=command[6]
-                PES=0.5
+                PES=0.01
                 gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
                 command[0]=gdispatch.Pdsref
                 save0=command[0]
@@ -163,7 +163,7 @@ while 1:
                 command[2]=gdispatch.Pldref
                 save2=command[2]
                 StartDs=gdispatch.Start_ds
-                pid.SetPoint = -0.5 # Setpoint reference
+                pid.SetPoint = -0.01 # Setpoint reference
                 pid.update(feedback1) # update_feedback
                 command[3] = pid.output  # output
                 save_pess=command[3]
