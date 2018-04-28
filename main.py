@@ -126,7 +126,7 @@ while 1:
             command[0]=gdispatch.Pdsref
             command[1]=gdispatch.Pwdref
             command[2]=gdispatch.Pldref
-            pid = PID.PID(P=0.01, I=100000, D=0.000)
+            pid = PID.PID(P=0.01, I=10000, D=0.000)
             pid.SetPoint = -0.2 # Setpoint reference
             pid.update(feedback1) # update_feedback
             command[3] = pid.output  # output
@@ -136,7 +136,7 @@ while 1:
             StartDs=gdispatch.Start_ds
 #            global save_pess
             save_pess=command[3] 
-            time.sleep(0.001)   # time_sleep
+            time.sleep(0.005)   # time_sleep
 #            command[3]=0# output
 #            command[4]=0
 #            command[0]=0.2
@@ -147,7 +147,7 @@ while 1:
 ##############################################################################
  ##### planned islanding               
      if spent_time>60 and abs(feedback1)>=0.001 and ph_flag==1:  # setpoint change
-         pid = PID.PID(P=0.01, I=100000, D=0.000)  # give P,I,D, but not update now
+         pid = PID.PID(P=0.01, I=10000, D=0.000)  # give P,I,D, but not update now
 #         command=list(m.e.status())
          if flag==1:
                 gdispatch=Gridisp.Gridisp()
@@ -171,7 +171,7 @@ while 1:
                 command[4]=0
                 command[5]=0
                 command[6]=0
-                time.sleep(0.001)   # time_sleep
+                time.sleep(0.005)   # time_sleep
                 #print(command[4])
 
      if (spent_time>=70 and abs(feedback1)<=0.0005 and ph_flag==1) or flag==0: # open breaker
