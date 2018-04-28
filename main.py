@@ -154,7 +154,7 @@ while 1:
                 print(SoC)
                 Pwind=command[5]
                 Pload=command[6]
-                PES=0.1
+                PES=0.2
                 gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
                 command[0]=gdispatch.Pdsref
                 save0=command[0]
@@ -163,7 +163,7 @@ while 1:
                 command[2]=gdispatch.Pldref
                 save2=command[2]
                 StartDs=gdispatch.Start_ds
-                pid.SetPoint = -0.1 # Setpoint reference
+                pid.SetPoint = -0.2 # Setpoint reference
                 pid.update(feedback1) # update_feedback
                 command[3] = pid.output  # output
                 save_pess=command[3]
