@@ -149,6 +149,7 @@ while 1:
          if flag==1:
                 gdispatch=Gridisp.Gridisp()
                 SoC=command[0]
+                print(SoC)
                 Pwind=command[5]
                 Pload=command[6]
                 PES=0
