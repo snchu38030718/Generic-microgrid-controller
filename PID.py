@@ -13,7 +13,7 @@ class PID:
         self.Ki = I
         self.Kd = D
 
-        self.sample_time = 0.0005
+        self.sample_time = 0.000
         self.current_time = time.time()
         self.last_time = self.current_time
 
