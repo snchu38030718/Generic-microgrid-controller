@@ -236,7 +236,7 @@ while 1:
 ###############################################################################               
 ### reenable tie_line control  
      tie_delay=time.time()-time_close
-     if (tie_delay)>=8 and ph_flag==0 and spent_time<=130: # re-enable tie_line control 
+     if (tie_delay)>=8 and ph_flag==0 and spent_time<=2000: # re-enable tie_line control 
          #print (tie_delay)
          command[4]=0             # keep closed, PQ control
 #         print(feedback1)
