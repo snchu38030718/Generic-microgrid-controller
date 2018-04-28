@@ -242,6 +242,7 @@ while 1:
          #print (tie_delay)
          command[4]=0             # keep closed, PQ control
 #         print(feedback1)
+         command=list(m.e.status())
          gdispatch=Gridisp.Gridisp()
          SoC=command[0]
          print(SoC)

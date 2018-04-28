@@ -105,7 +105,7 @@ class Gridisp:
             
                
         elif SoC<self.SoC_min:            ## SoC<self.SoC_min, diesel should be on
-#                  self.Pdsref=0.3
+#                  self.Pdsref=1.2
 #                  self.Pwdref=0
 #                  self.Pldref=0
 #                  self.Start_ds=1
