@@ -132,7 +132,7 @@ class Gridisp:
                             self.Start_ds=start_ds+1
                             self.Pwdref=0
                             self.Pldref=0
-                            if self.Start_ds>=4:
+                            if self.Start_ds>=24000000:
                                 self.Start_ds=0
                         else:              # -Pnet>self.Pds_max
                             # self.Pessref=0
