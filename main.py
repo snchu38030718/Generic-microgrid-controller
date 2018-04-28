@@ -56,7 +56,7 @@ temp1=0
 temp2=0
 windup_guard=2000
 Kp=0.001
-Ki=100
+Ki=1
 ITerm=0
 PTerm=0
 last_error=0
@@ -120,7 +120,7 @@ while 1:
                 
 ################################################################################
 ### grid-connected dispatch
-     if spent_time>41 and spent_time<=60:
+     if spent_time>41 and spent_time<=50:
 #        command=list(m.e.status())
         if flag==1:
             gdispatch=Gridisp.Gridisp()
@@ -156,7 +156,7 @@ while 1:
 
 ##############################################################################
  ##### planned islanding               
-     if spent_time>60 and abs(feedback1)>=0.001 and ph_flag==1:  # setpoint change
+     if spent_time>50 and abs(feedback1)>=0.001 and ph_flag==1:  # setpoint change
          pid = PID.PID(P=0.01, I=5000, D=0.000)  # give P,I,D, but not update now
 #         command=list(m.e.status())
          if flag==1:
@@ -198,7 +198,7 @@ while 1:
  #######################################################               
 #                pid.update(feedback1) # update_feedback
 #                print(pid.ITerm)
-                command[3] = output  # output
+                command[3] = output # output
                 save_pess=command[3]
                 command[4]=0
                 command[5]=0
