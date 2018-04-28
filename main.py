@@ -265,55 +265,55 @@ while 1:
 #     
      
 #################################################################################       
- # Unplanned islanding 
-     if spent_time>130 and spent_time<130.05 and tie_flag==0:  # change power reference
-         unplan.edispatch(Pdiesel1, P_ES1)
-         command[0]=unplan.dPdiesel
-#         global save0
-         save0=command[0]
-         command[1]=unplan.PCwd
-#         global save1
-         save1=command[1]
-         command[2]=unplan.PSLd
-#         global save2
-         save2=command[2]
-         command[4]=0            # ess stays at PQ control
-         command[3]=save_pess    # ess is the power reference change of ess
-#         Save.store(save0,save1,save2)#         
-             
-     
-     if spent_time>=130.05 and spent_time<=135:                                # change ESS mode
-            command[0]=save0
-#            save1=Save.gety()
-            command[1]=save1
-#            save2=Save.getz()
-            command[2]=save2
-            command[4]=1            # ess changes to Vf control
-            command[3]=save_pess
-            StartDs=1
-                    
+# # Unplanned islanding 
+#     if spent_time>130 and spent_time<130.05 and tie_flag==0:  # change power reference
+#         unplan.edispatch(Pdiesel1, P_ES1)
+#         command[0]=unplan.dPdiesel
+##         global save0
+#         save0=command[0]
+#         command[1]=unplan.PCwd
+##         global save1
+#         save1=command[1]
+#         command[2]=unplan.PSLd
+##         global save2
+#         save2=command[2]
+#         command[4]=0            # ess stays at PQ control
+#         command[3]=save_pess    # ess is the power reference change of ess
+##         Save.store(save0,save1,save2)#         
+#             
+#     
+#     if spent_time>=130.05 and spent_time<=135:                                # change ESS mode
+#            command[0]=save0
+##            save1=Save.gety()
+#            command[1]=save1
+##            save2=Save.getz()
+#            command[2]=save2
+#            command[4]=1            # ess changes to Vf control
+#            command[3]=save_pess
+#            StartDs=1
+#                    
+################################################################################       
+#        
+#        #Pwdref,Pdsref,Pldref,Start_ds
 ###############################################################################       
-        
-        #Pwdref,Pdsref,Pldref,Start_ds
-##############################################################################       
-### Island dispatch
-     if spent_time>135:
-        SoC=command[0]
-        print(SoC)
-#        print(dispatch)
-        Pwind=command[5]
-        Pload=command[6]
-        StartDs1=StartDs
-        dispatch.isldispatch(Pwind,Pload,SoC,StartDs1)
-        command[0]=dispatch.Pdsref
-        command[1]=dispatch.Pwdref
-        command[2]=dispatch.Pldref
-        command[4]=1            # ess changes to Vf control
-        command[3]=0
-        command[5]=0
-        command[6]=0
-        StartDs=dispatch.Start_ds
-#        print(StartDs)
+#### Island dispatch
+#     if spent_time>135:
+#        SoC=command[0]
+#        print(SoC)
+##        print(dispatch)
+#        Pwind=command[5]
+#        Pload=command[6]
+#        StartDs1=StartDs
+#        dispatch.isldispatch(Pwind,Pload,SoC,StartDs1)
+#        command[0]=dispatch.Pdsref
+#        command[1]=dispatch.Pwdref
+#        command[2]=dispatch.Pldref
+#        command[4]=1            # ess changes to Vf control
+#        command[3]=0
+#        command[5]=0
+#        command[6]=0
+#        StartDs=dispatch.Start_ds
+##        print(StartDs)
  
 ###############################################################################         
         
