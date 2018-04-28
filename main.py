@@ -117,6 +117,7 @@ while 1:
         if flag==1:
             gdispatch=Gridisp.Gridisp()
             SoC=command[0]
+            print(SoC)
             Pwind=command[5]
             Pload=command[6]
             PES=0.2
@@ -240,6 +241,7 @@ while 1:
 #         print(feedback1)
          gdispatch=Gridisp.Gridisp()
          SoC=command[0]
+         print(SoC)
          Pwind=command[5]
          Pload=command[6]
          PES=0.5
@@ -296,7 +298,7 @@ while 1:
 ### Island dispatch
      if spent_time>135:
         SoC=command[0]
-#        print(SoC)
+        print(SoC)
 #        print(dispatch)
         Pwind=command[5]
         Pload=command[6]
@@ -320,4 +322,4 @@ while 1:
 #     print (command1[0])
      
      elapsed_time = time.time() - start_time
-     print(elapsed_time)
+#     print(elapsed_time)
