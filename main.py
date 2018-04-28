@@ -154,7 +154,7 @@ while 1:
                 print(SoC)
                 Pwind=command[5]
                 Pload=command[6]
-                PES=0.01
+                PES=0
                 gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
                 command[0]=gdispatch.Pdsref
                 save0=command[0]
@@ -163,7 +163,7 @@ while 1:
                 command[2]=gdispatch.Pldref
                 save2=command[2]
                 StartDs=gdispatch.Start_ds
-                pid.SetPoint = -0.01 # Setpoint reference
+                pid.SetPoint = -0 # Setpoint reference
                 pid.update(feedback1) # update_feedback
                 command[3] = pid.output  # output
                 save_pess=command[3]
@@ -173,7 +173,7 @@ while 1:
 #               time.sleep(0.001)   # time_sleep
                 #print(command[4])
 
-     if (spent_time>=65 and abs(feedback1)<=0.0005 and ph_flag==1) or flag==0: # open breaker
+     if (spent_time>=70 and abs(feedback1)<=0.0005 and ph_flag==1) or flag==0: # open breaker
          flag=0      # flag is ued to lock the open state
          command[4]=1
          command[3]=0
