@@ -126,7 +126,7 @@ while 1:
             command[0]=gdispatch.Pdsref
             command[1]=gdispatch.Pwdref
             command[2]=gdispatch.Pldref
-            pid = PID.PID(P=0.01, I=1000000, D=0.000)
+            pid = PID.PID(P=0.01, I=500000, D=0.000)
             pid.SetPoint = -0.2 # Setpoint reference
             pid.update(feedback1) # update_feedback
             command[3] = pid.output  # output
@@ -261,7 +261,7 @@ while 1:
          command[2]=gdispatch.Pldref
          save2=command[2]
          StartDs=gdispatch.Start_ds
-         pid = PID.PID(P=0.01, I=1000000, D=0.000)
+         pid = PID.PID(P=0.01, I=500000, D=0.000)
          pid.setSampleTime(0.00)
          pid.SetPoint = -0.5 # Setpoint reference
          pid.update(feedback1) # update_feedback
@@ -314,7 +314,7 @@ while 1:
         StartDs1=StartDs
         dispatch.isldispatch(Pwind,Pload,SoC,StartDs1)
         command[0]=dispatch.Pdsref
-        print(command[0])
+#        print(command[0])
         command[1]=dispatch.Pwdref
         command[2]=dispatch.Pldref
         command[4]=1            # ess changes to Vf control
