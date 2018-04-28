@@ -168,6 +168,8 @@ while 1:
                 command[3] = pid.output  # output
                 save_pess=command[3]
                 command[4]=0
+                command[5]=0
+                command[6]=0
 #               time.sleep(0.001)   # time_sleep
                 #print(command[4])
 
@@ -178,6 +180,8 @@ while 1:
          command[0]=save0
          command[1]=save1
          command[2]=save2
+         command[5]=0
+         command[6]=0
 #         pid.clear
          #print(command[4])
          
