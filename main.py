@@ -60,6 +60,7 @@ Ki=100
 ITerm=0
 PTerm=0
 last_error=0
+current_time=0
 while 1:
      start_time = time.time()
      command=list(m.e.status())
@@ -124,7 +125,7 @@ while 1:
         if flag==1:
             gdispatch=Gridisp.Gridisp()
             SoC=command[0]
-            print(SoC)
+#            print(SoC)
             Pwind=command[5]
             Pload=command[6]
             PES=0.2
@@ -161,7 +162,7 @@ while 1:
          if flag==1:
                 gdispatch=Gridisp.Gridisp()
                 SoC=command[0]
-                print(SoC)
+#                print(SoC)
                 Pwind=command[5]
                 Pload=command[6]
                 PES=0.5
@@ -185,7 +186,7 @@ while 1:
         #            print(delta_time)
                 PTerm = Kp * error      # proportional term
                 ITerm += error * delta_time  # integral term
-        #        print(self.ITerm)
+                print(ITerm)
                 if (ITerm < -windup_guard): # wind_up
                     ITerm = -windup_guard
                 elif (ITerm > windup_guard):
