@@ -68,7 +68,7 @@ class Gridisp:
 #                            self.Pwdref=Pnet-self.Pch_max
 #                            self.Pdsref=0
 #                            self.Pldref=0   
-                  self.Pdsref=0.5
+                  self.Pdsref=0.8
                   self.Pwdref=0
                   self.Pldref=0
                   self.Start_ds=1
