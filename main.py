@@ -73,6 +73,8 @@ while 1:
      if spent_time>=129.8 and spent_time<129.9:
          Pdiesel1=command[1]
          P_ES1=-command[3]
+     if spent_time>=90:
+             SoC1=command[0]
      ph_chck=abs(command[2])
      pid = PID.PID(P=0.01, I=1000000, D=0.000)  # give P,I,D, but not update now
      pid.SetPoint=0.0
@@ -222,6 +224,13 @@ while 1:
          command[2]=save2
          command[5]=0
          command[6]=0
+         Kp=0.01
+         Ki=5
+         ITerm=0
+         PTerm=0
+         last_error=0
+         current_time=0
+         
 #         pid.clear
          #print(command[4])
          
@@ -253,6 +262,7 @@ while 1:
                  command[0]=save0
                  command[1]=save1
                  command[2]=save2
+                 last_time=time.time()
          else:
             if ph_chck>=ph_min and ph_chck<=ph_max and ph_flag==1: # close breaker
                  command[4]=0
@@ -278,6 +288,7 @@ while 1:
                  command[0]=save0
                  command[1]=save1
                  command[2]=save2
+                 last_time=time.time()
 
 ###############################################################################               
 ### reenable tie_line control  
@@ -288,12 +299,11 @@ while 1:
 #         print(feedback1)
          if flag==2:
                 gdispatch=Gridisp.Gridisp()
-                SoC=command[0]
         #                print(SoC)
                 Pwind=command[5]
                 Pload=command[6]
                 PES=0.5
-                gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
+                gdispatch.gridispatch(Pwind,Pload,SoC1,PES,StartDs)
         #                command[0]=gdispatch.Pdsref
         #                save0=command[0]
         #                command[1]=gdispatch.Pwdref
@@ -395,14 +405,13 @@ while 1:
 ##############################################################################       
 ### Island dispatch
      if spent_time>135:
-        command=list(m.e.status())
-        SoC=command[0]
-        print(SoC)
+#        command=list(m.e.status())
+        print(SoC1)
 #        print(dispatch)
         Pwind=command[5]
         Pload=command[6]
         StartDs1=StartDs
-        dispatch.isldispatch(Pwind,Pload,SoC,StartDs1)
+        dispatch.isldispatch(Pwind,Pload,SoC1,StartDs1)
         command[0]=dispatch.Pdsref
 #        print(command[0])
         command[1]=dispatch.Pwdref
