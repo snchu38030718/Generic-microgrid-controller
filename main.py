@@ -208,7 +208,7 @@ while 1:
                 save1=gdispatch.Pwdref
                 save2=gdispatch.Pldref
                 StartDs=gdispatch.Start_ds
-                flag=0
+                flag=0    #only once, avoid conflict with ESS
 # #################              PID
          SetPoint = -0 # Setpoint reference
          error = SetPoint - feedback1 # new error
@@ -349,7 +349,7 @@ while 1:
                 save11=gdispatch1.Pwdref
                 save22=gdispatch1.Pldref
                 StartDs=gdispatch1.Start_ds
-                flag=4
+#                flag=4
 # #################              PID
          SetPoint = -0.5 # Setpoint reference
          error = SetPoint - feedback1 # new error
