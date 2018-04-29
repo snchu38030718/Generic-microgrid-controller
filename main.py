@@ -342,7 +342,7 @@ while 1:
 #                pid.update(feedback1) # update_feedback
 #                print(pid.ITerm)
          command[3] = output # output
-         if SoC1<0.2 and pid.output>0:
+         if SoC1<0.2 and output>0:
                 command[3]=0
          command[0]=save00
          command[1]=save11
