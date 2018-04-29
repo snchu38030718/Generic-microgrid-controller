@@ -338,7 +338,7 @@ while 1:
          if flag==3:
                 gdispatch1=Gridisp.Gridisp()
         #                print(SoC)
-                SoC1=0.195
+                SoC1=command[0]
                 Pwind=command[5]
                 Pload=command[6]
                 PES=0.5
@@ -353,7 +353,7 @@ while 1:
                 save11=gdispatch1.Pwdref
                 save22=gdispatch1.Pldref
                 StartDs=gdispatch1.Start_ds
-#                flag=4
+                flag=4
 # #################              PID
          SetPoint = -0.5 # Setpoint reference
          error = SetPoint - feedback1 # new error
