@@ -120,10 +120,11 @@ while 1:
             command[1]=0
             command[2]=0
             StartDs=1
+            last_time=time.time()
                 
 ################################################################################
 ### grid-connected dispatch
-     if spent_time>41 and spent_time<=50:
+     if spent_time>41 and spent_time<=60:
 #        command=list(m.e.status())
         if flag==1:
             gdispatch=Gridisp.Gridisp()
@@ -136,10 +137,34 @@ while 1:
             command[0]=gdispatch.Pdsref
             command[1]=gdispatch.Pwdref
             command[2]=gdispatch.Pldref
-            pid = PID.PID(P=0.01, I=100000, D=0.000)
-            pid.SetPoint = -0.2 # Setpoint reference
-            pid.update(feedback1) # update_feedback
-            command[3] = pid.output  # output
+            
+ #################### PID start#####################################           
+#            pid = PID.PID(P=0.01, I=100000, D=0.000)
+#            pid.SetPoint = -0.2 # Setpoint reference
+#            pid.update(feedback1) # update_feedback
+#            command[3] = pid.output  # output
+            SetPoint = -0.2 # Setpoint reference
+            error = SetPoint - feedback1 # new error
+            current_time = time.time()
+            delta_time = current_time - last_time
+            delta_error = error-last_error
+    #        print(delta_time)
+    
+    #        if (delta_time >= self.sample_time):  
+    #            print(delta_time)
+            PTerm = Kp * error      # proportional term
+            ITerm += error * delta_time  # integral term
+            print(ITerm)
+            if (ITerm < -windup_guard): # wind_up
+                 ITerm = -windup_guard
+            elif (ITerm > windup_guard):
+                 ITerm = windup_guard
+            last_time = current_time
+            last_error = error
+    #        self.output = self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm) # PID combination
+            output = PTerm + (Ki * ITerm)  # PID combination
+###################PID ene##################################
+            command[3] = output
             if SoC<0.2 and pid.output>0:
                 command[3]=0
             command[4]=0            
@@ -159,7 +184,7 @@ while 1:
 
 ##############################################################################
  ##### planned islanding               
-     if spent_time>50 and ph_flag==1:  # setpoint change
+     if spent_time>60 and ph_flag==1:  # setpoint change
          pid = PID.PID(P=0.01, I=5000, D=0.000)  # give P,I,D, but not update now
 #         command=list(m.e.status())
          if flag==1:
