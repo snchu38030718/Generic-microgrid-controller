@@ -302,23 +302,23 @@ while 1:
          command[4]=0             # keep closed, PQ control
 #         print(feedback1)
          if flag==2:
-                gdispatch=Gridisp.Gridisp()
+                gdispatch1=Gridisp.Gridisp()
         #                print(SoC)
                 SoC1=0.195
                 Pwind=command[5]
                 Pload=command[6]
                 PES=0.5
-                gdispatch.gridispatch(Pwind,Pload,SoC1,PES,StartDs)
+                gdispatch1.gridispatch(Pwind,Pload,SoC1,PES,StartDs)
         #                command[0]=gdispatch.Pdsref
         #                save0=command[0]
         #                command[1]=gdispatch.Pwdref
         #                save1=command[1]
         #                command[2]=gdispatch.Pldref
         #                save2=command[2]
-                save0=gdispatch.Pdsref
-                save1=gdispatch.Pwdref
-                save2=gdispatch.Pldref
-                StartDs=gdispatch.Start_ds
+                save00=gdispatch1.Pdsref
+                save11=gdispatch1.Pwdref
+                save22=gdispatch1.Pldref
+                StartDs=gdispatch1.Start_ds
                 flag=3
 # #################              PID
          SetPoint = -0.5 # Setpoint reference
@@ -326,13 +326,8 @@ while 1:
          current_time = time.time()
          delta_time = current_time - last_time
          delta_error = error-last_error
-#        print(delta_time)
-
-#        if (delta_time >= self.sample_time):  
-#            print(delta_time)
          PTerm = Kp * error      # proportional term
          ITerm += error * delta_time  # integral term
-         print(ITerm)
          if (ITerm < -windup_guard): # wind_up
              ITerm = -windup_guard
          elif (ITerm > windup_guard):
@@ -345,9 +340,9 @@ while 1:
 #                pid.update(feedback1) # update_feedback
 #                print(pid.ITerm)
          command[3] = output # output
-         command[0]=save0
-         command[1]=save1
-         command[2]=save2
+         command[0]=save00
+         command[1]=save11
+         command[2]=save22
          command[5]=0
          command[6]=0
 #         command=list(m.e.status())
