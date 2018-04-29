@@ -61,6 +61,9 @@ ITerm=0
 PTerm=0
 last_error=0
 current_time=0
+ITerm1=0
+PTerm1=0
+last_error1=0
 SoC1=0.195
 while 1:
      start_time = time.time()
@@ -211,26 +214,26 @@ while 1:
          error = SetPoint - feedback1 # new error
          current_time = time.time()
          delta_time = current_time - last_time
-         delta_error = error-last_error
+         delta_error = error-last_error1
 #        print(delta_time)
 
 #        if (delta_time >= self.sample_time):  
 #            print(delta_time)
-         PTerm = Kp * error      # proportional term
-         ITerm += error * delta_time  # integral term
-         print(ITerm)
-         if (ITerm < -windup_guard): # wind_up
-             ITerm = -windup_guard
-         elif (ITerm > windup_guard):
-             ITerm = windup_guard
+         PTerm1 = Kp * error      # proportional term
+         ITerm1 += error * delta_time  # integral term
+         print(ITerm1)
+         if (ITerm1 < -windup_guard): # wind_up
+             ITerm1 = -windup_guard
+         elif (ITerm1 > windup_guard):
+             ITerm1 = windup_guard
          last_time = current_time
          last_error = error
 #        self.output = self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm) # PID combination
-         output = PTerm + (Ki * ITerm)  # PID combination
+         output1 = PTerm1 + (Ki * ITerm1)  # PID combination
  #######################################################               
 #                pid.update(feedback1) # update_feedback
 #                print(pid.ITerm)
-         command[3] = output # output
+         command[3] = output1 # output
          save_pess=command[3]
          command[0]=save0
          command[1]=save1
