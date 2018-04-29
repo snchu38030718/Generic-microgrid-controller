@@ -286,26 +286,76 @@ while 1:
          #print (tie_delay)
          command[4]=0             # keep closed, PQ control
 #         print(feedback1)
-         command=list(m.e.status())
-         gdispatch=Gridisp.Gridisp()
-         SoC=command[0]
-         print(SoC)
-         Pwind=command[5]
-         Pload=command[6]
-         PES=0.5
-         gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
-         command[0]=gdispatch.Pdsref
-         save0=command[0]
-         command[1]=gdispatch.Pwdref
-         save1=command[1]
-         command[2]=gdispatch.Pldref
-         save2=command[2]
-         StartDs=gdispatch.Start_ds
-         pid = PID.PID(P=0.01, I=200000, D=0.000)
-         pid.setSampleTime(0.0005)
-         pid.SetPoint = -0.5 # Setpoint reference
-         pid.update(feedback1) # update_feedback
-         command[3] = pid.output  # output
+         if flag==2:
+                gdispatch=Gridisp.Gridisp()
+                SoC=command[0]
+        #                print(SoC)
+                Pwind=command[5]
+                Pload=command[6]
+                PES=0.5
+                gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
+        #                command[0]=gdispatch.Pdsref
+        #                save0=command[0]
+        #                command[1]=gdispatch.Pwdref
+        #                save1=command[1]
+        #                command[2]=gdispatch.Pldref
+        #                save2=command[2]
+                save0=gdispatch.Pdsref
+                save1=gdispatch.Pwdref
+                save2=gdispatch.Pldref
+                StartDs=gdispatch.Start_ds
+                flag=3
+# #################              PID
+         SetPoint = -0.5 # Setpoint reference
+         error = SetPoint - feedback1 # new error
+         current_time = time.time()
+         delta_time = current_time - last_time
+         delta_error = error-last_error
+#        print(delta_time)
+
+#        if (delta_time >= self.sample_time):  
+#            print(delta_time)
+         PTerm = Kp * error      # proportional term
+         ITerm += error * delta_time  # integral term
+         print(ITerm)
+         if (ITerm < -windup_guard): # wind_up
+             ITerm = -windup_guard
+         elif (ITerm > windup_guard):
+             ITerm = windup_guard
+         last_time = current_time
+         last_error = error
+#        self.output = self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm) # PID combination
+         output = PTerm + (Ki * ITerm)  # PID combination
+ #######################################################               
+#                pid.update(feedback1) # update_feedback
+#                print(pid.ITerm)
+         command[3] = output # output
+         save_pess=command[3]
+         command[0]=save0
+         command[1]=save1
+         command[2]=save2
+         command[5]=0
+         command[6]=0
+#         command=list(m.e.status())
+#         gdispatch=Gridisp.Gridisp()
+#         SoC=command[0]
+#         print(SoC)
+#         Pwind=command[5]
+#         Pload=command[6]
+#         PES=0.5
+#         gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
+#         command[0]=gdispatch.Pdsref
+#         save0=command[0]
+#         command[1]=gdispatch.Pwdref
+#         save1=command[1]
+#         command[2]=gdispatch.Pldref
+#         save2=command[2]
+#         StartDs=gdispatch.Start_ds
+#         pid = PID.PID(P=0.01, I=200000, D=0.000)
+#         pid.setSampleTime(0.0005)
+#         pid.SetPoint = -0.5 # Setpoint reference
+#         pid.update(feedback1) # update_feedback
+#         command[3] = pid.output  # output
          save_pess=command[3]
 #         command[3]=0
          tie_flag=0
