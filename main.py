@@ -35,7 +35,8 @@ m  = Microgrid()
 #for i in range(1):
 #    command.append(1.0)
 init_time=time.time()
-flag=-1000
+flag1=-20
+flag=1
 ph_min=0.005
 ph_max=0.01
 ph_min1=6.1
@@ -129,7 +130,7 @@ while 1:
 ### grid-connected dispatch
      if spent_time>41 and spent_time<=60:
 #        command=list(m.e.status())
-        if flag<1:
+        if flag1<1:
             gdispatch2=Gridisp.Gridisp()
             SoC=command[0]
 #            print(SoC)
@@ -141,7 +142,7 @@ while 1:
             save1=gdispatch2.Pwdref
             save2=gdispatch2.Pldref
             StartDs=gdispatch2.Start_ds
-            flag=flag+1
+            flag1=flag1+1
             
  #################### PID start#####################################           
 #            pid = PID.PID(P=0.01, I=100000, D=0.000)
@@ -231,7 +232,7 @@ while 1:
          elif (ITerm1 > windup_guard):
              ITerm1 = windup_guard
          last_time = current_time
-         last_error = error
+         last_error1 = error
 #        self.output = self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm) # PID combination
          output1 = PTerm1 + (Ki * ITerm1)  # PID combination
  #######################################################               
