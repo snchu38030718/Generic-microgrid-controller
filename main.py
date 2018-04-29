@@ -35,7 +35,7 @@ m  = Microgrid()
 #for i in range(1):
 #    command.append(1.0)
 init_time=time.time()
-flag=1
+flag=0.5
 ph_min=0.005
 ph_max=0.01
 ph_min1=6.1
@@ -88,7 +88,7 @@ while 1:
      gdispatch=Gridisp.Gridisp()
      dispatch=Isldisp.Isldisp()
      if spent_time>0 and spent_time<=11:  # setpoint change
-         if flag==1:
+#         if flag==1:
                 command[3]=0  # output
                 command[4]=0
                 command[0]=0
@@ -97,7 +97,7 @@ while 1:
                 StartDs=1
      
      if spent_time>11 and spent_time<=41:  # setpoint change
-        if flag==1:
+#        if flag==1:
 #            gdispatch=Gridisp.Gridisp()
 #            SoC=command[0]
 #            Pwind=command[5]
@@ -129,7 +129,7 @@ while 1:
 ### grid-connected dispatch
      if spent_time>41 and spent_time<=60:
 #        command=list(m.e.status())
-        if flag==1:
+        if flag==0.5:
             gdispatch=Gridisp.Gridisp()
             SoC=command[0]
 #            print(SoC)
@@ -140,7 +140,7 @@ while 1:
             command[0]=gdispatch.Pdsref
             command[1]=gdispatch.Pwdref
             command[2]=gdispatch.Pldref
-            flag=5
+            flag=1
             
  #################### PID start#####################################           
 #            pid = PID.PID(P=0.01, I=100000, D=0.000)
