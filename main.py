@@ -181,7 +181,6 @@ while 1:
             command[6]=0
 #            global save_pess
             save_pess=command[3]
-            last_time=time.time()
 #            time.sleep(0.005)   # time_sleep
 #            command[3]=0# output
 #            command[4]=0
