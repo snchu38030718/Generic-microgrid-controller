@@ -231,6 +231,7 @@ while 1:
          PTerm=0
          last_error=0
          current_time=0
+         StartDs=1
          
 #         pid.clear
          #print(command[4])
