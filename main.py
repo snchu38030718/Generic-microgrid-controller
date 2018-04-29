@@ -156,7 +156,7 @@ while 1:
 
 ##############################################################################
  ##### planned islanding               
-     if spent_time>50 and abs(feedback1)>=0.001 and ph_flag==1:  # setpoint change
+     if spent_time>50 and ph_flag==1:  # setpoint change
          pid = PID.PID(P=0.01, I=5000, D=0.000)  # give P,I,D, but not update now
 #         command=list(m.e.status())
          if flag==1:
