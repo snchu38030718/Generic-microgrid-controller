@@ -140,6 +140,7 @@ while 1:
             command[0]=gdispatch.Pdsref
             command[1]=gdispatch.Pwdref
             command[2]=gdispatch.Pldref
+            flag=5
             
  #################### PID start#####################################           
 #            pid = PID.PID(P=0.01, I=100000, D=0.000)
