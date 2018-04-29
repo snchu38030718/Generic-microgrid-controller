@@ -265,6 +265,7 @@ while 1:
                  command[1]=save1
                  command[2]=save2
                  last_time=time.time()
+                 StartDs=1
          else:
             if ph_chck>=ph_min and ph_chck<=ph_max and ph_flag==1: # close breaker
                  command[4]=0
@@ -291,6 +292,7 @@ while 1:
                  command[1]=save1
                  command[2]=save2
                  last_time=time.time()
+                 StartDs=1
 
 ###############################################################################               
 ### reenable tie_line control  
@@ -302,7 +304,7 @@ while 1:
          if flag==2:
                 gdispatch=Gridisp.Gridisp()
         #                print(SoC)
-                SoC1=SoC1
+                SoC1=0.195
                 Pwind=command[5]
                 Pload=command[6]
                 PES=0.5
@@ -343,7 +345,6 @@ while 1:
 #                pid.update(feedback1) # update_feedback
 #                print(pid.ITerm)
          command[3] = output # output
-         save_pess=command[3]
          command[0]=save0
          command[1]=save1
          command[2]=save2
