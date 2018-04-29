@@ -55,12 +55,13 @@ temp0=0.2
 temp1=0
 temp2=0
 windup_guard=2000
-Kp=0.01
+Kp=0.005
 Ki=5
 ITerm=0
 PTerm=0
 last_error=0
 current_time=0
+SoC1=0.195
 while 1:
      start_time = time.time()
      command=list(m.e.status())
