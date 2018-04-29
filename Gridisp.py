@@ -31,7 +31,7 @@ class Gridisp:
         self.Start_ds=1
         Pnet = Pwind+PES-Pload
         if Pnet>=0:    # More, wind is controllable, diesel is off, ESS depends
-                if SoC>=self.SoC_max:     # Charge is
+#                if SoC>=self.SoC_max:     # Charge is
 #                    self.Pwdref=Pnet        # self.Pwdref is positive
 #                    # self.Pessref=0
 #                    self.Pdsref=0

@@ -266,6 +266,7 @@ while 1:
                  command[2]=save2
                  last_time=time.time()
                  StartDs=1
+                 flag=2
          else:
             if ph_chck>=ph_min and ph_chck<=ph_max and ph_flag==1: # close breaker
                  command[4]=0
@@ -293,6 +294,7 @@ while 1:
                  command[2]=save2
                  last_time=time.time()
                  StartDs=1
+                 flag=2
 
 ###############################################################################               
 ### reenable tie_line control  
