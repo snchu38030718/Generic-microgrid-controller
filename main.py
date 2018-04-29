@@ -130,16 +130,17 @@ while 1:
      if spent_time>41 and spent_time<=60:
 #        command=list(m.e.status())
         if flag==0.5:
-            gdispatch=Gridisp.Gridisp()
+            gdispatch2=Gridisp.Gridisp()
             SoC=command[0]
 #            print(SoC)
             Pwind=command[5]
             Pload=command[6]
             PES=0.2
-            gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
-            save0=gdispatch.Pdsref
-            save1=gdispatch.Pwdref
-            save2=gdispatch.Pldref
+            gdispatch2.gridispatch(Pwind,Pload,SoC,PES,StartDs)
+            save0=gdispatch2.Pdsref
+            save1=gdispatch2.Pwdref
+            save2=gdispatch2.Pldref
+            StartDs=gdispatch2.Start_ds
             flag=1
             
  #################### PID start#####################################           
@@ -177,7 +178,6 @@ while 1:
             command[4]=0            
             command[5]=0
             command[6]=0
-            StartDs=gdispatch.Start_ds
 #            global save_pess
             save_pess=command[3]
             last_time=time.time()
