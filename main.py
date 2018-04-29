@@ -142,7 +142,8 @@ while 1:
             save1=gdispatch2.Pwdref
             save2=gdispatch2.Pldref
             StartDs=gdispatch2.Start_ds
-            flag1=flag1+1
+            if SoC>0.2:
+                flag1=flag1+1
             
  #################### PID start#####################################           
 #            pid = PID.PID(P=0.01, I=100000, D=0.000)
@@ -170,7 +171,7 @@ while 1:
 #        self.output = self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm) # PID combination
         output = PTerm + (Ki * ITerm)  # PID combination
 ###################PID ene##################################
-        command[3] = 0
+        command[3] = output
         if SoC<0.2 and output>0:
             command[3]=0
         command[0]=save0
@@ -353,7 +354,8 @@ while 1:
                 save11=gdispatch1.Pwdref
                 save22=gdispatch1.Pldref
                 StartDs=gdispatch1.Start_ds
-                flag=4
+                if SoC1>0.2 and SoC1<0.9:
+                     flag=4
 # #################              PID
          SetPoint = -0.5 # Setpoint reference
          error = SetPoint - feedback1 # new error
