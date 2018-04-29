@@ -302,6 +302,7 @@ while 1:
          if flag==2:
                 gdispatch=Gridisp.Gridisp()
         #                print(SoC)
+                SoC1=SoC1
                 Pwind=command[5]
                 Pload=command[6]
                 PES=0.5
