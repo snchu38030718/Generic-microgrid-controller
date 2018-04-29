@@ -165,7 +165,7 @@ while 1:
             output = PTerm + (Ki * ITerm)  # PID combination
 ###################PID ene##################################
             command[3] = output
-            if SoC<0.2 and pid.output>0:
+            if SoC<0.2 and output>0:
                 command[3]=0
             command[4]=0            
             command[5]=0
