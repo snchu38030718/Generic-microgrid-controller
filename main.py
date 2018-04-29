@@ -170,7 +170,7 @@ while 1:
 #        self.output = self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm) # PID combination
         output = PTerm + (Ki * ITerm)  # PID combination
 ###################PID ene##################################
-        command[3] = output
+        command[3] = 0
         if SoC<0.2 and output>0:
             command[3]=0
         command[0]=save0
