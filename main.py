@@ -355,7 +355,7 @@ while 1:
                 save11=gdispatch1.Pwdref
                 save22=gdispatch1.Pldref
                 StartDs=gdispatch1.Start_ds
-                if SoC1>0.2 and SoC1<0.9:  # avoid conflict
+                if SoC1>0.2 or SoC1>0.9:  # avoid conflict
                      flag=4
 # #################              PID
          SetPoint = -0.4 # Setpoint reference
