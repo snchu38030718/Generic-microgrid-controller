@@ -337,7 +337,7 @@ while 1:
          #print (tie_delay)
          command[4]=0             # keep closed, PQ control
 #         print(feedback1)
-         SoC1=command[0]
+#         SoC1=command[0]
          if flag==3:
                 gdispatch1=Gridisp.Gridisp()
                 Pwind=command[5]
