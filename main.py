@@ -410,7 +410,7 @@ while 1:
      
 ################################################################################       
  # Unplanned islanding 
-     if spent_time>130 and spent_time<130.02 and tie_flag==0:  # change power reference
+     if spent_time>130.001 and spent_time<130.02 and tie_flag==0:  # change power reference
          unplan.edispatch(Pdiesel1, P_ES1)
          command[0]=unplan.dPdiesel
 #         global save0
