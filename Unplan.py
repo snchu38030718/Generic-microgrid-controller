@@ -15,16 +15,22 @@ class Unplan:
 #        self.PCwd = 0
 
 
-    def edispatch(self,Pdiesel,P_ES):  ## P_ES is power at POI
+    def edispatch(self,Pdiesel,P_ES,start_ds):  ## P_ES is power at POI
         if P_ES>=0:    # More
             if (self.Pdiesel_max-Pdiesel-P_ES)>=0:
                 self.dPdiesel=P_ES+Pdiesel
                 self.PSLd=0
                 self.PCwd=0
+                if start_ds==0:
+                    self.dPdiesel=0+Pdiesel
+                    self.PSLd=P_ES
             else:
                 self.dPdiesel=self.Pdiesel_max  # Charge
                 self.PSLd=-self.Pdiesel_max+Pdiesel+P_ES
                 self.PCwd=0
+                if start_ds==0:
+                    self.dPdiesel=0+Pdiesel
+                    self.PSLd=P_ES
         else:             # Freq_min<Freq<Freq_max
             if (Pdiesel+P_ES-self.Pdiesel_min)>=0:
                 self.dPdiesel=Pdiesel+P_ES

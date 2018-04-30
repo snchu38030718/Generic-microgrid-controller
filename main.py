@@ -413,7 +413,7 @@ while 1:
  # Unplanned islanding 
      if spent_time>130.0 and spent_time<130.002 and tie_flag==0:  # change power reference
          if flag2==1:
-             unplan.edispatch(Pdiesel1, P_ES1)
+             unplan.edispatch(Pdiesel1, P_ES1, StartDs)
              save0=unplan.dPdiesel
              save1=unplan.PCwd
              save2=unplan.PSLd
