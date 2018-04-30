@@ -333,7 +333,7 @@ while 1:
 ###############################################################################               
 ### reenable tie_line control  
      tie_delay=time.time()-time_close
-     if (tie_delay)>=8 and ph_flag==0 and spent_time<=130.1: # re-enable tie_line control 
+     if (tie_delay)>=8 and ph_flag==0 and spent_time<=130.0: # re-enable tie_line control 
          #print (tie_delay)
          command[4]=0             # keep closed, PQ control
 #         print(feedback1)
@@ -411,7 +411,7 @@ while 1:
      
 ################################################################################       
  # Unplanned islanding 
-     if spent_time>130.1 and spent_time<130.12 and tie_flag==0:  # change power reference
+     if spent_time>130.0 and spent_time<130.002 and tie_flag==0:  # change power reference
          if flag2==1:
              unplan.edispatch(Pdiesel1, P_ES1)
              save0=unplan.dPdiesel
@@ -425,7 +425,7 @@ while 1:
          command[1]=save1
          command[2]=save2
      
-     if spent_time>=130.12 and spent_time<=135:                                # change ESS mode
+     if spent_time>=130.002 and spent_time<=135:                                # change ESS mode
             command[0]=save0
 #            save1=Save.gety()
             command[1]=save1
