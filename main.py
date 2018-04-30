@@ -143,7 +143,7 @@ while 1:
             save1=gdispatch2.Pwdref
             save2=gdispatch2.Pldref
             StartDs=gdispatch2.Start_ds
-            if SoC>0.2:
+            if SoC>0.2 and SoC<0.9:
                 flag1=flag1+1
             
  #################### PID start#####################################           
@@ -173,7 +173,7 @@ while 1:
         output = PTerm + (Ki * ITerm)  # PID combination
 ###################PID ene##################################
         command[3] = output
-        if SoC<0.2 and output>0:
+        if (SoC<0.2 and output>0) or (SoC>0.9 and output<0):
             command[3]=0
         command[0]=save0
         command[1]=save1
@@ -355,7 +355,7 @@ while 1:
                 save11=gdispatch1.Pwdref
                 save22=gdispatch1.Pldref
                 StartDs=gdispatch1.Start_ds
-                if SoC1>0.2 and SoC1<0.9:
+                if SoC1>0.2 and SoC1<0.9:  # avoid conflict
                      flag=4
 # #################              PID
          SetPoint = -0.5 # Setpoint reference
@@ -377,8 +377,8 @@ while 1:
 #                pid.update(feedback1) # update_feedback
 #                print(pid.ITerm)
          command[3] = output # output
-         if SoC1<0.2 and output>0:
-                command[3]=0
+         if (SoC1<0.2 and output>0) or (SoC1>0.9 and output<0):
+            command[3]=0
          command[0]=save00
          command[1]=save11
          command[2]=save22
