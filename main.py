@@ -66,6 +66,7 @@ ITerm1=0
 PTerm1=0
 last_error1=0
 SoC1=0.195
+flag2=1
 while 1:
      start_time = time.time()
      command=list(m.e.status())
@@ -411,20 +412,18 @@ while 1:
 ################################################################################       
  # Unplanned islanding 
      if spent_time>130.1 and spent_time<130.12 and tie_flag==0:  # change power reference
-         unplan.edispatch(Pdiesel1, P_ES1)
-         command[0]=unplan.dPdiesel
-#         global save0
-         save0=command[0]
-         command[1]=unplan.PCwd
-#         global save1
-         save1=command[1]
-         command[2]=unplan.PSLd
-#         global save2
-         save2=command[2]
+         if flag2==1:
+             unplan.edispatch(Pdiesel1, P_ES1)
+             save0=unplan.dPdiesel
+             save1=unplan.PCwd
+             save2=unplan.PSLd
+             flag2=2
          command[4]=0            # ess stays at PQ control
          command[3]=save_pess    # ess is the power reference change of ess
 #         Save.store(save0,save1,save2)#         
-             
+         command[0]=save0
+         command[1]=save1
+         command[2]=save2
      
      if spent_time>=130.12 and spent_time<=135:                                # change ESS mode
             command[0]=save0
