@@ -337,13 +337,12 @@ while 1:
          #print (tie_delay)
          command[4]=0             # keep closed, PQ control
 #         print(feedback1)
+         SoC1=command[0]
          if flag==3:
                 gdispatch1=Gridisp.Gridisp()
-        #                print(SoC)
-                SoC1=command[0]
                 Pwind=command[5]
                 Pload=command[6]
-                PES=0.5
+                PES=0.3
                 gdispatch1.gridispatch(Pwind,Pload,SoC1,PES,StartDs)
         #                command[0]=gdispatch.Pdsref
         #                save0=command[0]
@@ -358,7 +357,7 @@ while 1:
                 if SoC1>0.2 and SoC1<0.9:  # avoid conflict
                      flag=4
 # #################              PID
-         SetPoint = -0.5 # Setpoint reference
+         SetPoint = -0.3 # Setpoint reference
          error = SetPoint - feedback1 # new error
          current_time = time.time()
          delta_time = current_time - last_time
