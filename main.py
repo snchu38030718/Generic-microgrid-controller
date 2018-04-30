@@ -259,8 +259,8 @@ while 1:
          command[2]=save2
          command[5]=0
          command[6]=0
-         Kp=0.01
-         Ki=5
+         Kp=0.03
+         Ki=10
          ITerm=0
          PTerm=0
          last_error=0
@@ -335,6 +335,7 @@ while 1:
      tie_delay=time.time()-time_close
      if (tie_delay)>=8 and ph_flag==0 and spent_time<=130.0: # re-enable tie_line control 
          #print (tie_delay)
+#         command=list(m.e.status())
          command[4]=0             # keep closed, PQ control
 #         print(feedback1)
 #         SoC1=command[0]

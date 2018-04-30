@@ -52,7 +52,7 @@ class Gridisp:
                             # self.Pessref=self.Pch_max
                             self.Pwdref=Pnet+self.Pdsref-self.Pch_max
                             self.Pldref=0
-                            self.Pdsref=self.Pds_min
+#                            self.Pdsref=self.Pds_min
                             self.Start_ds=start_ds+1
                             if self.Start_ds>=24000000:
                                 self.Start_ds=0  # turn off diesel
