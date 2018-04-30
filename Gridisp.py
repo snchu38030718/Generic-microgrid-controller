@@ -16,7 +16,7 @@ class Gridisp:
         self.Pwdref=0
         self.Pdsref=0
         self.Pldref=0
-        self.Start_ds=1
+        self.Start_ds=0
 
     def gridispatch(self,Pwind,Pload,SoC,PES,start_ds):  ## P_ES is power at POI
         self.SoC_max = 0.9   #95
@@ -28,7 +28,7 @@ class Gridisp:
         self.Pwdref=0
         self.Pdsref=0
         self.Pldref=0
-        self.Start_ds=1
+        self.Start_ds=0
         Pnet = Pwind+PES-Pload
         if Pnet>=0:    # More, wind is controllable, diesel is off, ESS depends
                 if SoC>=self.SoC_max:     # Charge is
