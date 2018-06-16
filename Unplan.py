@@ -16,30 +16,36 @@ class Unplan:
 
 
     def edispatch(self,Pdiesel,P_ES,start_ds):  ## P_ES is power at POI
-        if P_ES>=0:    # More
+        if P_ES>=0:    # More, POI in, increase diesel
             if (self.Pdiesel_max-Pdiesel-P_ES)>=0:
                 self.dPdiesel=P_ES+Pdiesel
                 self.PSLd=0
                 self.PCwd=0
-                if start_ds==0:
+                if start_ds==0: # off or run long time (>20 min)
                     self.dPdiesel=0+Pdiesel
                     self.PSLd=P_ES
             else:
                 self.dPdiesel=self.Pdiesel_max  # Charge
                 self.PSLd=-self.Pdiesel_max+Pdiesel+P_ES
                 self.PCwd=0
-                if start_ds==0:
+                if start_ds==0: # off or run long time (>20 min)
                     self.dPdiesel=0+Pdiesel
                     self.PSLd=P_ES
-        else:             # Freq_min<Freq<Freq_max
+        else:             # Less, POI out, decrease diesel
             if (Pdiesel+P_ES-self.Pdiesel_min)>=0:
                 self.dPdiesel=Pdiesel+P_ES
                 self.PCwd=0
                 self.PSLd=0
+                if start_ds==0: # off or run long time (>20 min) This is added on My 5.
+                    self.dPdiesel=0+Pdiesel
+                    self.PCwd=-P_ES
             else:
                  self.dPdiesel=self.Pdiesel_min   # Charge
                  self.PCwd=Pdiesel+P_ES-self.Pdiesel_min
                  self.PSLd=0
+                 if start_ds==0: # off or run long time (>20 min)
+                    self.dPdiesel=0+Pdiesel
+                    self.PCwd=-P_ES
 #            self.dPdiesel=0.2
 #            self.PCwd=0
 #            self.PSLd=0.1

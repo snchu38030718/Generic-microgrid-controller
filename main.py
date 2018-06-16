@@ -65,7 +65,7 @@ current_time=0
 ITerm1=0
 PTerm1=0
 last_error1=0
-SoC1=0.91   ###0.9
+SoC1=0.905   ###0.9
 flag2=1
 while 1:
      start_time = time.time()
