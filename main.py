@@ -53,7 +53,7 @@ save2=0
 save00=0
 save11=0
 save22=0
-StartDs=1 #on; 0 off
+StartDs=0 #on; 0 off
 savepess=0
 windup_guard=2000
 Kp=0.03
@@ -96,7 +96,7 @@ while 1:
                 command[0]=0
                 command[1]=0
                 command[2]=0
-                StartDs=1
+                StartDs=0
      
      if spent_time>11 and spent_time<=41:  # setpoint change
 #        if flag==1:
@@ -124,7 +124,7 @@ while 1:
             command[0]=0
             command[1]=0
             command[2]=0
-            StartDs=1  # if soc<0.9, SoC>0.9,0
+            StartDs=0  # if soc<0.9, SoC>0.9,0
             last_time=time.time()
                 
 ################################################################################
@@ -266,7 +266,7 @@ while 1:
          PTerm=0
          last_error=0
          current_time=0
-         StartDs=1
+         StartDs=0
          
 #         pid.clear
          #print(command[4])
@@ -300,7 +300,7 @@ while 1:
                  command[1]=save1
                  command[2]=save2
                  last_time=time.time()
-                 StartDs=1
+                 StartDs=0
                  flag=3
          else:
             if ph_chck>=ph_min and ph_chck<=ph_max and ph_flag==1: # close breaker
@@ -328,7 +328,7 @@ while 1:
                  command[1]=save1
                  command[2]=save2
                  last_time=time.time()
-                 StartDs=1
+                 StartDs=0
                  flag=3
 
 ###############################################################################               
@@ -434,7 +434,7 @@ while 1:
             command[2]=save2
             command[4]=1            # ess changes to Vf control
             command[3]=save_pess
-            StartDs=1
+            StartDs=0
                     
 ###############################################################################       
         
