@@ -1,0 +1,139 @@
+function [Pdsref,Pldref,Start_ds,Pwdref]=dispatch_gcc1(Pwind,Pload,SoC,PES,Ppv,start_ds)  %% P_ES is power at POI
+        SoC_max = 0.9;   %95
+        SoC_min = 0.2;
+        Pch_max = 1;
+        Pdis_max = -1;  %-1.5
+        Pds_min=0.2;
+        Pds_max=1;
+        Pwdref=0;
+        Ppvref=0;
+        Pdsref=0;
+        Pldref=0;
+        Start_ds=0;
+        Pnet = Pwind+PES-Pload;
+        if Pnet>=0    % More, wind is controllable, diesel is off, ESS depends
+                if SoC>=SoC_max     % Charge is
+                    Pwdref=Pnet;        % Pwdref is positive
+                    % Pessref=0
+                    Pdsref=0;
+                    Pldref=0;
+                    Start_ds=0;
+                else     % SoC<SoC_max
+                    if start_ds>=1 && start_ds<=(24000000-1)
+                        Pdsref=Pds_min;
+                        if (Pnet+Pdsref)<Pch_max
+                            % Pessref=Pnet+Pds_min
+                            Pwdref=0;
+                            Pldref=0;
+                            Pdsref=Pds_min;
+                            Start_ds=start_ds+1;
+                            if Start_ds>=24000000
+                                Start_ds=0;
+                            end
+                        else
+                            % Pessref=Pch_max
+                            Pwdref=Pnet+Pdsref-Pch_max;
+                            Pldref=0;
+%                            Pdsref=Pds_min
+                            Start_ds=start_ds+1;
+                            if Start_ds>=24000000
+                                Start_ds=0;  % turn off diesel
+                            end
+                        end
+                    else
+                        Start_ds=0;
+                        if Pnet<Pch_max  % ds is off or Ton>=3
+                            % Pessref=Pnet
+                            Pwdref=0;
+                            Pdsref=0;
+                            Pldref=0;
+                        else
+                            % Pessref=Pch_max
+                            Pwdref=Pnet-Pch_max;
+                            Pdsref=0;
+                            Pldref=0;
+                        end
+                    end
+                end           
+        elseif SoC>=SoC_min    %% Pnet<0, load is controllable, diesel on/off, SoC_min
+                if  start_ds>=1 && start_ds<=(24000000-1)
+                       Pdsref=Pds_min;
+                       Pnet=Pwind+Pds_min+PES-Pload;
+                       if -Pnet<-Pdis_max   % Pnet is smaller than largest discharge power
+                    % % Pessref=Pnet   % % Pessref is negative
+                            Pldref=0;
+                            Start_ds=start_ds+1;
+                            Pwdref=0;
+                            if Start_ds>=24000000
+                                Start_ds=0;
+                            end
+                       else
+                            Pldref=-Pnet+Pdis_max;  %Pldref is positive
+                            % Pessref=Pdis_max
+                            Start_ds=start_ds+1;
+                            Pwdref=0;
+                            if Start_ds>=24000000
+                                Start_ds=0;
+                            end
+                       end
+                else
+                        Start_ds=0;
+                        if -Pnet<-Pdis_max   % Pnet is smaller than largest discharge power
+                        % Pessref=Pnet   % % Pessref is negative
+                            Pldref=0;
+                            Pdsref=0;
+                            Pwdref=0;
+                        else                 %% Pnet is larger than the largest discharge power
+                            Pldref=-Pnet+Pdis_max;  %Pldref is positive
+                            % Pessref=Pdis_max
+                            Pdsref=0;
+                            Pwdref=0;
+                        end  
+                end
+        elseif SoC<SoC_min            %% SoC<SoC_min, diesel should be on
+%                  Pdsref=0.2
+%                  Pwdref=0
+%                  Pldref=0
+%                  Start_ds=0
+                 if -Pnet<Pds_min  % Pnet is smaller than the smallest diesel power Pds_min
+                        if  start_ds>=1 && start_ds<=(24000000-1)
+                            Pdsref=Pds_min;
+                            Start_ds=start_ds+1;
+                            Pldref=0;
+                            % Pessref=Pds_min-Pnet
+                            Pwdref=0;
+                            if Start_ds>=24000000
+                                Start_ds=0;
+                            end
+                        else
+                            Start_ds=0;
+                            Pldref=-Pnet;   %Pldref is positive, shedding
+                            % Pessref=0 % ESS is still master
+                            Pdsref=0;
+                            Pwdref=0;
+                        end
+                        
+                 else                   
+                        if (-Pnet-Pds_max)<=0  % Pds_min<-Pnet<Pds_max
+                            % Pessref=0
+                            Pdsref=-Pnet;
+                            Start_ds=start_ds+1;
+                            Pwdref=0;
+                            Pldref=0;
+                            if Start_ds>=24000000;
+                                Start_ds=0;
+                            end
+                        else              % -Pnet>Pds_max
+                            % Pessref=0
+                            Pwdref=0;
+                            Pdsref=Pds_max;
+                            Start_ds=start_ds+1;
+                            Pldref=-Pnet-Pds_max;
+                            if Start_ds>=24000000
+                                Start_ds=0;
+                            end
+                        end
+                 end
+        end
+   end
+                
