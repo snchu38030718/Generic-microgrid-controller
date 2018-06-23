@@ -412,7 +412,7 @@ while 1:
      
 ################################################################################       
  # Unplanned islanding 
-     if spent_time>130.0 and spent_time<130.002 and tie_flag==0:  # change power reference
+     if spent_time>130.0 and spent_time<130.02 and tie_flag==0:  # change power reference
          if flag2==1:
              unplan.edispatch(Pdiesel1, P_ES1, StartDs)
              save0=unplan.dPdiesel
@@ -426,7 +426,7 @@ while 1:
          command[1]=save1
          command[2]=save2
      
-     if spent_time>=130.002 and spent_time<=135:                                # change ESS mode
+     if spent_time>=130.02 and spent_time<=135:                                # change ESS mode
             command[0]=save0
 #            save1=Save.gety()
             command[1]=save1
