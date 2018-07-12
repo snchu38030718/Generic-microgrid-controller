@@ -35,6 +35,7 @@ m  = Microgrid()
 #for i in range(1):
 #    command.append(1.0)
 init_time=time.time()
+typecontrol=1
 flag1=-5
 flag=1
 ph_min=0.005
@@ -79,6 +80,7 @@ while 1:
      if spent_time>=129.8 and spent_time<129.9:
          Pdiesel1=command[1]
          P_ES1=-command[3]
+         Pess=command[7]
      if spent_time>=90:
              SoC1=command[0]
      ph_chck=abs(command[2])
@@ -124,7 +126,7 @@ while 1:
             command[0]=0
             command[1]=0
             command[2]=0
-            StartDs=0  # if soc<0.9, SoC>0.9,0
+            StartDs=0  # if soc<0.9,1 (SoC>0.9,0)
             last_time=time.time()
                 
 ################################################################################
@@ -138,7 +140,7 @@ while 1:
             Pwind=command[5]
             Pload=command[6]
             PES=0.2
-            gdispatch2.gridispatch(Pwind,Pload,SoC,PES,StartDs)
+            gdispatch2.gridispatch(Pwind,Pload,SoC,PES,StartDs,typecontrol)
             save0=gdispatch2.Pdsref
             save1=gdispatch2.Pwdref
             save2=gdispatch2.Pldref
@@ -204,7 +206,7 @@ while 1:
                 Pwind=command[5]
                 Pload=command[6]
                 PES=0
-                gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
+                gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs,typecontrol)
 #                command[0]=gdispatch.Pdsref
 #                save0=command[0]
 #                command[1]=gdispatch.Pwdref
@@ -345,7 +347,7 @@ while 1:
                 Pwind=command[5]
                 Pload=command[6]
                 PES=0.4
-                gdispatch1.gridispatch(Pwind,Pload,SoC1,PES,StartDs)
+                gdispatch1.gridispatch(Pwind,Pload,SoC1,PES,StartDs,typecontrol)
         #                command[0]=gdispatch.Pdsref
         #                save0=command[0]
         #                command[1]=gdispatch.Pwdref
@@ -414,7 +416,7 @@ while 1:
  # Unplanned islanding 
      if spent_time>130.0 and spent_time<130.02 and tie_flag==0:  # change power reference
          if flag2==1:
-             unplan.edispatch(Pdiesel1, P_ES1, StartDs)
+             unplan.edispatch(Pdiesel1, P_ES1, StartDs, Pess, typecontrol)
              save0=unplan.dPdiesel
              save1=unplan.PCwd
              save2=unplan.PSLd
@@ -448,7 +450,7 @@ while 1:
         Pwind=command[5]
         Pload=command[6]
         StartDs1=StartDs
-        dispatch.isldispatch(Pwind,Pload,SoC1,StartDs1)
+        dispatch.isldispatch(Pwind,Pload,SoC1,StartDs1,typecontrol)
         command[0]=dispatch.Pdsref
 #        print(command[0])
         command[1]=dispatch.Pwdref
