@@ -10,6 +10,8 @@ class Unplan:
 
         self.Pdiesel_max = 1.2
         self.Pdiesel_min = 0.2  #-1.5
+        self.Pdis_max = -1  #-1.5
+        self.Pch_max=1
 #        self.dPdiesel = 0
 #        self.PSLd = 0
 #        self.PCwd = 0

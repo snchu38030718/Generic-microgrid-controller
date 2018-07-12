@@ -35,7 +35,7 @@ m  = Microgrid()
 #for i in range(1):
 #    command.append(1.0)
 init_time=time.time()
-typecontrol=1
+typecontrol=2
 flag1=-5
 flag=1
 ph_min=0.005
@@ -68,6 +68,7 @@ PTerm1=0
 last_error1=0
 SoC1=0.905   ###0.9
 flag2=1
+StDS=1
 while 1:
      start_time = time.time()
      command=list(m.e.status())
@@ -98,7 +99,7 @@ while 1:
                 command[0]=0
                 command[1]=0
                 command[2]=0
-                StartDs=0
+                StartDs=StDS
      
      if spent_time>11 and spent_time<=41:  # setpoint change
 #        if flag==1:
@@ -126,7 +127,7 @@ while 1:
             command[0]=0
             command[1]=0
             command[2]=0
-            StartDs=0  # if soc<0.9,1 (SoC>0.9,0)
+            StartDs=StDS  # if soc<0.9,1 (SoC>0.9,0)
             last_time=time.time()
                 
 ################################################################################
@@ -268,7 +269,7 @@ while 1:
          PTerm=0
          last_error=0
          current_time=0
-         StartDs=0
+         StartDs=StDS
          
 #         pid.clear
          #print(command[4])
@@ -302,7 +303,7 @@ while 1:
                  command[1]=save1
                  command[2]=save2
                  last_time=time.time()
-                 StartDs=0
+                 StartDs=StDS
                  flag=3
          else:
             if ph_chck>=ph_min and ph_chck<=ph_max and ph_flag==1: # close breaker
@@ -330,7 +331,7 @@ while 1:
                  command[1]=save1
                  command[2]=save2
                  last_time=time.time()
-                 StartDs=0
+                 StartDs=StDS
                  flag=3
 
 ###############################################################################               
@@ -436,7 +437,7 @@ while 1:
             command[2]=save2
             command[4]=1            # ess changes to Vf control
             command[3]=save_pess
-            StartDs=0
+            StartDs=StDS
                     
 ###############################################################################       
         
