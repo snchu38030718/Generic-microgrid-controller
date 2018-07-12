@@ -52,21 +52,21 @@ class Unplan:
     #            self.dPdiesel=0.2
     #            self.PCwd=0
     #            self.PSLd=0.1
-#        elif Type==2:
-#            self.dPdiesel=Pdiesel
-#            if P_ES>=0:    # More, POI in, increase diesel
-#                if (self.Pdis_max-Pess-P_ES)>=0:
-#                    self.PSLd=0
-#                    self.PCwd=0
-#                else:
-#                    self.PSLd=P_ES+self.Pdis_max+Pess
-#                    self.PCwd=0
-#            else:             # Less, POI out, decrease diesel
-#                if (Pess+P_ES+self.Pch_max)>=0:
-#                    self.PCwd=0
-#                    self.PSLd=0
-#                else:
-#                     self.PCwd=-Pess-P_ES-self.Pch_max
-#                     self.PSLd=0
+        elif Type==2:
+            self.dPdiesel=Pdiesel
+            if P_ES>=0:    # More, POI in, increase diesel
+                if (self.Pdis_max-Pess-P_ES)>=0:
+                    self.PSLd=0
+                    self.PCwd=0
+                else:
+                    self.PSLd=P_ES+self.Pdis_max+Pess
+                    self.PCwd=0
+            else:             # Less, POI out, decrease diesel
+                if (Pess+P_ES+self.Pch_max)>=0:
+                    self.PCwd=0
+                    self.PSLd=0
+                else:
+                     self.PCwd=-Pess-P_ES-self.Pch_max
+                     self.PSLd=0
                     
                     
