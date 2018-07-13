@@ -140,7 +140,7 @@ while 1:
 #            print(SoC)
             Pwind=command[5]
             Pload=command[6]
-            PES=0.5
+            PES=0.1
             gdispatch2.gridispatch(Pwind,Pload,SoC,PES,StartDs,typecontrol)
             save0=gdispatch2.Pdsref
             save1=gdispatch2.Pwdref
@@ -155,7 +155,7 @@ while 1:
 #            pid.SetPoint = -0.2 # Setpoint reference
 #            pid.update(feedback1) # update_feedback
 #            command[3] = pid.output  # output
-        SetPoint = -0.5 # Setpoint reference
+        SetPoint = -0.1 # Setpoint reference
         error = SetPoint - feedback1 # new error
         current_time = time.time()
         delta_time = current_time - last_time
