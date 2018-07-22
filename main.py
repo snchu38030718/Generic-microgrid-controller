@@ -35,7 +35,7 @@ m  = Microgrid()
 #for i in range(1):
 #    command.append(1.0)
 init_time=time.time()
-typecontrol=2
+typecontrol=1
 flag1=-5
 flag=1
 ph_min=0.005
@@ -202,7 +202,6 @@ while 1:
      if spent_time>60 and ph_flag==1:  # setpoint change
          pid = PID.PID(P=0.01, I=5000, D=0.000)  # give P,I,D, but not update now
 #         command=list(m.e.status())
-         typecontrol=2
          if flag==1:
                 gdispatch=Gridisp.Gridisp()
                 SoC=command[0]
