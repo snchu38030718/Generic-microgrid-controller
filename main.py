@@ -447,31 +447,31 @@ while 1:
             command[3]=save_pess
             StartDs=StDS
                     
-###############################################################################       
-#        
-#        #Pwdref,Pdsref,Pldref,Start_ds
-###############################################################################       
-#### Island dispatch
-#     if spent_time>135:
-##        command=list(m.e.status())
-#        print(SoC1)
-##        print(dispatch)
-#        Pwind=command[5]
-#        Pload=command[6]
-#        StartDs1=StartDs
-#        dispatch.isldispatch(Pwind,Pload,SoC1,StartDs1,typecontrol)
-#        command[0]=dispatch.Pdsref
-##        print(command[0])
-#        command[1]=dispatch.Pwdref
-#        command[2]=dispatch.Pldref
-#        command[4]=1            # ess changes to Vf control
-#        command[3]=0
-#        command[5]=0
-#        command[6]=0
-#        StartDs=dispatch.Start_ds
-##        print(StartDs)
+##############################################################################       
+        
+        #Pwdref,Pdsref,Pldref,Start_ds
+##############################################################################       
+### Island dispatch
+     if spent_time>135:
+#        command=list(m.e.status())
+        print(SoC1)
+#        print(dispatch)
+        Pwind=command[5]
+        Pload=command[6]
+        StartDs1=StartDs
+        dispatch.isldispatch(Pwind,Pload,SoC1,StartDs1,typecontrol)
+        command[0]=dispatch.Pdsref
+#        print(command[0])
+        command[1]=dispatch.Pwdref
+        command[2]=dispatch.Pldref
+        command[4]=1            # ess changes to Vf control
+        command[3]=0
+        command[5]=0
+        command[6]=0
+        StartDs=dispatch.Start_ds
+#        print(StartDs)
  
-##############################################################################         
+#############################################################################         
         
         # send back
      command1=tuple(command)

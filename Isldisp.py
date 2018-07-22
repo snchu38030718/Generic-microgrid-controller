@@ -155,7 +155,7 @@ class Isldisp:
             Pnet = -Pwind+Pload
             self.Start_ds=1
             if (Pnet-self.Pds_max) >=0:## More, wind is controllable, diesel is off, ESS depends
-                if (Pnet-self.Pds_max)<self.Pdis_max :     ## Discharge
+                if (Pnet-self.Pds_max)<-self.Pdis_max :     ## Discharge
                     self.Pdsref=self.Pds_max
                     self.Pldref=0
                     self.Pwdref=0
@@ -170,10 +170,10 @@ class Isldisp:
             else:
                 self.Pdsref=self.Pds_min
                 self.Pldref=0
-                if self.Pds_min-Pnet<self.Pch_max:
+                if (self.Pds_min-Pnet)<self.Pch_max:
                     self.Pwdref=0
                 else:
-                    self.Pwdref=Pnet-self.Pds_min-self.Pch_max                            
+                    self.Pwdref=-Pnet+self.Pds_min-self.Pch_max                            
              
 
                  
