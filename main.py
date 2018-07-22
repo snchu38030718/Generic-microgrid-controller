@@ -279,144 +279,144 @@ while 1:
 #         pid.clear
          #print(command[4])
          
-################################################################################
-###### Reconnection
-#     if spent_time>90 and tie_flag==1:           # phase-check and synchronization
-##         print (ph_chck)
-#         if command[2]>=0.5:               # phase_difference
-#            if ph_chck>=ph_min1 and ph_chck<=ph_max1 and ph_flag==1: # close breaker
-#                 command[4]=0
-#                 command[3]=0
-#                 command[0]=save0
-#                 command[1]=save1
-#                 command[2]=save2
-#                 pid.clear
-##                 pid1=PID.PID(P=0.01, I=1000000, D=0.000)
-#                 ph_flag=0  # log close state
-#                 time_close=time.time()
-#            elif ph_flag==1:  # keep open
-#                 command[4]=1
-#                 command[3]=0
-#                 command[0]=save0
-#                 command[1]=save1
-#                 command[2]=save2
-#                 pid.clear
-#            elif ph_flag==0:             # keep closed
-#                 command[4]=0
-#                 command[3]=0
-#                 command[0]=save0
-#                 command[1]=save1
-#                 command[2]=save2
-#                 last_time=time.time()
-#                 StartDs=StDS
-#                 flag=3
-#         else:
-#            if ph_chck>=ph_min and ph_chck<=ph_max and ph_flag==1: # close breaker
-#                 command[4]=0
-#                 command[3]=0
-#                 command[0]=save0
-#                 command[1]=save1
-#                 command[2]=save2
-#                 ph_flag=0
-#                 pid.clear
-##                 pid1=PID.PID(P=0.01, I=1000000, D=0.000)
-##                 pid1.clear
-#                 time_close=time.time()
-#            elif ph_flag==1:  # keep open
-#                 command[4]=1
-#                 command[3]=0
-#                 command[0]=save0
-#                 command[1]=save1
-#                 command[2]=save2
-#                 pid.clear
-#            elif ph_flag==0:             # keep closed
-#                 command[4]=0
-#                 command[3]=0
-#                 command[0]=save0
-#                 command[1]=save1
-#                 command[2]=save2
-#                 last_time=time.time()
-#                 StartDs=StDS
-#                 flag=3
-#
-################################################################################               
-#### reenable tie_line control  
-#     tie_delay=time.time()-time_close
-#     if (tie_delay)>=8 and ph_flag==0 and spent_time<=130.0: # re-enable tie_line control 
-#         #print (tie_delay)
-##         command=list(m.e.status())
-#         command[4]=0             # keep closed, PQ control
-##         print(feedback1)
-##         SoC1=command[0]
-#         if flag==3:
-#                gdispatch1=Gridisp.Gridisp()
-#                Pwind=command[5]
-#                Pload=command[6]
-#                PES=0.4
-#                gdispatch1.gridispatch(Pwind,Pload,SoC1,PES,StartDs,typecontrol)
-#        #                command[0]=gdispatch.Pdsref
-#        #                save0=command[0]
-#        #                command[1]=gdispatch.Pwdref
-#        #                save1=command[1]
-#        #                command[2]=gdispatch.Pldref
-#        #                save2=command[2]
-#                save00=gdispatch1.Pdsref
-#                save11=gdispatch1.Pwdref
-#                save22=gdispatch1.Pldref
-#                StartDs=gdispatch1.Start_ds
-##                if SoC1>0.2 or SoC1>0.9:  # avoid conflict
-#                flag=4
-## #################              PID
-#         SetPoint = -0.4 # Setpoint reference
-#         error = SetPoint - feedback1 # new error
-#         current_time = time.time()
-#         delta_time = current_time - last_time
-#         delta_error = error-last_error
-#         PTerm = Kp * error      # proportional term
-#         ITerm += error * delta_time  # integral term
-#         if (ITerm < -windup_guard): # wind_up
-#             ITerm = -windup_guard
-#         elif (ITerm > windup_guard):
-#             ITerm = windup_guard
-#         last_time = current_time
-#         last_error = error
-##        self.output = self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm) # PID combination
-#         output = PTerm + (Ki * ITerm)  # PID combination
-# #######################################################               
-##                pid.update(feedback1) # update_feedback
-##                print(pid.ITerm)
-#         command[3] = output # output
-#         if (SoC1<0.2 and output>0) or (SoC1>0.9 and output<0):
-#            command[3]=0
-#         command[0]=save00
-#         command[1]=save11
-#         command[2]=save22
-#         command[5]=0
-#         command[6]=0
-##         command=list(m.e.status())
-##         gdispatch=Gridisp.Gridisp()
-##         SoC=command[0]
-##         print(SoC)
-##         Pwind=command[5]
-##         Pload=command[6]
-##         PES=0.5
-##         gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
-##         command[0]=gdispatch.Pdsref
-##         save0=command[0]
-##         command[1]=gdispatch.Pwdref
-##         save1=command[1]
-##         command[2]=gdispatch.Pldref
-##         save2=command[2]
-##         StartDs=gdispatch.Start_ds
-##         pid = PID.PID(P=0.01, I=200000, D=0.000)
-##         pid.setSampleTime(0.0005)
-##         pid.SetPoint = -0.5 # Setpoint reference
-##         pid.update(feedback1) # update_feedback
-##         command[3] = pid.output  # output
-#         save_pess=command[3]
-##         command[3]=0
-#         tie_flag=0
-##     
+###############################################################################
+##### Reconnection
+     if spent_time>90 and tie_flag==1:           # phase-check and synchronization
+#         print (ph_chck)
+         if command[2]>=0.5:               # phase_difference
+            if ph_chck>=ph_min1 and ph_chck<=ph_max1 and ph_flag==1: # close breaker
+                 command[4]=0
+                 command[3]=0
+                 command[0]=save0
+                 command[1]=save1
+                 command[2]=save2
+                 pid.clear
+#                 pid1=PID.PID(P=0.01, I=1000000, D=0.000)
+                 ph_flag=0  # log close state
+                 time_close=time.time()
+            elif ph_flag==1:  # keep open
+                 command[4]=1
+                 command[3]=0
+                 command[0]=save0
+                 command[1]=save1
+                 command[2]=save2
+                 pid.clear
+            elif ph_flag==0:             # keep closed
+                 command[4]=0
+                 command[3]=0
+                 command[0]=save0
+                 command[1]=save1
+                 command[2]=save2
+                 last_time=time.time()
+                 StartDs=StDS
+                 flag=3
+         else:
+            if ph_chck>=ph_min and ph_chck<=ph_max and ph_flag==1: # close breaker
+                 command[4]=0
+                 command[3]=0
+                 command[0]=save0
+                 command[1]=save1
+                 command[2]=save2
+                 ph_flag=0
+                 pid.clear
+#                 pid1=PID.PID(P=0.01, I=1000000, D=0.000)
+#                 pid1.clear
+                 time_close=time.time()
+            elif ph_flag==1:  # keep open
+                 command[4]=1
+                 command[3]=0
+                 command[0]=save0
+                 command[1]=save1
+                 command[2]=save2
+                 pid.clear
+            elif ph_flag==0:             # keep closed
+                 command[4]=0
+                 command[3]=0
+                 command[0]=save0
+                 command[1]=save1
+                 command[2]=save2
+                 last_time=time.time()
+                 StartDs=StDS
+                 flag=3
+
+###############################################################################               
+### reenable tie_line control  
+     tie_delay=time.time()-time_close
+     if (tie_delay)>=8 and ph_flag==0 and spent_time<=130.0: # re-enable tie_line control 
+         #print (tie_delay)
+#         command=list(m.e.status())
+         command[4]=0             # keep closed, PQ control
+#         print(feedback1)
+#         SoC1=command[0]
+         if flag==3:
+                gdispatch1=Gridisp.Gridisp()
+                Pwind=command[5]
+                Pload=command[6]
+                PES=0.4
+                gdispatch1.gridispatch(Pwind,Pload,SoC1,PES,StartDs,typecontrol)
+        #                command[0]=gdispatch.Pdsref
+        #                save0=command[0]
+        #                command[1]=gdispatch.Pwdref
+        #                save1=command[1]
+        #                command[2]=gdispatch.Pldref
+        #                save2=command[2]
+                save00=gdispatch1.Pdsref
+                save11=gdispatch1.Pwdref
+                save22=gdispatch1.Pldref
+                StartDs=gdispatch1.Start_ds
+#                if SoC1>0.2 or SoC1>0.9:  # avoid conflict
+                flag=4
+# #################              PID
+         SetPoint = -0.4 # Setpoint reference
+         error = SetPoint - feedback1 # new error
+         current_time = time.time()
+         delta_time = current_time - last_time
+         delta_error = error-last_error
+         PTerm = Kp * error      # proportional term
+         ITerm += error * delta_time  # integral term
+         if (ITerm < -windup_guard): # wind_up
+             ITerm = -windup_guard
+         elif (ITerm > windup_guard):
+             ITerm = windup_guard
+         last_time = current_time
+         last_error = error
+#        self.output = self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm) # PID combination
+         output = PTerm + (Ki * ITerm)  # PID combination
+ #######################################################               
+#                pid.update(feedback1) # update_feedback
+#                print(pid.ITerm)
+         command[3] = output # output
+         if (SoC1<0.2 and output>0) or (SoC1>0.9 and output<0):
+            command[3]=0
+         command[0]=save00
+         command[1]=save11
+         command[2]=save22
+         command[5]=0
+         command[6]=0
+#         command=list(m.e.status())
+#         gdispatch=Gridisp.Gridisp()
+#         SoC=command[0]
+#         print(SoC)
+#         Pwind=command[5]
+#         Pload=command[6]
+#         PES=0.5
+#         gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs)
+#         command[0]=gdispatch.Pdsref
+#         save0=command[0]
+#         command[1]=gdispatch.Pwdref
+#         save1=command[1]
+#         command[2]=gdispatch.Pldref
+#         save2=command[2]
+#         StartDs=gdispatch.Start_ds
+#         pid = PID.PID(P=0.01, I=200000, D=0.000)
+#         pid.setSampleTime(0.0005)
+#         pid.SetPoint = -0.5 # Setpoint reference
+#         pid.update(feedback1) # update_feedback
+#         command[3] = pid.output  # output
+         save_pess=command[3]
+#         command[3]=0
+         tie_flag=0
+#     
 #     
 #################################################################################       
 # # Unplanned islanding 
