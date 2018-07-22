@@ -200,6 +200,7 @@ while 1:
      if spent_time>60 and ph_flag==1:  # setpoint change
          pid = PID.PID(P=0.01, I=5000, D=0.000)  # give P,I,D, but not update now
 #         command=list(m.e.status())
+         typecontrol=2
          if flag==1:
                 gdispatch=Gridisp.Gridisp()
                 SoC=command[0]
@@ -243,7 +244,8 @@ while 1:
  #######################################################               
 #                pid.update(feedback1) # update_feedback
 #                print(pid.ITerm)
-         command[3] = output1 # output
+#         command[3] = output1 # output
+         command[3]=0
          save_pess=command[3]
          command[0]=save0   ### Pdsref
          command[1]=save1   ### Pwdref
