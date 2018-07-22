@@ -35,7 +35,7 @@ m  = Microgrid()
 #for i in range(1):
 #    command.append(1.0)
 init_time=time.time()
-typecontrol=2
+typecontrol=1
 flag1=-5
 flag=1
 ph_min=0.005
