@@ -132,7 +132,7 @@ while 1:
                 
 ################################################################################
 ### grid-connected dispatch
-     if spent_time>41 and spent_time<=200:
+     if spent_time>41 and spent_time<=60:
 #        command=list(m.e.status())
         if flag1<1:
             gdispatch2=Gridisp.Gridisp()
