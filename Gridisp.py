@@ -168,10 +168,10 @@ class Gridisp:
                     self.Pldref=0
                     self.Pwdref=0
             else:
-#                self.Pdsref=self.Pds_min
-                self.Pdsref=0.5
+                self.Pdsref=self.Pds_min
+#                self.Pdsref=0.5
                 self.Pldref=0
-                if self.Pds_min-Pnet<self.Pch_max:
+                if (self.Pds_min-Pnet)<self.Pch_max:
                     self.Pwdref=0
                 else:
                     self.Pwdref=Pnet-self.Pds_min-self.Pch_max                            

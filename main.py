@@ -81,7 +81,8 @@ while 1:
      if spent_time>=129.8 and spent_time<129.9:
          Pdiesel1=command[1]
          P_ES1=-command[3]
-         Pess=command[7]
+#         Pess=command[7]          #load following
+         Pess=command[8]          #load following
      if spent_time>=90:
              SoC1=command[0]
      ph_chck=abs(command[2])
@@ -137,9 +138,11 @@ while 1:
         if flag1<1:
             gdispatch2=Gridisp.Gridisp()
             SoC=command[0]
-#            print(SoC)
-            Pwind=command[5]
-            Pload=command[6]
+#           print(SoC)
+#           Pwind=command[5]   # Load following
+#           Pload=command[6]
+            Pwind=command[6]   # cycle charging
+            Pload=command[7]
             PES=0.1
             gdispatch2.gridispatch(Pwind,Pload,SoC,PES,StartDs,typecontrol)
             save0=gdispatch2.Pdsref
@@ -205,8 +208,10 @@ while 1:
                 gdispatch=Gridisp.Gridisp()
                 SoC=command[0]
 #                print(SoC)
-                Pwind=command[5]
-                Pload=command[6]
+#                Pwind=command[5]   # Load following
+#                Pload=command[6]
+                Pwind=command[6]   # cycle charging
+                Pload=command[7]
                 PES=0
                 gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs,typecontrol)
 #                command[0]=gdispatch.Pdsref
@@ -244,8 +249,8 @@ while 1:
  #######################################################               
 #                pid.update(feedback1) # update_feedback
 #                print(pid.ITerm)
-#         command[3] = output1 # output
-         command[3]=0
+         command[3] = output1 # output
+#         command[3]=0
          save_pess=command[3]
          command[0]=save0   ### Pdsref
          command[1]=save1   ### Pwdref
