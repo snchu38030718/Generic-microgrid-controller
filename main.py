@@ -85,7 +85,8 @@ while 1:
      if spent_time>=90:
              SoC1=command[0]
      ph_chck=abs(command[2])
-     pid = PID.PID(P=0.01, I=1000000, D=0.000)  # give P,I,D, but not update now
+#     pid = PID.PID(P=0.01, I=1000000, D=0.000)  # give P,I,D, but not update now
+     pid = PID.PID(P=0.01, I=5000, D=0.000)  # give P,I,D, but not update now
      pid.SetPoint=0.0
      pid.setSampleTime(0.000)
      unplan=Unplan.Unplan()
@@ -342,7 +343,8 @@ while 1:
 ###############################################################################               
 ### reenable tie_line control  
      tie_delay=time.time()-time_close
-     if (tie_delay)>=8 and ph_flag==0 and spent_time<=130.0: # re-enable tie_line control 
+#     if (tie_delay)>=8 and ph_flag==0 and spent_time<=130.0: # re-enable tie_line control 
+     if (tie_delay)>=8 and ph_flag==0: # re-enable tie_line control 
          #print (tie_delay)
 #         command=list(m.e.status())
          command[4]=0             # keep closed, PQ control
