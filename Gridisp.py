@@ -167,7 +167,7 @@ class Gridisp:
                     self.Pdsref=Pnet
                     self.Pldref=0
                     self.Pwdref=0
-            else:
+            else:   # Pnet<Pds_min
                 self.Pdsref=self.Pds_min
     #                self.Pdsref=0.5
                 self.Pldref=0
