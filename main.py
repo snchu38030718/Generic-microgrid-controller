@@ -195,85 +195,85 @@ while 1:
 #            command[2]=0
 #            StartDs=0
 
-###############################################################################
-# ##### planned islanding               
-#     if spent_time>60 and ph_flag==1:  # setpoint change
-#         pid = PID.PID(P=0.01, I=5000, D=0.000)  # give P,I,D, but not update now
-##         command=list(m.e.status())
-#         if flag==1:
-#                gdispatch=Gridisp.Gridisp()
-#                SoC=command[0]
-##                print(SoC)
-#                Pwind=command[5]
-#                Pload=command[6]
-#                PES=0
-#                gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs,typecontrol)
-##                command[0]=gdispatch.Pdsref
-##                save0=command[0]
-##                command[1]=gdispatch.Pwdref
-##                save1=command[1]
-##                command[2]=gdispatch.Pldref
-##                save2=command[2]
-#                save0=gdispatch.Pdsref
-#                save1=gdispatch.Pwdref
-#                save2=gdispatch.Pldref
-#                StartDs=gdispatch.Start_ds
-#                flag=0    #only once, avoid conflict with ESS
-## #################              PID
-#         SetPoint = -0 # Setpoint reference
-#         error = SetPoint - feedback1 # new error
-#         current_time = time.time()
-#         delta_time = current_time - last_time
-#         delta_error = error-last_error1
-##        print(delta_time)
-#
-##        if (delta_time >= self.sample_time):  
-##            print(delta_time)
-#         PTerm1 = Kp * error      # proportional term
-#         ITerm1 += error * delta_time  # integral term
-#         print(ITerm1)
-#         if (ITerm1 < -windup_guard): # wind_up
-#             ITerm1 = -windup_guard
-#         elif (ITerm1 > windup_guard):
-#             ITerm1 = windup_guard
-#         last_time = current_time
-#         last_error1 = error
-##        self.output = self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm) # PID combination
-#         output1 = PTerm1 + (Ki * ITerm1)  # PID combination
-# #######################################################               
-##                pid.update(feedback1) # update_feedback
-##                print(pid.ITerm)
-#         command[3] = output1 # output
-#         save_pess=command[3]
-#         command[0]=save0
-#         command[1]=save1
-#         command[2]=save2
-#         command[4]=0
-#         command[5]=0
-#         command[6]=0
-##                time.sleep(0.005)   # time_sleep
-#                #print(command[4])
-#
-#     if (spent_time>=70 and abs(feedback1)<=0.0005 and ph_flag==1) or flag==2: # open breaker
-#         flag=2      # flag is ued to lock the open state
-#         command[4]=1
-#         command[3]=0
-#         command[0]=save0
-#         command[1]=save1
-#         command[2]=save2
-#         command[5]=0
-#         command[6]=0
-#         Kp=0.01
-#         Ki=5
-#         ITerm=0
-#         PTerm=0
-#         last_error=0
-#         current_time=0
-#         StartDs=StDS
-#         
-##         pid.clear
-#         #print(command[4])
-#         
+##############################################################################
+ ##### planned islanding               
+     if spent_time>60 and ph_flag==1:  # setpoint change
+         pid = PID.PID(P=0.01, I=5000, D=0.000)  # give P,I,D, but not update now
+#         command=list(m.e.status())
+         if flag==1:
+                gdispatch=Gridisp.Gridisp()
+                SoC=command[0]
+#                print(SoC)
+                Pwind=command[5]
+                Pload=command[6]
+                PES=0
+                gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs,typecontrol)
+#                command[0]=gdispatch.Pdsref
+#                save0=command[0]
+#                command[1]=gdispatch.Pwdref
+#                save1=command[1]
+#                command[2]=gdispatch.Pldref
+#                save2=command[2]
+                save0=gdispatch.Pdsref
+                save1=gdispatch.Pwdref
+                save2=gdispatch.Pldref
+                StartDs=gdispatch.Start_ds
+                flag=0    #only once, avoid conflict with ESS
+# #################              PID
+         SetPoint = -0 # Setpoint reference
+         error = SetPoint - feedback1 # new error
+         current_time = time.time()
+         delta_time = current_time - last_time
+         delta_error = error-last_error1
+#        print(delta_time)
+
+#        if (delta_time >= self.sample_time):  
+#            print(delta_time)
+         PTerm1 = Kp * error      # proportional term
+         ITerm1 += error * delta_time  # integral term
+         print(ITerm1)
+         if (ITerm1 < -windup_guard): # wind_up
+             ITerm1 = -windup_guard
+         elif (ITerm1 > windup_guard):
+             ITerm1 = windup_guard
+         last_time = current_time
+         last_error1 = error
+#        self.output = self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm) # PID combination
+         output1 = PTerm1 + (Ki * ITerm1)  # PID combination
+ #######################################################               
+#                pid.update(feedback1) # update_feedback
+#                print(pid.ITerm)
+         command[3] = output1 # output
+         save_pess=command[3]
+         command[0]=save0
+         command[1]=save1
+         command[2]=save2
+         command[4]=0
+         command[5]=0
+         command[6]=0
+#                time.sleep(0.005)   # time_sleep
+                #print(command[4])
+
+     if (spent_time>=70 and abs(feedback1)<=0.0005 and ph_flag==1) or flag==2: # open breaker
+         flag=2      # flag is ued to lock the open state
+         command[4]=1
+         command[3]=0
+         command[0]=save0
+         command[1]=save1
+         command[2]=save2
+         command[5]=0
+         command[6]=0
+         Kp=0.01
+         Ki=5
+         ITerm=0
+         PTerm=0
+         last_error=0
+         current_time=0
+         StartDs=StDS
+         
+#         pid.clear
+         #print(command[4])
+         
 ################################################################################
 ###### Reconnection
 #     if spent_time>90 and tie_flag==1:           # phase-check and synchronization
