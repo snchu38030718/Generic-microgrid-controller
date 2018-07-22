@@ -436,8 +436,8 @@ while 1:
          command[1]=save1
          command[2]=save2
      
-#     if spent_time>=130.02 and spent_time<=135:                                # change ESS mode
-     if spent_time>=130.02:                                # change ESS mode
+     if spent_time>=130.02 and spent_time<=135:                                # change ESS mode
+#     if spent_time>=130.02:                                # change ESS mode
             command[0]=save0
 #            save1=Save.gety()
             command[1]=save1
