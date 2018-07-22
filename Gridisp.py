@@ -29,6 +29,33 @@ class Gridisp:
         self.Pdsref=0
         self.Pldref=0
         self.Start_ds=0
+        Pnet = -Pwind-PES+Pload
+        self.Start_ds=1
+        if (Pnet-self.Pds_max) >=0:## More, wind is controllable, diesel is off, ESS depends
+            if (Pnet-self.Pds_max)<-self.Pdis_max :     ## Discharge
+                self.Pdsref=self.Pds_max
+                self.Pldref=0
+                self.Pwdref=0
+            else:
+                self.Pdsref=self.Pds_max
+                self.Pldref=Pnet-self.Pds_max+self.Pdis_max
+                self.Pwdref=0
+        elif Pnet > self.Pds_min:
+                self.Pdsref=Pnet
+                self.Pldref=0
+                self.Pwdref=0
+        else:
+            self.Pdsref=self.Pds_min
+#                self.Pdsref=0.5
+            self.Pldref=0
+            if (self.Pds_min-Pnet)<self.Pch_max:
+                self.Pwdref=0
+            else:
+                self.Pwdref=-Pnet+self.Pds_min-self.Pch_max        
+        
+        
+        
+        
 #        if Type==1:
 #            Pnet = Pwind+PES-Pload
 #            if Pnet>=0:    # More, wind is controllable, diesel is off, ESS depends
@@ -152,26 +179,4 @@ class Gridisp:
 #                                    self.Start_ds=0
 #                                    
 #        elif Type==2:
-            Pnet = -Pwind-PES+Pload
-            self.Start_ds=1
-            if (Pnet-self.Pds_max) >=0:## More, wind is controllable, diesel is off, ESS depends
-                if (Pnet-self.Pds_max)<-self.Pdis_max :     ## Discharge
-                    self.Pdsref=self.Pds_max
-                    self.Pldref=0
-                    self.Pwdref=0
-                else:
-                    self.Pdsref=self.Pds_max
-                    self.Pldref=Pnet-self.Pds_max+self.Pdis_max
-                    self.Pwdref=0
-            elif Pnet > self.Pds_min:
-                    self.Pdsref=Pnet
-                    self.Pldref=0
-                    self.Pwdref=0
-            else:
-                self.Pdsref=self.Pds_min
-#                self.Pdsref=0.5
-                self.Pldref=0
-                if (self.Pds_min-Pnet)<self.Pch_max:
-                    self.Pwdref=0
-                else:
-                    self.Pwdref=-Pnet+self.Pds_min-self.Pch_max                            
+                                
