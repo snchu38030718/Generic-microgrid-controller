@@ -174,4 +174,4 @@ class Gridisp:
                 if (self.Pds_min-Pnet)<self.Pch_max:
                     self.Pwdref=0
                 else:
-                    self.Pwdref=Pnet-self.Pds_min-self.Pch_max                            
+                    self.Pwdref=-Pnet+self.Pds_min-self.Pch_max                            
