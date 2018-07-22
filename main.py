@@ -420,33 +420,33 @@ while 1:
          tie_flag=0
 #     
 #     
-#################################################################################       
-# # Unplanned islanding 
-#     if spent_time>130.0 and spent_time<130.02 and tie_flag==0:  # change power reference
-#         if flag2==1:
-#             unplan.edispatch(Pdiesel1, P_ES1, StartDs, Pess, typecontrol)
-#             save0=unplan.dPdiesel
-#             save1=unplan.PCwd
-#             save2=unplan.PSLd
-#             flag2=2
-#         command[4]=0            # ess stays at PQ control
-#         command[3]=save_pess    # ess is the power reference change of ess
-##         Save.store(save0,save1,save2)#         
-#         command[0]=save0
-#         command[1]=save1
-#         command[2]=save2
-#     
-#     if spent_time>=130.02 and spent_time<=135:                                # change ESS mode
-#            command[0]=save0
-##            save1=Save.gety()
-#            command[1]=save1
-##            save2=Save.getz()
-#            command[2]=save2
-#            command[4]=1            # ess changes to Vf control
-#            command[3]=save_pess
-#            StartDs=StDS
-#                    
 ################################################################################       
+ # Unplanned islanding 
+     if spent_time>130.0 and spent_time<130.02 and tie_flag==0:  # change power reference
+         if flag2==1:
+             unplan.edispatch(Pdiesel1, P_ES1, StartDs, Pess, typecontrol)
+             save0=unplan.dPdiesel
+             save1=unplan.PCwd
+             save2=unplan.PSLd
+             flag2=2
+         command[4]=0            # ess stays at PQ control
+         command[3]=save_pess    # ess is the power reference change of ess
+#         Save.store(save0,save1,save2)#         
+         command[0]=save0
+         command[1]=save1
+         command[2]=save2
+     
+     if spent_time>=130.02 and spent_time<=135:                                # change ESS mode
+            command[0]=save0
+#            save1=Save.gety()
+            command[1]=save1
+#            save2=Save.getz()
+            command[2]=save2
+            command[4]=1            # ess changes to Vf control
+            command[3]=save_pess
+            StartDs=StDS
+                    
+###############################################################################       
 #        
 #        #Pwdref,Pdsref,Pldref,Start_ds
 ###############################################################################       
