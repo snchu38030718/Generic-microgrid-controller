@@ -245,9 +245,9 @@ while 1:
 #                print(pid.ITerm)
          command[3] = output1 # output
          save_pess=command[3]
-         command[0]=save0
-         command[1]=save1
-         command[2]=save2
+         command[0]=save0   ### Pdsref
+         command[1]=save1   ### Pwdref
+         command[2]=save2   ### Pldref
          command[4]=0
          command[5]=0
          command[6]=0

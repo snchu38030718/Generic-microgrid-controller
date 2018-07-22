@@ -155,7 +155,7 @@ class Gridisp:
             Pnet = -Pwind-PES+Pload
             self.Start_ds=1
             if (Pnet-self.Pds_max) >=0:## More, wind is controllable, diesel is off, ESS depends
-                if (Pnet-self.Pds_max)<self.Pdis_max :     ## Discharge
+                if (Pnet-self.Pds_max)<-self.Pdis_max :     ## Discharge
                     self.Pdsref=self.Pds_max
                     self.Pldref=0
                     self.Pwdref=0
