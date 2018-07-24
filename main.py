@@ -143,7 +143,7 @@ while 1:
             Pload=command[6]
 #            Pwind=command[6]   # cycle charging
 #            Pload=command[7]
-            PES=0.1
+            PES=0.2            # Include the Power of ESS and POI.
             gdispatch2.gridispatch(Pwind,Pload,SoC,PES,StartDs,typecontrol)
             save0=gdispatch2.Pdsref
             save1=gdispatch2.Pwdref
