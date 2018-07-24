@@ -143,7 +143,7 @@ while 1:
             Pload=command[6]
 #            Pwind=command[6]   # cycle charging
 #            Pload=command[7]
-            PES=0.2            # Include the Power of ESS and POI.
+            PES=0.3            # Include the Power of ESS and POI.
             gdispatch2.gridispatch(Pwind,Pload,SoC,PES,StartDs,typecontrol)
             save0=gdispatch2.Pdsref
             save1=gdispatch2.Pwdref
@@ -354,7 +354,7 @@ while 1:
                 gdispatch1=Gridisp.Gridisp()
                 Pwind=command[5]
                 Pload=command[6]
-                PES=0.4
+                PES=0.6
                 gdispatch1.gridispatch(Pwind,Pload,SoC1,PES,StartDs,typecontrol)
         #                command[0]=gdispatch.Pdsref
         #                save0=command[0]
