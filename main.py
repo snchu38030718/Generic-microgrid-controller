@@ -151,7 +151,7 @@ while 1:
             StartDs=gdispatch2.Start_ds
 #            if SoC>0.2 and SoC<0.9:
 #                flag1=flag1+1
-            flag1=1
+#            flag1=1   ## Avoid conflict with ESS, necessary or not
             
  #################### PID start#####################################           
 #            pid = PID.PID(P=0.01, I=100000, D=0.000)
@@ -223,7 +223,7 @@ while 1:
                 save1=gdispatch.Pwdref
                 save2=gdispatch.Pldref
                 StartDs=gdispatch.Start_ds
-                flag=0    #only once, avoid conflict with ESS
+#                flag=0    #only once, avoid conflict with ESS
 # #################              PID
          SetPoint = -0 # Setpoint reference
          error = SetPoint - feedback1 # new error
