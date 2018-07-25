@@ -82,7 +82,7 @@ while 1:
          Pdiesel1=command[1]
          P_ES1=-command[3]
          Pess=command[7]          #load following
-     if spent_time>=90:
+     if spent_time>=70:
              SoC1=command[0]
      ph_chck=abs(command[2])
 #     pid = PID.PID(P=0.01, I=1000000, D=0.000)  # give P,I,D, but not update now
@@ -211,7 +211,7 @@ while 1:
                 Pload=command[6]
 #                Pwind=command[6]   # cycle charging
 #                Pload=command[7]
-                PES=0
+                PES=-0.2
                 gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs,typecontrol)
 #                command[0]=gdispatch.Pdsref
 #                save0=command[0]
@@ -276,6 +276,15 @@ while 1:
          last_error=0
          current_time=0
          StartDs=StDS
+         Pwind=command[5]            ## For islanded operation btw 70 and 90
+         Pload=command[6]-0.2        # 0.2 is the power from ESS
+         StartDs1=StartDs
+         dispatch.isldispatch(Pwind,Pload,SoC1,StartDs1,typecontrol)
+         save0=dispatch.Pdsref
+#        print(command[0])
+         save1=dispatch.Pwdref
+         save2=dispatch.Pldref
+         
          
 #         pid.clear
          #print(command[4])
