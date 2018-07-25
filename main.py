@@ -211,7 +211,7 @@ while 1:
                 Pload=command[6]
 #                Pwind=command[6]   # cycle charging
 #                Pload=command[7]
-                PES=0
+                PES=0.2
                 gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs,typecontrol)
 #                command[0]=gdispatch.Pdsref
 #                save0=command[0]
@@ -223,7 +223,7 @@ while 1:
                 save1=gdispatch.Pwdref
                 save2=gdispatch.Pldref
                 StartDs=gdispatch.Start_ds
-#                flag=0    #only once, avoid conflict with ESS
+                flag=0    #only once, avoid conflict with ESS
 # #################              PID
          SetPoint = -0 # Setpoint reference
          error = SetPoint - feedback1 # new error
