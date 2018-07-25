@@ -277,7 +277,7 @@ while 1:
          current_time=0
          StartDs=StDS
          Pwind=command[5]            ## For islanded operation btw 70 and 90
-         Pload=command[6]+0.2        # 0.2 is the power from ESS
+         Pload=command[6]+0.5        # 0.2 is the power from ESS
          StartDs1=StartDs
          dispatch.isldispatch(Pwind,Pload,SoC1,StartDs1,typecontrol)
          save0=dispatch.Pdsref
