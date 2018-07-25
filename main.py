@@ -211,7 +211,7 @@ while 1:
                 Pload=command[6]
 #                Pwind=command[6]   # cycle charging
 #                Pload=command[7]
-                PES=0.2
+                PES=0
                 gdispatch.gridispatch(Pwind,Pload,SoC,PES,StartDs,typecontrol)
 #                command[0]=gdispatch.Pdsref
 #                save0=command[0]
