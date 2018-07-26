@@ -468,7 +468,7 @@ while 1:
         print(SoC1)
 #        print(dispatch)
         Pwind=command[5]
-        Pload=command[6]
+        Pload=command[6]-0.2
         StartDs1=StartDs
         dispatch.isldispatch(Pwind,Pload,SoC1,StartDs1,typecontrol)
         command[0]=dispatch.Pdsref
