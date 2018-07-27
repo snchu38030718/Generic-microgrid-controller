@@ -180,8 +180,12 @@ while 1:
         output = PTerm + (Ki * ITerm)  # PID combination
 ###################PID ene##################################
         command[3] = output
-        if (SoC<0.2 and output>0) or (SoC>0.9 and output<0):
-            command[3]=0
+#        if (SoC<0.2 and output>0) or (SoC>0.9 and output<0):
+#            command[3]=0
+        if abs(save1)>=0.02:
+            command[3]=-1
+        if abs(save2)>=0.02:
+            command[3]=1
         command[0]=save0
         command[1]=save1
         command[2]=save2
@@ -285,11 +289,11 @@ while 1:
 #         save1=dispatch.Pwdref
 #         save2=dispatch.Pldref
 #         ph_flag=1
-         
-         
 #         pid.clear
          #print(command[4])
-         
+         ##try to do islanded dispatch in this period, failled.
+ 
+        
 ###############################################################################
 ##### Reconnection
      if spent_time>90 and tie_flag==1:           # phase-check and synchronization
