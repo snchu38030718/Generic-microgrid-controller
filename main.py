@@ -42,7 +42,7 @@ ph_min=0.005
 ph_max=0.01
 ph_min1=6.1
 ph_max1=6.3
-ph_flag=2
+ph_flag=1
 time_close=100  # should be large
 tie_flag=1
 time_delay=0
@@ -200,7 +200,7 @@ while 1:
 
 ##############################################################################
  ##### planned islanding               
-     if spent_time>60 and ph_flag==2:  # setpoint change
+     if spent_time>60 and ph_flag==1:  # setpoint change
          pid = PID.PID(P=0.01, I=5000, D=0.000)  # give P,I,D, but not update now
 #         command=list(m.e.status())
          if flag==1:
@@ -260,7 +260,7 @@ while 1:
 #                time.sleep(0.005)   # time_sleep
                 #print(command[4])
 
-     if (spent_time>=70 and abs(feedback1)<=0.0005 and ph_flag==2) or flag==2: # open breaker
+     if (spent_time>=70 and abs(feedback1)<=0.0005 and ph_flag==1) or flag==2: # open breaker
          flag=2      # flag is ued to lock the open state
          command[4]=1
          command[3]=0
@@ -284,7 +284,7 @@ while 1:
 ##        print(command[0])
 #         save1=dispatch.Pwdref
 #         save2=dispatch.Pldref
-         ph_flag=1
+#         ph_flag=1
          
          
 #         pid.clear
