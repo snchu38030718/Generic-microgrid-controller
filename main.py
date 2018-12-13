@@ -20,7 +20,7 @@ except AttributeError:
     print('Not running on controller!')
     pi = False
 else:
-    if machine_name == 'ugcpi':
+    if machine_name == 'raspberrypi':
         print('Running on correct machine!')
         pi = True
     else:
