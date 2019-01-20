@@ -18,7 +18,7 @@ class Unplan:
 
 
     def edispatch(self,Pdiesel,P_ES,start_ds,Pess,Type):  ## P_ES is power at POI
-        if Type==1:
+        if Type==1:   ### keep ess
             if P_ES>=0:    # More, POI in, increase diesel
                 if (self.Pdiesel_max-Pdiesel-P_ES)>=0:
                     self.dPdiesel=P_ES+Pdiesel
@@ -52,7 +52,7 @@ class Unplan:
     #            self.dPdiesel=0.2
     #            self.PCwd=0
     #            self.PSLd=0.1
-        elif Type==2:
+        elif Type==2:      ## keep diesel
             self.dPdiesel=Pdiesel
             if P_ES>=0:    # More, POI in, increase ESS
                 if (-self.Pdis_max-Pess)>=P_ES:

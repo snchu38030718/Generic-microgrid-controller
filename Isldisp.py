@@ -164,7 +164,7 @@ class Isldisp:
                     self.Pldref=Pnet-self.Pds_max+self.Pdis_max
                     self.Pwdref=0
             elif Pnet > self.Pds_min:
-                    self.Pdsref=Pnet
+                    self.Pdsref=self.Pds_max   ### <SoCd, Pds_max; otherwise, Pnet
                     self.Pldref=0
                     self.Pwdref=0
             else:
