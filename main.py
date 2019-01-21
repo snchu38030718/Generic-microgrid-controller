@@ -186,7 +186,7 @@ while 1:
             command[3]=-1
         if abs(save2)>=0.02:
             command[3]=1
-        command[3]=-(save0-(Pload-Pwind-PES))
+        command[3]=-(save0-(Pload-Pwind-PES)+save2)
         command[0]=save0
         command[1]=save1
         command[2]=save2
