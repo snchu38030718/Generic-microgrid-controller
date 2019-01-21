@@ -182,10 +182,10 @@ while 1:
         command[3] = output
 #        if (SoC<0.2 and output>0) or (SoC>0.9 and output<0):
 #            command[3]=0
-        if abs(save1)>=0.02:
-            command[3]=-1
-        if abs(save2)>=0.02:
-            command[3]=1
+#        if abs(save1)>=0.02:  ### sacrifice tie-line control, to charge or discharge.
+#            command[3]=-1
+#        if abs(save2)>=0.02:
+#            command[3]=1
         #command[3]=-(save0-(Pload-Pwind-PES)+save2)    ### no PI control
         command[0]=save0
         command[1]=save1
