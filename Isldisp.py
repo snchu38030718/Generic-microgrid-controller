@@ -157,7 +157,7 @@ class Isldisp:
             if (Pnet-self.Pds_max) >=0:## More, wind is controllable, diesel is off, ESS depends
                 if (Pnet-self.Pds_max)<-self.Pdis_max :     ## Discharge
                     self.Pdsref=self.Pds_max
-                    self.Pldref=0
+                    self.Pldref=Pnet-self.Pds_max   ### <SoCd, Pnet-self.Pds_max; otherwise, 0
                     self.Pwdref=0
                 else:
                     self.Pdsref=self.Pds_max
