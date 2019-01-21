@@ -35,7 +35,7 @@ m  = Microgrid()
 #for i in range(1):
 #    command.append(1.0)
 init_time=time.time()
-typecontrol=2
+typecontrol=1   #2 cylce charging; 1 load following
 flag1=-5
 flag=1
 ph_min=0.005
@@ -439,7 +439,7 @@ while 1:
  # Unplanned islanding 
      if spent_time>130.0 and spent_time<130.02 and tie_flag==0:  # change power reference
          if flag2==1:
-             unplan.edispatch(Pdiesel1, P_ES1, StartDs, Pess, typecontrol)
+             unplan.edispatch(Pdiesel1, P_ES1, StartDs, Pess, 2)  ## 1: save ess, 2: save diesel
              save0=unplan.dPdiesel
              save1=unplan.PCwd
              save2=unplan.PSLd
