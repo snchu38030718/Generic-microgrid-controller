@@ -68,7 +68,7 @@ PTerm1=0
 last_error1=0
 SoC1=0.905   ###0.9
 flag2=1
-StDS=0  ### 0 is SoC1>0.9
+StDS=1  ### 0 is SoC1>0.9, 
 while 1:
      start_time = time.time()
      command=list(m.e.status())
