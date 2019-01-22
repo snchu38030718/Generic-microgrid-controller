@@ -444,8 +444,8 @@ while 1:
              save1=unplan.PCwd
              save2=unplan.PSLd
              flag2=2
-#         command[4]=0            # ess stays at PQ control,type I
-         command[4]=1            # type II
+         command[4]=0            # ess stays at PQ control,type I
+#         command[4]=1            # type II
          command[3]=save_pess    # ess is the power reference change of ess
 #         Save.store(save0,save1,save2)#         
          command[0]=save0
