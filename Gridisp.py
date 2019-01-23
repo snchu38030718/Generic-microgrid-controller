@@ -19,11 +19,11 @@ class Gridisp:
         self.Start_ds=0
 
     def gridispatch(self,Pwind,Pload,SoC,PES,start_ds,Type):  ## P_ES is power at POI
-        self.SoC_max = 0.9   #95
+        self.SoC_max = 0.9   #95   ### should define here
         self.SoC_min = 0.2
         self.Pch_max = 1
         self.Pdis_max = -1  #-1.5
-        self.Pds_min=0.2
+        self.Pds_min=0.3 # 0.2 (before 190122)
         self.Pds_max=1
         self.Pwdref=0
         self.Pdsref=0
