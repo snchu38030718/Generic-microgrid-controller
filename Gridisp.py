@@ -11,7 +11,7 @@ class Gridisp:
         self.SoC_min = 0.2
         self.Pch_max = 1
         self.Pdis_max = -1  #-1.5
-        self.Pds_min=0.2
+        self.Pds_min=0.3  # 0.2 (before 190122)
         self.Pds_max=1
         self.Pwdref=0
         self.Pdsref=0
