@@ -35,7 +35,7 @@ m  = Microgrid()
 #for i in range(1):
 #    command.append(1.0)
 init_time=time.time()
-typecontrol=1   #2 cylce charging; 1 load following
+typecontrol=2   #2 cylce charging; 1 load following
 flag1=-5
 flag=1
 ph_min=0.005
