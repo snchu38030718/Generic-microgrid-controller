@@ -103,7 +103,7 @@ while 1:
     start_ds=command[8]
     Type=4
     Disp_mode=0
-    SoC_ref=0.52
+    SoC_ref=0.51
 
 
 ### Call dispatch###
