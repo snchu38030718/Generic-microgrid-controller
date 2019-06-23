@@ -22,7 +22,7 @@ Created on Thu Jan 10 18:22:55 2019
 import os
 import time
 import numpy as np
-import WandQ
+import WandQ1
 import Distribution
 import Griddisp1
 import Isldisp1
@@ -64,10 +64,7 @@ emg=0
 while 1:
     start_time = time.time()
     command=list(m.e.status())
-     # PID controller
-    feedback1=0
-    spent_time=time.time()-init_time
-    command=list(m.e.status())
+
 
 
 
@@ -99,8 +96,8 @@ while 1:
     Pldv=command[5]
     Pload=Pldf+Pldv
     SoC=command[6]
-    PES=command[7]
-    start_ds=command[8]
+    PES=0.5  #grid power
+    start_ds=command[7]
     Type=4
     Disp_mode=0
     SoC_ref=0.51
@@ -108,17 +105,17 @@ while 1:
 
 ### Call dispatch###
 
-    if island==0 and emg==0:
+    if island==0 and emg==0:    # grid-connected dispatch
     #griddisp(Pwind,Pload,SoC,PES,start_ds,Type,Disp_mode,SoC_ref)
-        Gdisp=Griddisp1.Griddisp()
-        Gdisp.griddisp(Pwind,Pload,SoC,PES,start_ds,Type,Disp_mode,SoC_ref)
+        Gdisp=Griddisp1.Griddisp1()
+        Gdisp.griddisp1(Pwind,Pload,SoC,PES,start_ds,Type,Disp_mode,SoC_ref)
         Pcurt=Gdisp.Pwdref
         PSLd=Gdisp.Pldref
         Pessref=Gdisp.Pessref
         Pdsref=Gdisp.Pdsref
         start_ds=Gdisp.Start_ds
         Disp_mode=Gdisp.disp_mode
-    elif island==1 and emg==0:  
+    elif island==1 and emg==0:    # islanded dispatch
     # islanded dispatch
         Idisp=Isldisp1.Isldisp1()
         Idisp.Isldispatch1(Pwind,Pload,SoC,start_ds,Type,Disp_mode,SoC_ref)
@@ -129,7 +126,7 @@ while 1:
         start_ds=Idisp.Start_ds
         Disp_mode=Idisp.disp_mode
         
-    elif emg==1: 
+    elif emg==1:    # unplanded islanding
         # unplanned islanding
         #emgdisp(self,Pdiesel,P_ES,start_ds,Pess,Type)
         Pdiesel=0.5
@@ -152,38 +149,37 @@ while 1:
     Pwdreft=dist2.Pwdref    #
     Ppvreft=dist2.Ppvref
     
-    u=np.array(np.zeros(1))
-    v=np.array(np.zeros(1))
+#    u=np.array(np.zeros(1))
+#    v=np.array(np.zeros(1))
     
-    #Call WandQ of wind
-    WandQ1=WandQ.WandQ()
-    WandQ1.shed(u,v,np.array([Pwdf]),np.array([Pwdv]),Pwd-Pwdreft)
-    Pwdfref=WandQ1.P11_new
-    Pwdvref=WandQ1.P21_new
-    
-    
-    # Call WandQ of PV
-    WandQ2=WandQ.WandQ()
-    WandQ2.shed(u,v,np.array([Ppvf]),np.array([Ppvv]),Ppv-Ppvreft)
-    Ppvfref=WandQ2.P11_new
-    Ppvvref=WandQ2.P21_new
-    
-    
-    # Call WandQ of Load
-    WandQ3=WandQ.WandQ()
-    WandQ3.shed(u,v,np.array([Pldf]),np.array([Pldv]),Pload-PSLd)
-    Pldfref=WandQ3.P11_new
-    Pldvref=WandQ3.P21_new
+#    #Call WandQ of wind
+#    WandQ2=WandQ1.WandQ1()
+#    WandQ2.shed(u,v,np.array([Pwdf]),np.array([Pwdv]),Pwdreft)
+#    Pwdfref=WandQ2.P11_new
+#    Pwdvref=WandQ2.P21_new
+#    
+#    
+#    # Call WandQ of PV
+#    WandQ2=WandQ.WandQ()
+#    WandQ2.shed(u,v,np.array([Ppvf]),np.array([Ppvv]),Ppv-Ppvreft)
+#    Ppvfref=WandQ2.P11_new
+#    Ppvvref=WandQ2.P21_new
+#    
+#    
+#    # Call WandQ of Load
+#    WandQ3=WandQ.WandQ()
+#    WandQ3.shed(u,v,np.array([Pldf]),np.array([Pldv]),Pload-PSLd)
+#    Pldfref=WandQ3.P11_new
+#    Pldvref=WandQ3.P21_new
 ##############send  to output###################
-    command[0]=Pwdfref
-    command[1]=Pwdvref
-    command[2]=Ppvfref
-    command[3]=Ppvvref
-    command[4]=Pldfref
-    command[5]=Pldvref
-    command[6]=Pessref
-    command[7]=Pdsref
-    command[8]=start_ds
+    command[0]=Pdsref
+    command[1]=PSLd
+    command[2]=Pwdreft
+    command[3]=Ppvreft
+    command[4]=start_ds
+    command[5]=Pessref
+    command[6]=0
+    command[7]=0
 
 #############################################################################         
         

@@ -5,7 +5,7 @@ Created on Tue Jan  8 14:26:41 2019
 @author: csun26
 """
 
-class Griddisp:
+class Griddisp1:
     def _init_(self):
         self.SoC_max=0.9   #95
         self.SoC_min=0.32
@@ -21,7 +21,7 @@ class Griddisp:
         self.Pdsref=0
         self.Start_ds=0
 		
-    def griddisp(self,Pwind,Pload,SoC,PES,start_ds,Type,Disp_mode,SoC_ref):  ## P_ES is power at POI
+    def griddisp1(self,Pwind,Pload,SoC,PES,start_ds,Type,Disp_mode,SoC_ref):  ## P_ES is power at POI
         self.SoC_max=0.9   #95
         self.SoC_min=0.32
         self.disp_mode=0 
