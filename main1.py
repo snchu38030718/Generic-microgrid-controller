@@ -64,6 +64,7 @@ emg=0
 while 1:
     start_time = time.time()
     command=list(m.e.status())
+    spent_time=time.time()-init_time
 
 
 
@@ -97,6 +98,9 @@ while 1:
     Pload=Pldf+Pldv
     SoC=command[6]
     PES=0.5  #grid power
+    if spent_time>=100:
+        PES=0
+    Ppoiref=PES
     start_ds=command[7]
     Type=3
     Disp_mode=0
@@ -178,7 +182,7 @@ while 1:
     command[3]=Ppvreft
     command[4]=start_ds
     command[5]=Pessref
-    command[6]=0
+    command[6]=Ppoiref
     command[7]=0
 
 #############################################################################         
