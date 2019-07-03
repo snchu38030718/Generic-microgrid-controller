@@ -18,7 +18,7 @@ class Isldisp1:
         self.Pessref=0
         self.disp_mode=0     
         self.Pdsref=0
-        self.Start_ds=0
+        self.Start_ds=1
 		
     def Isldispatch1(self,Pwind,Pload,SoC,start_ds,Type,Disp_mode,SoC_ref):
         self.SoC_max = 0.9   #95
@@ -33,7 +33,7 @@ class Isldisp1:
         self.Pessref=0
         self.disp_mode=0     
         self.Pdsref=0
-        self.Start_ds=0
+        self.Start_ds=1
         ## Load following&cycle charge
         if Type==1:
             Pnet = Pwind-Pload

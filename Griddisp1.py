@@ -34,7 +34,7 @@ class Griddisp1:
         self.Pldref=0
         self.Pessref=0
         self.Pdsref=0
-        self.Start_ds=0
+        self.Start_ds=1
         Pnet=Pwind+PES-Pload
         if Type==1:  ## load following&cycle charging  # Load following & cycle charging
             if Pnet>=0 and Disp_mode==0:    # More, wind is controllable, diesel is off, ESS dep#ends
