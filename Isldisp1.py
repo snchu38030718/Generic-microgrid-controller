@@ -7,7 +7,7 @@ Created on Tue Jan  8 15:49:31 2019
 class Isldisp1:
     def _init_(self):
         self.SoC_max = 0.9   #95
-        self.SoC_min = 0.32
+        self.SoC_min = 0.3
         self.Pch_max = 3
         self.Pdis_max = -3  #-1.5
         self.Pds_min=0.6
@@ -22,7 +22,7 @@ class Isldisp1:
 		
     def Isldispatch1(self,Pwind,Pload,SoC,start_ds,Type,Disp_mode,SoC_ref):
         self.SoC_max = 0.9   #95
-        self.SoC_min = 0.32
+        self.SoC_min = 0.3
         self.Pch_max = 3
         self.Pdis_max = -3  #-1.5
         self.Pds_min=0.6

@@ -98,7 +98,7 @@ while 1:
     SoC=command[6]
     PES=0.5  #grid power
     start_ds=command[7]
-    Type=4
+    Type=3
     Disp_mode=0
     SoC_ref=0.51
 
