@@ -102,7 +102,7 @@ while 1:
         PES=0
     Ppoiref=PES
     start_ds=command[7]
-    Type=3
+    Type=2
     Disp_mode=0
     SoC_ref=0.51
 
