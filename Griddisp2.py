@@ -8,7 +8,7 @@ Created on Thu Jan 10 15:32:29 2019
 class Griddisp2:
     def _init_(self):
         self.SoC_max=0.9   #95
-        self.SoC_min=0.32
+        self.SoC_min=0.3
         self.disp_mode=0 
         self.Pch_max = 1
         self.Pdis_max = -1  #-1.5
@@ -23,14 +23,14 @@ class Griddisp2:
 
     def griddisp2(self,Prer,Pload,SoC,PES,start_diesel,Type,Disptch_mode,SoC_ref):  ## P_ES is power at POI
         self.SoC_max=0.9   #95
-        self.SoC_min=0.32
+        self.SoC_min=0.2
         self.SoCd=self.SoC_min+0.1 # The lower bound for cycle-charging control
         self.SoCup=self.SoC_min+0.5 # The upper bound for cycle-charging control
         self.SoCref1=0.45     # The lower bound of power smoothing control
         self.disp_mode=0 
         self.Pch_max = 1
         self.Pdis_max = -1  #-1.5
-        self.Pds_min=0.3
+        self.Pds_min=0.2
         self.Pds_max=1
         self.Prerref=0
         self.Tdiesel=4
