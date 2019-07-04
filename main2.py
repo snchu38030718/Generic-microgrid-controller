@@ -190,7 +190,7 @@ while 1:
     command[4]=start_ds
     command[5]=Pessref
     command[6]=Ppoiref
-    command[7]=0
+    command[7]=Disp_mode
 
 #############################################################################         
         
