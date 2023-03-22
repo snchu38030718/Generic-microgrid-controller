@@ -1,3 +1,4 @@
+// The TCP IP communication
 import socket
 import array
 
