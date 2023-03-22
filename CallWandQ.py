@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """
+## Weighted and queuing algorithm for DER management
 Created on Wed Jan  9 10:46:47 2019
 
 @author: buaa_
