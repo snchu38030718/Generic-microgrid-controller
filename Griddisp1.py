@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """
+# Dispatch in grid-connected mode
 Created on Tue Jan  8 14:26:41 2019
 
 @author: csun26
